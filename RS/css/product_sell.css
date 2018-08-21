@@ -1,0 +1,35 @@
+ section form{
+    color:white;
+    width:60%;
+    margin: 50px auto;
+    text-align: left;
+    padding: 20px;
+    border-radius:5px;
+    display: table;
+    border-spacing: 5px;
+    box-shadow: 0 0 20px blue;
+    background-color: darkturquoise;
+    font-size: 19px;
+    height: 500px;
+}
+section form > div{
+    display:table-row;
+}
+section form > div > *{
+    display:table-cell;
+}
+section form label > *{
+    vertical-align:text-top;
+}
+.btn{
+    padding:10px;
+    margin:10px;
+    font-size: 15px;
+    color:white;
+    background:#5F9EA0;
+    border:none;
+    border-radius: 5px;
+}
+.btn:hover{
+    background:blueviolet;
+}
