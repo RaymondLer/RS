@@ -71,11 +71,69 @@ class Date
         echo "</select>";
     }
 }
+class Cart
+{
+    // TODO: Restore shopping cart from session variable
+    function __construct() {
+        $this->items = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
+    }
     
+    // TODO: Set an item (id and quantity)
+    public function set($id, $quantity) {
+        $n = (int)$quantity;
+        if ($n > 0) {
+            $this->items[$id] = $n;
+        }
+        else {
+            $this->remove($id); // Remove item if quantity 0
+        }
+        $_SESSION['cart'] = $this->items;
+    }
+    
+    // TODO: Get the quantity of an item
+    public function get($id) {
+        return isset($this->items[$id]) ? $this->items[$id] : 0;
+    }
+    
+    // TODO: Remove an item
+    public function remove($id) {
+        unset($this->items[$id]);
+        $_SESSION['cart'] = $this->items;
+    }
+    
+    // TODO: Remove all items
+    public function clear() {
+        $this->items = [];
+        $_SESSION['cart'] = $this->items;
+    }
+    
+    // TODO: Return all ids (keys)
+    public function ids() {
+        return array_keys($this->items);
+    }
+    
+    // TODO: Return items count
+    public function count() {
+        return count($this->items);
+    }
+    
+    // TODO: Return total quantity
+    public function quantity() {
+        return array_sum($this->items);
+    }
+    
+    // Debug
+    public function dump() {
+        var_dump($this->items);
+    }
+}    
 
-
+//date_default_timezone_set('Asia/Kuala_Lumpur');
+//session_start();
+//ob_start();
 
 $html = new Html();
 $page = new Page();
 $date = new Date();
+$cart = new Cart();
 ?>
