@@ -28,6 +28,15 @@ class Html
     public function text($name, $value = '', $maxlength = '', $attr = ''){
         echo "<input type='text' name='$name' id='$name' value='$value' maxlength='$maxlength' $attr>";
     }
+    
+     public function password($name, $value = '', $maxlength = '', $attr = '') {
+        echo "<input type='password' name='$name' id='$name' value='$value' maxlength='$maxlength' $attr>";
+    }
+    
+     public function hidden($name, $value = '', $attr = '') {
+        echo "<input type='hidden' name='$name' id='$name' value='$value' $attr>";
+    }
+    
     public function select($name, $items, $selected = '', $default = true, $attr = '') {
         echo "<select name='$name' id='$name' $attr>";
         if ($default) echo '<option value="">- Select One -</option>';
@@ -38,6 +47,8 @@ class Html
         echo '</select>';
     }
 }
+
+
 class Date
 {
     public function month_select($name, $attr=''){
@@ -50,9 +61,9 @@ class Date
     public function year_select($name, $attr=''){
         echo "<select name='$name' id='$name' $attr maxlength='4'>";
         $d=date(y);
-        for($i=0;$i<=50;$i++){
-            $a=$d+$i;
-            if($a<=99){
+        for($i = 0; $i <= 50; $i++){
+            $a = $d + $i;
+            if($a <= 99){
                 echo  "<option value=20$a>20$a</option>";
             }
         }
