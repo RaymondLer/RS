@@ -9,6 +9,11 @@ class Page
     function __construct() {
         $this->root = $_SERVER['DOCUMENT_ROOT'];
         $this->title = 'Untitled';
+        
+        $this->home_page  = '/';
+//        Need to see first
+        $this->login_page = '/account/login.php';
+        $this->user = isset($_SESSION['auth_user']) ? $_SESSION['auth_user'] : null;
      }
     public function header() {
         include $this->root . '/include/_header.php';
