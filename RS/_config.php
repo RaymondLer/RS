@@ -21,6 +21,21 @@ class Page
     public function footer() {
         include $this->root . '/include/_footer.php';
     }
+     public function is_post() {
+        return $_SERVER['REQUEST_METHOD'] == 'POST';
+    }
+    public function temp($key, $value = null) {
+       if ($value) {
+            $_SESSION["temp_$key"] = $value;
+        }
+        else {
+            if (isset($_SESSION["temp_$key"])) {
+                $value = $_SESSION["temp_$key"];
+                unset($_SESSION["temp_$key"]);
+                return $value;
+            }
+        }
+    }
     
 }
 class Html
