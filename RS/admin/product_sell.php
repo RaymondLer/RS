@@ -14,7 +14,10 @@ $price = 0;
 $dcategory = [];
 $category = "";
 $gender = "";
-
+$arr_gender = [
+    'F' => 'Female',
+    'M' => 'Male'
+];
 $pdo = $page->pdo();
 $s = $pdo->query("SELECT * FROM product");
 foreach($s as $s){
@@ -41,6 +44,8 @@ if($page->is_post()){
         VALUES (?, ?, ?, ?, ?, ?, ?)
     ");
     $stm->execute([$name,$price,$desc,$gender,$category,$brand,$size]);
+    $page->temp('output', 'Record inserted.');
+    $page->redirect('/admin/product_sell.php');
 }
 
 //Maybe get the product name to compare the product name is crash
@@ -53,7 +58,7 @@ if($page->is_post()){
 ?>
 <body>
     <section>
-        <form method="post" action="/admin/product_sell.php" >
+        <form method="post">
             <h1>Product detail</h1>
             <div class="input-group">
                 <label>Product name:</label>
@@ -61,7 +66,7 @@ if($page->is_post()){
             </div>
             <div class="input-group">
                 <label>Description:</label>
-                <?php $html->text('description',$desc,200)?>
+                <?php $html->textArea('description',50,4)?>
             </div>
                 <div class="input-group">
                 <label>Brand:</label>
@@ -73,7 +78,6 @@ if($page->is_post()){
                 <?php $html->text('size',$size,50)?>
             </div>
             <div class="input-group">
-                
                 <label>Category:</label>
                 <?php $html->select('sCategory',$dcategory,$category)?>
                 Got other?
@@ -82,7 +86,7 @@ if($page->is_post()){
             </div>
              <div class="input-group">
                 <label>Gender:</label>
-                <?php $html->text('gender',$gender)?>
+                <?php $html->radio_list('gender', $arr_gender) ?>
             </div>
             <div class="input-group">
                 <label>Image :</label>

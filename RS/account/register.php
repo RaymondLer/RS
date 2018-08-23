@@ -6,10 +6,10 @@ $err = [];
 $pdo = $page->pdo();
 
 // Lookup arrays
-    $arr_gender = [
-        'F' => 'Female',
-        'M' => 'Male'
-    ];
+$arr_gender = [
+    'F' => 'Female',
+    'M' => 'Male'
+];
 
 if($page->is_post()) {
     $username = $page->post('username');
