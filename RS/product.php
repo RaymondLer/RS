@@ -60,6 +60,5 @@ Klang Valley, Johor, Penang: 1-3 days; Rest of Peninsular Malaysia: 1-4 days; Sa
 
 
 <?php 
-echo '';
 $page->footer();
 ?>
