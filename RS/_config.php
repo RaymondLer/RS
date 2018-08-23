@@ -155,7 +155,7 @@ class Date
 {
     public function month_select($name, $attr=''){
          echo "<select name='$name' id='$name' $attr>";
-        for($i=1;$i<=12;$i++){
+        for($i = 1; $i <= 12; $i++){
                 echo  "<option value='$i'>$i</option>";
         }
         echo "</select>";
@@ -176,12 +176,12 @@ class Date
 //Cart Class
 class Cart
 {
-    // TODO: Restore shopping cart from session variable
+    // Restore shopping cart from session variable
     function __construct() {
         $this->items = isset($_SESSION['cart']) ? $_SESSION['cart'] : [];
     }
     
-    // TODO: Set an item (id and quantity)
+    // Set an item (id and quantity)
     public function set($id, $quantity) {
         $n = (int)$quantity;
         if ($n > 0) {
@@ -193,34 +193,34 @@ class Cart
         $_SESSION['cart'] = $this->items;
     }
     
-    // TODO: Get the quantity of an item
+    // Get the quantity of an item
     public function get($id) {
         return isset($this->items[$id]) ? $this->items[$id] : 0;
     }
     
-    // TODO: Remove an item
+    // Remove an item
     public function remove($id) {
         unset($this->items[$id]);
         $_SESSION['cart'] = $this->items;
     }
     
-    // TODO: Remove all items
+    // Remove all items
     public function clear() {
         $this->items = [];
         $_SESSION['cart'] = $this->items;
     }
     
-    // TODO: Return all ids (keys)
+    // Return all ids (keys)
     public function ids() {
         return array_keys($this->items);
     }
     
-    // TODO: Return items count
+    // Return items count
     public function count() {
         return count($this->items);
     }
     
-    // TODO: Return total quantity
+    // Return total quantity
     public function quantity() {
         return array_sum($this->items);
     }
