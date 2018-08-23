@@ -5,32 +5,55 @@ echo "<link rel='stylesheet' href='/css/product_sell.css'>";
 $page->title='Product Submit';
 $page->header();
 
-// post the product 
-if($page->is_post()){
-    
-}
-
-//Maybe get the product name to compare the product name is crash
-
 $pdo = $page->pdo();
-$s = $pdo->query("SELECT * FROM product");
-
 $name = "";
 $desc = "";
 $brand = "";
 $size = "";
-$price = "";
+$price = 0;
 $dcategory = [];
-$category = [];
+$category = "";
+$gender = "";
+
+$pdo = $page->pdo();
+$s = $pdo->query("SELECT * FROM product");
 foreach($s as $s){
     $dcategory[] = $s->category;
 }
+// post the product 
+if($page->is_post()){
+    $name = $page->post('product_name');
+    $desc = $page->post('description');
+    $brand = $page->post('brand');
+    $size = $page->post('size');
+    if(!$category){
+        $category = $page->post('sCategory');
+    }
+    else{
+        $category = $page->post('category');
+    }
+    $price = $page->post('price');
+    $gender = $page->post("gender");
+    
+
+    $stm = $pdo->prepare("
+        INSERT INTO product (name,price,`desc`,gender,category,brand,size)
+        VALUES (?, ?, ?, ?, ?, ?, ?)
+    ");
+    $stm->execute([$name,$price,$desc,$gender,$category,$brand,$size]);
+}
+
+//Maybe get the product name to compare the product name is crash
+
+
+
+
 
 
 ?>
 <body>
     <section>
-        <form method="post" action="#" >
+        <form method="post" action="/admin/product_sell.php" >
             <h1>Product detail</h1>
             <div class="input-group">
                 <label>Product name:</label>
@@ -50,10 +73,16 @@ foreach($s as $s){
                 <?php $html->text('size',$size,50)?>
             </div>
             <div class="input-group">
+                
                 <label>Category:</label>
-                <?php $html->select('category',$dcategory,$category)?>
+                <?php $html->select('sCategory',$dcategory,$category)?>
+                Got other?
                 If got other:
                 <?php $html->text('category',$category);?>
+            </div>
+             <div class="input-group">
+                <label>Gender:</label>
+                <?php $html->text('gender',$gender)?>
             </div>
             <div class="input-group">
                 <label>Image :</label>
