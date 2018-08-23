@@ -108,6 +108,14 @@ class Html
         echo "<input type='hidden' name='$name' id='$name' value='$value' $attr>";
     }
     
+    public function radio_list($name, $items, $checked = '', $break = false, $attr = '') {
+        foreach ($items as $value => $text) {
+            $status = $value == $checked ? 'checked' : '';
+            echo "<label><input type='radio' name='$name' id='$name-$value' value='$value' $status $attr>$text</label>";
+            if ($break) echo '<br>';
+        }
+    }
+    
     public function select($name, $items, $selected = '', $default = true, $attr = '') {
         echo "<select name='$name' id='$name' $attr>";
         if ($default) echo '<option value="">- Select One -</option>';
@@ -160,8 +168,7 @@ class Date
             if($a <= 99){
                 echo  "<option value=20$a>20$a</option>";
             }
-        }
-        
+        }      
         echo "</select>";
     }
 }
