@@ -16,28 +16,81 @@ class Page
         $this->login_page = '/account/login.php';
         $this->user = isset($_SESSION['auth_user']) ? $_SESSION['auth_user'] : null;
      }
+     
     public function header() {
         include $this->root . '/include/_header.php';
     }
+    
     public function footer() {
         include $this->root . '/include/_footer.php';
     }
-     public function is_post() {
-        return $_SERVER['REQUEST_METHOD'] == 'POST';
-    }
-    public function temp($key, $value = null) {
-       if ($value) {
-            $_SESSION["temp_$key"] = $value;
-        }
-        else {
-            if (isset($_SESSION["temp_$key"])) {
-                $value = $_SESSION["temp_$key"];
-                unset($_SESSION["temp_$key"]);
-                return $value;
-            }
-        }
+     
+    public function get($name, $default = '', $escape = true, $trim = true) {
+        $value = isset($_GET[$name]) ? $_GET[$name] : $default;
+        
+        if ($escape) $value = htmlspecialchars($value);
+        if ($trim)   $value = trim($value);
+        
+        return $value;
     }
     
+    public function post($name, $default = '', $escape = true, $trim = true) {
+        $value = isset($_POST[$name]) ? $_POST[$name] : $default;
+        
+        if ($escape) $value = htmlspecialchars($value);
+        if ($trim)   $value = trim($value);
+        
+        return $value;
+    }
+    
+    public function get_array($name, $default = [], $escape = true, $trim = true) {
+        $items = isset($_GET[$name]) ? $_GET[$name] : $default;
+        
+        for ($i = 0; $i < count($items); $i++) {
+            if ($escape) $items[$i] = htmlspecialchars($items[$i]);
+            if ($trim)   $items[$i] = trim($items[$i]);
+        }
+        
+        return $items;
+    }
+    
+    public function post_array($name, $default = [], $escape = true, $trim = true) {
+        $items = isset($_POST[$name]) ? $_POST[$name] : $default;
+        
+        for ($i = 0; $i < count($items); $i++) {
+            if ($escape) $items[$i] = htmlspecialchars($items[$i]);
+            if ($trim)   $items[$i] = trim($items[$i]);
+        }
+        
+        return $items;
+    }
+    
+    public function is_get() {
+        return $_SERVER['REQUEST_METHOD'] == 'GET';
+    }
+    
+    public function is_post() {
+        return $_SERVER['REQUEST_METHOD'] == 'POST';
+    }
+    
+    public function redirect($url = '') {
+        if ($url == '') {
+            $url = $_SERVER['REQUEST_URI'];
+        }
+        
+        ob_clean();
+        header("Location: $url");
+        exit();
+    }
+    
+    public function pdo() {
+        $options = [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
+            PDO::ATTR_EMULATE_PREPARES => false
+        ];
+        return new PDO('mysql:host=localhost;port=3306;dbname=product', 'root', '', $options);
+    }
 }
 
 //HTML Class
@@ -63,6 +116,29 @@ class Html
             echo "<option value='$value' $status>$text</option>";
         }
         echo '</select>';
+    }
+    
+    public function errors($err) {
+        if($err) {
+            echo '<ul class="errors">';
+            foreach ($err as $e) {
+                echo "<li>$e</li>";
+            }
+            echo '</ul>';
+        }
+    }
+    
+    public function error($err, $key) {
+        if ( isset($err[$key]) ) { // The field has error?
+            echo "<span class='error'>$err[$key]</span>";
+        }
+    }
+    
+    public function focus($name, $err = []) {
+        if ($err) {
+            $name = array_keys($err)[0];
+        }       
+        echo "<script>$('[name^=$name]').first().focus();</script>";
     }
 }
 
