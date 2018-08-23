@@ -44,7 +44,7 @@
                                      <div class="dropdown-pic_header">
                                      Welcome
                                      </div>
-                                     <a href="#">Login</a>
+                                     <a href="/login.php">Login</a>
                                      <a href="/register.php">Register</a>
                                      <div id="hidden">
                                      <a href="#">Order List</a> 

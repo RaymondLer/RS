@@ -1,5 +1,6 @@
 <?php 
 
+//Page Class
 class Page
 {
     public $root;
@@ -38,6 +39,8 @@ class Page
     }
     
 }
+
+//HTML Class
 class Html
 {
     public function text($name, $value = '', $maxlength = '', $attr = ''){
@@ -63,7 +66,7 @@ class Html
     }
 }
 
-
+//Date Class
 class Date
 {
     public function month_select($name, $attr=''){
@@ -86,6 +89,8 @@ class Date
         echo "</select>";
     }
 }
+
+//Cart Class
 class Cart
 {
     // TODO: Restore shopping cart from session variable
