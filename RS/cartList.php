@@ -12,8 +12,13 @@ $quantity = 0;
 $item = 0;
 $price = 0;
 $totalPrice = 0;
-$aQuantity = 10;
+
+$pdo = $page->pdo();
+$stm = $pdo->prepare("SELECT * FROM cart WHERE username = ?");
+$stm -> execute($user->name);
+$cart = $stm->fetchAll();
 ?>
+<?php if ($cart->items): ?>
 <h1>Cart List</h1>
 <table class="cartList"> 
 <tr>
@@ -21,36 +26,34 @@ $aQuantity = 10;
     <th>Price</th>
     <th>Quantity</th>
     <th>Total Price</th>
-    <th>Order</th>
-</tr>
-<tr>
-    <td><?php $html->hidden('item',$item)?></td>
-    <td><?php $html->hidden('price',$price)?></td>
-    <td><?php $html->select('quantity',$aQuantity,$quantity,false)?></td>
-    <td><?php $html->hidden('totalPrice',$totalPrice)?></td>
-    <td></td>
-</tr>
-<tr>
-    <td>Item</td>
-    <td>Product Price</td>
-    <td>Quantity</td>
-    <td>Total Price</td>
-    <td>Order</td>
-</tr><tr>
-    <td>Item</td>
-    <td>Product Price</td>
-    <td>Quantity</td>
-    <td>Total Price</td>
-    <td>Order</td>
-</tr>
-<tr>
-    <td>Item</td>
-    <td>Product Price</td>
-    <td>Quantity</td>
-    <td>Total Price</td>
-    <td>Order</td>
 </tr>
 
+<?php foreach($cart as $a){ 
+   $pdo = $page->pdo();
+    $stm = $pdo->query("SELECT * FROM cart WHERE username = $a->item");
+    $price = $stm->fetch();
+?>
+
+    <tr>
+        <td><?php $html->hidden('item',$a->item)?></td>
+        <td><?php $html->hidden('price',$price)?></td>
+        <td><?php $html->select('quantity',range(0,9),$quantity,false)?></td>
+        <td><?php $html->hidden('totalPrice',$totalPrice)?></td>
+        <td><button id="delete">delete</button></td>
+        <td></td>
+    </tr>
+    <?php  }?>
+    <tr>
+        <td><?php $html->hidden('item',$item)?></td>
+        <td><?php $html->hidden('price',$price)?></td>
+        <td><?php $html->select('quantity',$aQuantity,$quantity,false)?></td>
+        <td><?php $html->hidden('totalPrice',$totalPrice)?></td>
+        <td><button id="delete">delete</button></td>
+        <td></td>
+    </tr>
+    <?php else:?>
+    <p> The cart is empty</p>
+    <?php endif?>
 
 </table>
 

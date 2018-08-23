@@ -6,47 +6,73 @@ $page->title='Product Submit';
 $page->header();
 
 // post the product 
-
+if($page->is_post()){
+    
+}
 
 //Maybe get the product name to compare the product name is crash
+
+$pdo = $page->pdo();
+$s = $pdo->query("SELECT * FROM product");
+
+$name = "";
+$desc = "";
+$brand = "";
+$size = "";
+$price = "";
+$dcategory = [];
+$category = [];
+foreach($s as $s){
+    $dcategory[] = $s->category;
+}
+
+
 ?>
 <body>
-    <!--?php while($row = mysqli_fetch_array($results))?-->
-
     <section>
-        
         <form method="post" action="#" >
             <h1>Product detail</h1>
             <div class="input-group">
-              <label>Product name:</label>
-              <input type="text" name="product_name">
-           </div>
+                <label>Product name:</label>
+                <?php $html->text('product_name',$name,50)?>
+            </div>
             <div class="input-group">
-            <label>Description:</label>
-            <input type="text" name="description">
+                <label>Description:</label>
+                <?php $html->text('description',$desc,200)?>
+            </div>
+                <div class="input-group">
+                <label>Brand:</label>
+            <?php $html->text('brand',$brand,20)?>
+            </div>
+            
+            <div class="input-group">
+                <label>Size Available:</label>
+                <?php $html->text('size',$size,50)?>
             </div>
             <div class="input-group">
                 <label>Category:</label>
-                <input type="text" name="category" width='100px'>
+                <?php $html->select('category',$dcategory,$category)?>
+                If got other:
+                <?php $html->text('category',$category);?>
             </div>
             <div class="input-group">
-                <label>Image url:</label>
+                <label>Image :</label>
+                
+            <!--The upload the pic-->
                 <input type="text" name="image_url">
             </div>
             <div class="input-group">
                 <label>Price:</label>
-                <input type="text" name="price" value='RM'>
+                <?php $html->text('price',$price)?>
             </div>
             <div id='coverB'>
-            <div class="buttons">
-                <button tpe="submit" name="save" class="btn">Save</button>
-                <button type="reset" name="reset" class='btn'>Reset</button>
-            </div>
+                <div class="buttons">
+                    <button tpe="submit" name="submit" class="btn">Submit</button>
+                    <button type="reset" name="reset" class='btn'>Reset</button>
+                </div>
             </div>
         </form>
     </section>
-
-
 </body>
 
 <?php 
