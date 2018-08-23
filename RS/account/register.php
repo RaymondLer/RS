@@ -103,7 +103,7 @@ $page->title = 'Registration';
 $page->header();
 ?>
 
-<form method="post" enctype="multipart/form-data">
+<form action="register.php" method="post">
     <div class="form">
         <h1>Register</h1>
         <fieldset>
@@ -156,5 +156,6 @@ $page->header();
 </form>
 
 <?php
+$html->focus('username', $err);
 $page->footer();
 ?>

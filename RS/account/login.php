@@ -10,12 +10,12 @@ $page->header();
         <fieldset>
             <div>
                 <label for="username">Username</label>
-                <input for="">
+                
             </div>
 
             <div>
                 <label for="password">Password</label>
-                <input for="">
+                
             </div>
 
         </fieldset>
