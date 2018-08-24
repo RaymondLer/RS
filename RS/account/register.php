@@ -14,6 +14,7 @@ $arr_gender = [
 if($page->is_post()) {
     $username = $page->post('username');
     $password = $page->post('password');
+    $confirm  = $page->post('confirm');
     $name     = $page->post('name'); 
     $email    = $page->post('email');
     $phone    = $page->post('phone');
@@ -92,7 +93,7 @@ if($page->is_post()) {
         
         // Insert customer record
         $stm = $pdo->prepare("
-            INSERT INTO customer (username, password, name, email, phone, gender)
+            INSERT INTO customer (username, hash, name, email, phone, gender)
             VALUES (?, ?, ?, ?, ?, ?)
         ");
         $stm->execute([$username, $hash, $name, $email, $phone, $gender]);
