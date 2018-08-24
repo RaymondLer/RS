@@ -18,16 +18,16 @@ if ($page->is_post()) {
     
     if (!$err) {
         $pdo = $page->pdo();
-        $stm = $pdo->prepare("SELECT * FROM customer WHERE username = ?");
+        $stm = $pdo->prepare("SELECT * FROM user WHERE username = ?");
         $stm->execute([$username]);
         $user = $stm->fetch();
         
         if ($user != null && password_verify($password, $user->hash)) {
-            if ($user->role == 'customer') {
+//            if ($user->role == 'customer') {
 //                $stm = $pdo->prepare("SELECT photo FROM customer WHERE username = ?");
-                $stm->execute([$username]);
+//                $stm->execute([$username]);
 //                $_SESSION['photo'] = $stm->fetchColumn();
-            }
+//            }
             $page->sign_in($user->username, $user->role);
         }
         else {
