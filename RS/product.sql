@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2018-08-24 03:08:28
+-- Generation Time: 2018-08-24 03:57:16
 -- 服务器版本： 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -27,9 +27,24 @@ USE `product`;
 -- --------------------------------------------------------
 
 --
+-- 表的结构 `admin`
+--
+
+DROP TABLE IF EXISTS `admin`;
+CREATE TABLE `admin` (
+  `username` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `hash` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
 -- 表的结构 `cart`
 --
 
+DROP TABLE IF EXISTS `cart`;
 CREATE TABLE `cart` (
   `username` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `product_id` int(5) NOT NULL,
@@ -42,6 +57,7 @@ CREATE TABLE `cart` (
 -- 表的结构 `customer`
 --
 
+DROP TABLE IF EXISTS `customer`;
 CREATE TABLE `customer` (
   `username` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `hash` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
@@ -65,6 +81,7 @@ INSERT INTO `customer` (`username`, `hash`, `name`, `email`, `phone`, `gender`) 
 -- 表的结构 `favourite`
 --
 
+DROP TABLE IF EXISTS `favourite`;
 CREATE TABLE `favourite` (
   `username` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `product_id` int(5) NOT NULL
@@ -76,6 +93,7 @@ CREATE TABLE `favourite` (
 -- 表的结构 `order`
 --
 
+DROP TABLE IF EXISTS `order`;
 CREATE TABLE `order` (
   `order_id` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
   `username` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
@@ -92,6 +110,7 @@ CREATE TABLE `order` (
 -- 表的结构 `product`
 --
 
+DROP TABLE IF EXISTS `product`;
 CREATE TABLE `product` (
   `product_id` int(5) NOT NULL,
   `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,

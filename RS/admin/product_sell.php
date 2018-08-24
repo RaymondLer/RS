@@ -6,6 +6,7 @@ $page->title='Product Submit';
 $page->header();
 
 $pdo = $page->pdo();
+$product_id = rand(1, 9999);
 $name = "";
 $desc = "";
 $brand = "";
@@ -18,10 +19,31 @@ $arr_gender = [
     'F' => 'Female',
     'M' => 'Male'
 ];
+$err = [];
+function validateFile($err, $file) {
+        if ($file['error'] == UPLOAD_ERR_NO_FILE) {
+            $err['file'] = 'No file selected.';
+        }
+        else if ($file['error'] == UPLOAD_ERR_INI_SIZE ||
+                 $file['error'] == UPLOAD_ERR_FORM_SIZE) {
+            $err['file'] = 'File exceeds the size allowed.';
+        }
+        else if ($file['error'] != UPLOAD_ERR_OK) {
+            $err['file'] = 'System error. Failed to upload file.';
+        }
+        else {
+            // TODO:
+            $mime = mime_content_type($file['tmp_name']);
+            if ($mime != 'image/jpeg' && $mime != 'image/png') {
+                $err['file'] = 'Only JPEG or PNG is allowed.';
+            }
+        }
+    }
 $pdo = $page->pdo();
 $s = $pdo->query("SELECT * FROM product");
+do{
 foreach($s as $s){
-    $dcategory[] = $s->category;
+    $dcategory[] = $s->category;    
 }
 // post the product 
 if($page->is_post()){
@@ -38,14 +60,29 @@ if($page->is_post()){
     $price = $page->post('price');
     $gender = $page->post("gender");
     
+    $file = $_FILES['file'];
+        
+    validateFile($err, $file);
+    if (!$err) {
+        //$name = basename($file['name']);
+        //move_uploaded_file($file['tmp_name'], "../photo/$name");
 
-    $stm = $pdo->prepare("
+        $iName = $product_id.'.jpg';
+
+        include '../include/simpleImage.php';
+        $img = new SimpleImage();
+        $img->fromFile($file['tmp_name'])
+            ->toFile("../post_product/$product_id", "image/jpeg", 80);
+            
+        $stm = $pdo->prepare("
         INSERT INTO product (name,price,`desc`,gender,category,brand,size)
         VALUES (?, ?, ?, ?, ?, ?, ?)
     ");
     $stm->execute([$name,$price,$desc,$gender,$category,$brand,$size]);
-    $page->temp('output', 'Record inserted.');
+//  $page->temp('output', 'Record inserted.');
     $page->redirect('/admin/product_sell.php');
+     }
+    
 }
 
 //Maybe get the product name to compare the product name is crash
@@ -90,9 +127,10 @@ if($page->is_post()){
             </div>
             <div class="input-group">
                 <label>Image :</label>
-                
-            <!--The upload the pic-->
-                <input type="text" name="image_url">
+                 <input type="file" id="file" name="file"
+                       accept="image/*" style="display: none">
+                Click to select photo...
+                <img id="prev" src="/image/no-photo.png">
             </div>
             <div class="input-group">
                 <label>Price:</label>
