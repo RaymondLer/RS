@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2018-08-24 02:46:35
+-- Generation Time: 2018-08-24 03:08:28
 -- 服务器版本： 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -44,7 +44,7 @@ CREATE TABLE `cart` (
 
 CREATE TABLE `customer` (
   `username` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `password` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `hash` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `phone` varchar(12) COLLATE utf8_unicode_ci NOT NULL,
@@ -55,7 +55,7 @@ CREATE TABLE `customer` (
 -- 转存表中的数据 `customer`
 --
 
-INSERT INTO `customer` (`username`, `password`, `name`, `email`, `phone`, `gender`) VALUES
+INSERT INTO `customer` (`username`, `hash`, `name`, `email`, `phone`, `gender`) VALUES
 ('admin', 'password', 'admin', '', '', ''),
 ('shawnlim', 'shawnlim', 'shawn', '', '', '');
 
@@ -108,16 +108,7 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `name`, `price`, `desc`, `gender`, `category`, `brand`, `size`) VALUES
-(8, 'ASDASD', '14.00', 'asdash ashjd hasda asd', 'male', 'aa', 'nike', '21'),
-(9, 'ASDASD', '14.00', 'asdash ashjd hasda asd', 'male', 'aa', 'nike', '21'),
-(10, 'ASDASD', '14.00', 'asdash ashjd hasda asd', 'male', '', 'nike', '21'),
-(11, 'ASDASD', '14.00', 'asdash ashjd hasda asd', 'male', '', 'nike', '21'),
-(12, 'ASDASD', '14.00', 'asdash ashjd hasda asd', 'male', '', 'nike', '21'),
-(13, 'ASDASD', '14.00', 'asdash ashjd hasda asd', 'male', '0', 'nike', '21'),
-(14, 'ASDASD', '14.00', 'asdash ashjd hasda asd', 'male', '0', 'nike', '21'),
-(15, 'ASDASD', '14.00', 'asdash ashjd hasda asd', 'male', '0', 'nike', '21'),
-(16, '', '0.00', '', '', '0', '', ''),
-(17, '', '0.00', '', '', '0', '', '');
+(21, 'kl', '12.00', 'jnjk jj kjkjk', 'F', '0', 'nike', '21');
 
 --
 -- Indexes for dumped tables
@@ -143,7 +134,7 @@ ALTER TABLE `product`
 -- 使用表AUTO_INCREMENT `product`
 --
 ALTER TABLE `product`
-  MODIFY `product_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `product_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
