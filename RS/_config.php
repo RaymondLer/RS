@@ -5,7 +5,8 @@ class Page
 {
     public $root;
     public $title;
-    
+    public $user;
+            
 
     function __construct() {
         $this->root = $_SERVER['DOCUMENT_ROOT'];
@@ -83,6 +84,19 @@ class Page
         exit();
     }
     
+    public function temp($key, $value = null) {
+        if ($value) {
+            $_SESSION["temp_$key"] = $value;
+        }
+        else {
+            if (isset($_SESSION["temp_$key"])) {
+                $value = $_SESSION["temp_$key"];
+                unset($_SESSION["temp_$key"]);
+                return $value;
+            }
+        }
+    }
+    
     public function pdo() {
         $options = [
             PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
@@ -149,6 +163,12 @@ class Html
             $name = array_keys($err)[0];
         }       
         echo "<script>$('[name^=$name]').first().focus();</script>";
+    }
+    
+    public function success($message) {
+        if ($message) {
+            echo "<p class='success'>$message</p>";
+        }
     }
 }
 

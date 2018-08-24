@@ -28,7 +28,7 @@ if($page->is_post()) {
 
     else {
         // Check if username is duplicated
-        $stm = $pdo->prepare("SELECT COUNT(*) FROM user WHERE username = ?");
+        $stm = $pdo->prepare("SELECT COUNT(*) FROM customer WHERE username = ?");
         $stm->execute([$username]);
         $count = $stm->fetchColumn();
 
@@ -86,13 +86,13 @@ if($page->is_post()) {
             $err['gender'] = '[Gender] invalid.';
         }
         
-    if(!err) {
-        // Password hash
+    if(!$err) {
+//        // Password hash
         $hash = password_hash($password, PASSWORD_DEFAULT);
         
         // Insert customer record
         $stm = $pdo->prepare("
-            INSERT INTO customer (username, hash, name, email, phone, gender)
+            INSERT INTO customer (username, password, name, email, phone, gender)
             VALUES (?, ?, ?, ?, ?, ?)
         ");
         $stm->execute([$username, $hash, $name, $email, $phone, $gender]);
