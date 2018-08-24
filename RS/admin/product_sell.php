@@ -6,7 +6,7 @@ $page->title='Product Submit';
 $page->header();
 
 $pdo = $page->pdo();
-$product_id = rand(1, 9999);
+$product_id ="";
 $name = "";
 $desc = "";
 $brand = "";
@@ -40,10 +40,19 @@ function validateFile($err, $file) {
         }
     }
 $pdo = $page->pdo();
-$s = $pdo->query("SELECT * FROM product");
+$s = $pdo->query("SELECT product_id FROM product");
 do{
-foreach($s as $s){
-    $dcategory[] = $s->category;    
+    $repeat = false;
+    $product_id = rand(1, 99999);
+    foreach($s as $s){
+        if($product_id == $s){
+            $repeat=true;
+        }
+    }
+}while(repeat);
+$cate = $pdo->query("SELECT DISTINCT category FROM product ");
+foreach($cate as $s){
+    $dcategory[] = $s;    
 }
 // post the product 
 if($page->is_post()){
