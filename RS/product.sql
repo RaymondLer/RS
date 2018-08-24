@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2018-08-24 05:15:17
+-- Generation Time: 2018-08-24 05:54:02
 -- 服务器版本： 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -33,10 +33,17 @@ USE `product`;
 DROP TABLE IF EXISTS `admin`;
 CREATE TABLE `admin` (
   `username` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `hash` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- 转存表中的数据 `admin`
+--
+
+INSERT INTO `admin` (`username`, `hash`, `name`, `email`) VALUES
+('admin', 'password', 'Admin', 'admin@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -60,7 +67,7 @@ CREATE TABLE `cart` (
 DROP TABLE IF EXISTS `customer`;
 CREATE TABLE `customer` (
   `username` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `hash` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `phone` varchar(12) COLLATE utf8_unicode_ci NOT NULL,
@@ -72,7 +79,6 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`username`, `hash`, `name`, `email`, `phone`, `gender`) VALUES
-('admin', 'password', 'admin', '', '', ''),
 ('shawnlim', 'shawnlim', 'shawn', '', '', '');
 
 -- --------------------------------------------------------
@@ -221,7 +227,7 @@ INSERT INTO `product` (`product_id`, `name`, `price`, `desc`, `gender`, `categor
 DROP VIEW IF EXISTS `user`;
 CREATE TABLE `user` (
 `username` varchar(50)
-,`hash` varchar(50)
+,`hash` varchar(255)
 ,`name` varchar(50)
 ,`email` varchar(50)
 ,`role` varchar(8)
@@ -251,16 +257,6 @@ ALTER TABLE `customer`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`product_id`);
-
---
--- 在导出的表使用AUTO_INCREMENT
---
-
---
--- 使用表AUTO_INCREMENT `product`
---
-ALTER TABLE `product`
-  MODIFY `product_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2031;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

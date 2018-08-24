@@ -21,6 +21,10 @@ section form > div > *{
 section form label > *{
     vertical-align:text-top;
 }
+#gender{
+    width: 50px;
+    border:1px red solid;
+}
 .btn{
     padding:10px;
     margin:10px;
