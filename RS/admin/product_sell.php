@@ -11,21 +11,22 @@ $name = "";
 $desc = "";
 $brand = "";
 $size = "";
-$price = 0;
-$dcategory = [];
+$price = "";
+$dcategory = ['Other'];
 $category = "";
 $gender = "";
 $arr_gender = [
     'F' => 'Female',
-    'M' => 'Male'
+    'M' => 'Male',
+    'O' => 'Other',
 ];
-$err = [];
+
 function validateFile($err, $file) {
         if ($file['error'] == UPLOAD_ERR_NO_FILE) {
          $err['file'] = 'Photo is required.';
      }
      else if ($file['error'] == UPLOAD_ERR_FORM_SIZE ||
-              $file['error'] == UPLOAD_ERR_INI_SIZE) {
+         $file['error'] == UPLOAD_ERR_INI_SIZE) {
          $err['file'] = 'Photo exceeds size allowed.';
      }
      else if ($file['error'] != UPLOAD_ERR_OK) {
@@ -37,9 +38,9 @@ function validateFile($err, $file) {
          if ($mime != 'image/jpeg' && $mime != 'image/png') {
              $err['file'] = 'Only JPEG or PNG photo allowed.';
          }
-     }
     }
-$pdo = $page->pdo();
+}
+//Compare the id with the database
 $s = $pdo->query("SELECT product_id FROM product");
 do{
     $try = false;
@@ -50,99 +51,124 @@ do{
         }
     }
 }while($try);
+//Display the category of the shoes
 $cate = $pdo->query("SELECT DISTINCT category FROM product ");
 foreach($cate as $s){
     $dcategory[] = $s->category;    
 }
+$err = [];
 // post the product 
 if($page->is_post()){
     $name = $page->post('product_name');
     $desc = $page->post('description');
     $brand = $page->post('brand');
     $size = $page->post('size');
-    if(!$category){
-        $category = $page->post('sCategory');
-    }
-    else{
+    if($page->post('sCategory')==0){
         $category = $page->post('category');
+    }
+    else {
+        $category = $page->post('sCategory');
+        $category = $dcategory[$category];
     }
     $price = $page->post('price');
     $gender = $page->post("gender");
-    
+    //Validation
+    if($name == ""){
+        $err['name'] = 'Product name is required.';
+    }
+    if(!strlen(trim($desc))){
+         $err['description'] = 'Description is required.';
+    }
+    if($brand == ""){
+        $err['brand'] = 'brand is required.';
+    }
+    $pattern = "/[^\d,]+$/";
+    if($size == ""){
+        $err['size'] = 'Size is required.';
+    }else if(preg_match($pattern, $size)){
+        $err['size'] = 'Please type the right format';
+    }
+    if($category == 0 && $category==""){
+        $err['category'] = 'Category is required';
+    }
+    if($price == ""){
+        $err['price'] = 'Price is required.';
+    }else if($price == 0){
+         $err['price'] = 'Price cannot be zero.';
+    }
+    if($gender == ""){
+        $err['gender'] = 'Gender is required.';
+    }
     $file = $_FILES['file'];
-        
     validateFile($err, $file);
+    
     if (!$err) {
-        //$name = basename($file['name']);
-        //move_uploaded_file($file['tmp_name'], "../photo/$name");
-
-        $iName = $product_id.'.jpg';
+        $iName = $product_id. '.jpg';
 
         include '../include/simpleImage.php';
         $img = new SimpleImage();
         $img->fromFile($file['tmp_name'])
-            ->toFile("../post_product/$product_id", "image/jpeg", 80);
+            ->toFile("../post_product/$iName", "image/jpeg", 80);
             
         $stm = $pdo->prepare("
         INSERT INTO product (product_id,name,price,`desc`,gender,category,brand,size)
         VALUES (?,?, ?, ?, ?, ?, ?, ?)
     ");
-    $stm->execute([$name,$price,$desc,$gender,$category,$brand,$size]);
-//  $page->temp('output', 'Record inserted.');
-    $page->redirect('/admin/product_sell.php');
+    $stm->execute([$product_id,$name,$price,$desc,$gender,$category,$brand,$size]);
+    $page->temp('output', 'Product is inserted');
+
      }
 }
-
-//Maybe get the product name to compare the product name is crash
-
-
-
-
-
-
 ?>
 <body>
     <section>
-        <?php echo $product_id?>
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <h1>Product detail</h1>
+            <div>
+                <label>Product id:</label>
+                <?= $product_id;?>
+            </div>
             <div class="input-group">
                 <label>Product name:</label>
                 <?php $html->text('product_name',$name,50)?>
+                <?php $html->error($err, 'name') ?>
             </div>
             <div class="input-group">
                 <label>Description:</label>
                 <?php $html->textArea('description',50,4)?>
+                <?php $html->error($err, 'description') ?>
             </div>
                 <div class="input-group">
                 <label>Brand:</label>
             <?php $html->text('brand',$brand,20)?>
+                <?php $html->error($err, 'brand') ?>
             </div>
             
             <div class="input-group">
-                <label>Size Available:</label>
+                <label>Size Available:[If got more put (23,24)]</label>
                 <?php $html->text('size',$size,50)?>
+                <?php $html->error($err, 'size') ?>
             </div>
             <div class="input-group">
                 <label>Category:</label>
-                <?php $html->select('sCategory',$dcategory,$category)?>
-                Got other?
+                <?php $html->select('sCategory',$dcategory,"",false)?>
                 If got other:
                 <?php $html->text('category',$category);?>
+                <?php $html->error($err, 'category') ?>
             </div>
-             <div class="input-group">
+             <div class="gender">
                 <label>Gender:</label>
-                <?php $html->radio_list('gender', $arr_gender) ?>
+                <span id="gender"><?php $html->radio_list('gender', $arr_gender,$gender) ?>
+                <?php $html->error($err, 'gender') ?></span>
             </div>
             <div class="input-group">
                 <label>Image :</label>
-                 <input type="file" id="file" name="file"
-                        accept="image/*">
-                
+                <input type="file" id="file" name="file" accept="image/*">
             </div>
             <div class="input-group">
                 <label>Price:</label>
                 <?php $html->text('price',$price)?>
+                <?php $html->error($err, 'price') ?>
             </div>
             <div id='coverB'>
                 <div class="buttons">
