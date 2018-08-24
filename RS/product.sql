@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2018-08-24 03:57:16
+-- Generation Time: 2018-08-24 04:24:59
 -- 服务器版本： 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -23,20 +23,6 @@ SET time_zone = "+00:00";
 --
 CREATE DATABASE IF NOT EXISTS `product` DEFAULT CHARACTER SET utf8 COLLATE utf8_unicode_ci;
 USE `product`;
-
--- --------------------------------------------------------
-
---
--- 表的结构 `admin`
---
-
-DROP TABLE IF EXISTS `admin`;
-CREATE TABLE `admin` (
-  `username` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `hash` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -64,16 +50,17 @@ CREATE TABLE `customer` (
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `phone` varchar(12) COLLATE utf8_unicode_ci NOT NULL,
-  `gender` varchar(10) COLLATE utf8_unicode_ci NOT NULL
+  `gender` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
+  `role` varchar(50) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- 转存表中的数据 `customer`
 --
 
-INSERT INTO `customer` (`username`, `hash`, `name`, `email`, `phone`, `gender`) VALUES
-('admin', 'password', 'admin', '', '', ''),
-('shawnlim', 'shawnlim', 'shawn', '', '', '');
+INSERT INTO `customer` (`username`, `hash`, `name`, `email`, `phone`, `gender`, `role`) VALUES
+('admin', 'password', 'admin', '', '', '', ''),
+('shawnlim', 'shawnlim', 'shawn', '', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -121,13 +108,6 @@ CREATE TABLE `product` (
   `brand` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `size` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
-
---
--- 转存表中的数据 `product`
---
-
-INSERT INTO `product` (`product_id`, `name`, `price`, `desc`, `gender`, `category`, `brand`, `size`) VALUES
-(21, 'kl', '12.00', 'jnjk jj kjkjk', 'F', '0', 'nike', '21');
 
 --
 -- Indexes for dumped tables
