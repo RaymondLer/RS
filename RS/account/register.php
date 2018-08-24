@@ -152,6 +152,7 @@ $page->header();
             </div>            
         </fieldset>
     </div>
+    
     <button>Register</button>
     <button type="reset">Reset</button>
 </form>

@@ -5,15 +5,17 @@ class Page
 {
     public $root;
     public $title;
+    // For Secruity
+    public $home_page;
+    public $login_page;
     public $user;
             
 
     function __construct() {
         $this->root = $_SERVER['DOCUMENT_ROOT'];
         $this->title = 'Untitled';
-        
+        // For Secruity
         $this->home_page  = '/';
-//        Need to see first
         $this->login_page = '/account/login.php';
         $this->user = isset($_SESSION['auth_user']) ? $_SESSION['auth_user'] : null;
      }
@@ -104,6 +106,51 @@ class Page
             PDO::ATTR_EMULATE_PREPARES => false
         ];
         return new PDO('mysql:host=localhost;port=3306;dbname=product', 'root', '', $options);
+    }
+    
+    // Security
+    public function authorize($roles = '') {
+        $arr = explode(',', $roles);
+        
+        if ($this->user && $roles == '') {
+            // User signed in --> OK
+        }
+        else if ($this->user && in_array($this->user->role, $arr)) {
+            // User signed in. Role matched --> OK
+        }
+        else {
+            $return = $_SERVER['REQUEST_URI'];
+            $this->redirect($this->login_page . '?return=' . urlencode($return));
+        }
+    }
+    
+    public function sign_in($name, $role, $redirect = true) {
+        $user = new stdClass();
+        $user->name = $name;
+        $user->role = $role;
+        $user->is_admin  = $role == 'admin';
+        $user->is_customer = $role == 'customer';
+        
+        $_SESSION['auth_user'] = $this->user = $user;
+        
+        if ($redirect) {
+            $return = $this->get('return');
+            if ($return) {
+                $this->redirect($return);
+            }
+            else {
+                $this->redirect($this->home_page);
+            }
+        }
+    }
+    
+    public function sign_out($redirect = true) {
+        unset($_SESSION['auth_user']);
+        $this->user = null;
+        
+        if ($redirect) {
+            $this->redirect($this->home_page);
+        }
     }
 }
 
