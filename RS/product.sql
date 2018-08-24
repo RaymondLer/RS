@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2018-08-23 08:35:32
+-- Generation Time: 2018-08-24 02:46:35
 -- 服务器版本： 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -46,20 +46,18 @@ CREATE TABLE `customer` (
   `username` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `address` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `credit_card` varchar(16) COLLATE utf8_unicode_ci NOT NULL,
-  `cGender` varchar(10) COLLATE utf8_unicode_ci NOT NULL,
-  `Ic` varchar(14) COLLATE utf8_unicode_ci NOT NULL,
-  `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL
+  `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `phone` varchar(12) COLLATE utf8_unicode_ci NOT NULL,
+  `gender` varchar(10) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- 转存表中的数据 `customer`
 --
 
-INSERT INTO `customer` (`username`, `password`, `name`, `address`, `credit_card`, `cGender`, `Ic`, `email`) VALUES
-('admin', 'password', 'admin', '', '0', '', '0', ''),
-('shawnlim', 'shawnlim', 'shawn', '6, JLN DESA MAWAR 1/1, SEKSYEN 1 SUNGAI YU, 45500 TANJONG KARANG, SELANGOR', '2147483647', 'MALE', '2147483647', '');
+INSERT INTO `customer` (`username`, `password`, `name`, `email`, `phone`, `gender`) VALUES
+('admin', 'password', 'admin', '', '', ''),
+('shawnlim', 'shawnlim', 'shawn', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -95,15 +93,57 @@ CREATE TABLE `order` (
 --
 
 CREATE TABLE `product` (
-  `product_id` varchar(5) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `pName` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `product_id` int(5) NOT NULL,
+  `name` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `price` decimal(6,2) NOT NULL,
-  `pDesc` varchar(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `desc` varchar(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `gender` varchar(10) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `category` varchar(30) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `brand` varchar(20) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `size` int(2) NOT NULL
+  `size` varchar(50) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf32 COLLATE=utf32_unicode_ci;
+
+--
+-- 转存表中的数据 `product`
+--
+
+INSERT INTO `product` (`product_id`, `name`, `price`, `desc`, `gender`, `category`, `brand`, `size`) VALUES
+(8, 'ASDASD', '14.00', 'asdash ashjd hasda asd', 'male', 'aa', 'nike', '21'),
+(9, 'ASDASD', '14.00', 'asdash ashjd hasda asd', 'male', 'aa', 'nike', '21'),
+(10, 'ASDASD', '14.00', 'asdash ashjd hasda asd', 'male', '', 'nike', '21'),
+(11, 'ASDASD', '14.00', 'asdash ashjd hasda asd', 'male', '', 'nike', '21'),
+(12, 'ASDASD', '14.00', 'asdash ashjd hasda asd', 'male', '', 'nike', '21'),
+(13, 'ASDASD', '14.00', 'asdash ashjd hasda asd', 'male', '0', 'nike', '21'),
+(14, 'ASDASD', '14.00', 'asdash ashjd hasda asd', 'male', '0', 'nike', '21'),
+(15, 'ASDASD', '14.00', 'asdash ashjd hasda asd', 'male', '0', 'nike', '21'),
+(16, '', '0.00', '', '', '0', '', ''),
+(17, '', '0.00', '', '', '0', '', '');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `customer`
+--
+ALTER TABLE `customer`
+  ADD PRIMARY KEY (`username`);
+
+--
+-- Indexes for table `product`
+--
+ALTER TABLE `product`
+  ADD PRIMARY KEY (`product_id`);
+
+--
+-- 在导出的表使用AUTO_INCREMENT
+--
+
+--
+-- 使用表AUTO_INCREMENT `product`
+--
+ALTER TABLE `product`
+  MODIFY `product_id` int(5) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
