@@ -300,9 +300,9 @@ class Cart
     }
 }    
 
-//date_default_timezone_set('Asia/Kuala_Lumpur');
-//session_start();
-//ob_start();
+date_default_timezone_set('Asia/Kuala_Lumpur');
+session_start();
+ob_start();
 
 $html = new Html();
 $page = new Page();

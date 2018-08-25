@@ -23,12 +23,7 @@ if ($page->is_post()) {
         $user = $stm->fetch();
         
         if ($user != null && password_verify($password, $user->hash)) {
-//            if ($user->role == 'customer') {
-//                $stm = $pdo->prepare("SELECT photo FROM customer WHERE username = ?");
-//                $stm->execute([$username]);
-//                $_SESSION['photo'] = $stm->fetchColumn();
-//            }
-            $page->sign_in($user->username, $user->role);
+            $page->sign_in($user->username, $user->role);   
         }
         else {
             $err['password'] = 'Username and Password not matched.';

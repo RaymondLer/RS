@@ -24,6 +24,9 @@ header{
     top: 0;
     
 }
+#id{
+    color:white;
+}
 #navl{
     float: left;
     padding-right:60px;

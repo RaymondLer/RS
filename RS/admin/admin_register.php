@@ -1,15 +1,9 @@
 <?php
 include'../_config.php';
 
-$username = $password = $confirm = $name = $email = $phone = $gender = '';
+$username = $password = $confirm = $name = $email = '';
 $err = [];
 $pdo = $page->pdo();
-
-// Lookup arrays
-$arr_gender = [
-    'F' => 'Female',
-    'M' => 'Male'
-];
 
 if($page->is_post()) {
     $username = $page->post('username');
@@ -17,9 +11,7 @@ if($page->is_post()) {
     $confirm  = $page->post('confirm');
     $name     = $page->post('name'); 
     $email    = $page->post('email');
-    $phone    = $page->post('phone');
-    $gender   = $page->post('gender');
-
+    
     if($username == '') {
         $err['username'] = 'Username is required.';
     }
@@ -29,7 +21,7 @@ if($page->is_post()) {
 
     else {
         // Check if username is duplicated
-        $stm = $pdo->prepare("SELECT COUNT(*) FROM customer WHERE username = ?");
+        $stm = $pdo->prepare("SELECT COUNT(*) FROM admin WHERE username = ?");
         $stm->execute([$username]);
         $count = $stm->fetchColumn();
 
@@ -72,41 +64,27 @@ if($page->is_post()) {
     else if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
             $err['email'] = 'Email format invalid.';
     }
-
-    if ($phone == '') {
-            $err['phone'] = 'Phone is required.';
-    }
-    else if (!preg_match('/^01\d-\d{7,8}$/', $phone)) {
-            $err['phone'] = 'Phone format invalid.';
-    }
     
-    if ($gender == '') {
-            $err['gender'] = '[Gender] cannot empty.';
-        }
-        else if (!preg_match('/^[FM]$/', $gender)) {
-            $err['gender'] = '[Gender] invalid.';
-        }
-        
     if(!$err) {
         // Password hash
         $hash = password_hash($password, PASSWORD_DEFAULT);
         
         // Insert customer record
         $stm = $pdo->prepare("
-            INSERT INTO customer (username, hash, name, email, phone, gender)
-            VALUES (?, ?, ?, ?, ?, ?)
+            INSERT INTO admin (username, hash, name, email)
+            VALUES (?, ?, ?, ?)
         ");
-        $stm->execute([$username, $hash, $name, $email, $phone, $gender]);
+        $stm->execute([$username, $hash, $name, $email]);
     }
 }
 
-$page->title = 'Registration';
+$page->title = 'Register Admin';
 $page->header();
 ?>
 
-<form action="register.php" method="post">
+<form action="admin_register.php" method="post">
     <div class="form">
-        <h1>Register</h1>
+        <h1>Register - Admin</h1>
         <fieldset>
             <div>
                 <label for="username">Username :</label>
@@ -137,19 +115,6 @@ $page->header();
                  <?php $html->text('email', $email, 100) ?>
                  <?php $html->error($err, 'email') ?>
             </div>
-
-            <div>
-                <label for="phone">Phone :</label>
-                <?php $html->text('phone', $phone, 12) ?>
-                <?php $html->error($err, 'phone') ?>
-            </div>
-            
-            <div>
-                <label for="gender">Gender :</label>
-                <div>
-                    <?php $html->radio_list('gender', $arr_gender) ?>
-                </div>
-            </div>            
         </fieldset>
     </div>
     
