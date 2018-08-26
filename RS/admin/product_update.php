@@ -1,8 +1,28 @@
-<?php
+<?php 
+    include'../_config.php';
+    echo "<link rel='stylesheet' href='/css/product_sell.css'>";
+    $page->title='Product Submit';
+    $page->header();
+?>
+<body>
+    <section>
+        <div>Product id:
+        
+        </div>
+        <div>Name</div>  
+        <div>Price</div>
+        <div>Description</div>
+        <div>Gender</div>
+        <div>Category</div>
+        <div>Brand</div>
+        <div>Size</div>
+        
+    </section>
+</body>
+   
 
-/* 
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 
+
+<?php 
+$page->footer();
+?>
