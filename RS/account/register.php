@@ -11,7 +11,7 @@ $arr_gender = [
     'M' => 'Male'
 ];
 
-if($page->is_post()) {
+if ($page->is_post()) {
     $username = $page->post('username');
     $password = $page->post('password');
     $confirm  = $page->post('confirm');
@@ -20,10 +20,10 @@ if($page->is_post()) {
     $phone    = $page->post('phone');
     $gender   = $page->post('gender');
 
-    if($username == '') {
+    if ($username == '') {
         $err['username'] = 'Username is required.';
     }
-    else if(strlen($username) > 20) {
+    else if (strlen($username) > 20) {
         $err['username'] = 'Username must not more than 20 characters.';
     }
 
@@ -38,35 +38,35 @@ if($page->is_post()) {
         }
     }
 
-    if($password == '') {
+    if ($password == '') {
         $err['password'] = 'Password is required.';
     }
 
-    else if(strlen($password) < 5) {
+    else if (strlen($password) < 5) {
         $err['password'] = 'Password must more than 5 characters.';
     }
-    else if(!preg_match('/^\S+$/', $password)) {
+    else if (!preg_match('/^\S+$/', $password)) {
         $err['password'] = 'Password should not contain spaces.';
     }
 
-    if($confirm == '') {
+    if ($confirm == '') {
         $err['confirm'] = 'Confirm Password is required.';
     }
-    else if($confirm != $password) {
+    else if ($confirm != $password) {
         $err['confirm'] = 'Confirm Password and Password not matched.';
     }
     
-    if($name == '') {
+    if ($name == '') {
         $err['name'] = 'Name is required.';
     }
-    else if(strlen($name) > 100) {
+    else if (strlen($name) > 100) {
         $err['name'] = 'Name must not more than 100 characters.';
     }
 
-    if($email == '') {
+    if ($email == '') {
         $err['email'] = 'Email is required.';
     }
-    else if(strlen($email) > 100) {
+    else if (strlen($email) > 100) {
         $err['email'] = 'Email no more than 100 characters.';
     }
     else if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
@@ -87,7 +87,7 @@ if($page->is_post()) {
             $err['gender'] = '[Gender] invalid.';
         }
         
-    if(!$err) {
+    if (!$err) {
         // Password hash
         $hash = password_hash($password, PASSWORD_DEFAULT);
         
@@ -98,6 +98,9 @@ if($page->is_post()) {
         ");
         $stm->execute([$username, $hash, $name, $email, $phone, $gender]);
     }
+    
+    $page->temp('success', 'Account registered. Please login.');
+    $page->redirect('login.php');
 }
 
 $page->title = 'Registration';

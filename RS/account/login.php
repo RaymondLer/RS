@@ -53,6 +53,9 @@ $page->header();
                 <?php $html->error($err, 'password') ?>
             </div>
 
+            <div>
+                <span class="pwd"><a href="reset_pwd.php">Forget Password?</a></span>
+            </div>
         </fieldset>
     </div>
     

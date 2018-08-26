@@ -152,6 +152,39 @@ class Page
             $this->redirect($this->home_page);
         }
     }
+    
+        // Generate random password
+    public function random_password() {
+        $s = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+        $password = '';
+        
+        for ($n = 1; $n <= 10; $n++) {
+            $i = rand(0, strlen($s) - 1);
+            $password .= $s[$i];
+        }
+        
+        return $password;
+    }
+
+    // Email
+    public function email($address, $subject, $body, $isHTML = true) {
+        $mail = new PHPMailer();
+        $mail->isSMTP();
+        $mail->Host = 'smtp.gmail.com';
+        $mail->Port = 587;
+        $mail->SMTPSecure = 'tls';
+        $mail->SMTPAuth = true;
+        $mail->Username = 'aacs3173@gmail.com';
+        $mail->Password = 'password3173';
+        $mail->setFrom('aacs3173@gmail.com', 'PHP Admin');
+        
+        $mail->addAddress($address);
+        $mail->Subject = $subject;
+        $mail->Body = $body;
+        $mail->isHTML($isHTML);
+        
+        return $mail->send();
+    }
 }
 
 //HTML Class
@@ -200,7 +233,7 @@ class Html
     }
     
     public function error($err, $key) {
-        if ( isset($err[$key]) ) { // The field has error?
+        if (isset($err[$key])) { // The field has error?
             echo "<span class='error'>$err[$key]</span>";
         }
     }
@@ -224,17 +257,17 @@ class Date
 {
     public function month_select($name, $attr=''){
          echo "<select name='$name' id='$name' $attr>";
-        for($i = 1; $i <= 12; $i++){
+        for ($i = 1; $i <= 12; $i++) {
                 echo  "<option value='$i'>$i</option>";
         }
         echo "</select>";
     }
     public function year_select($name, $attr=''){
         echo "<select name='$name' id='$name' $attr maxlength='4'>";
-        $d=date(y);
-        for($i = 0; $i <= 50; $i++){
+        $d = date(y);
+        for ($i = 0; $i <= 50; $i++) {
             $a = $d + $i;
-            if($a <= 99){
+            if ($a <= 99){
                 echo  "<option value=20$a>20$a</option>";
             }
         }      
