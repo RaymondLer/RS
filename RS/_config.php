@@ -176,7 +176,7 @@ class Page
         $mail->SMTPAuth = true;
         $mail->Username = 'aacs3173@gmail.com';
         $mail->Password = 'password3173';
-        $mail->setFrom('aacs3173@gmail.com', 'PHP Admin');
+        $mail->setFrom('aacs3173@gmail.com', 'RS Customer Support');
         
         $mail->addAddress($address);
         $mail->Subject = $subject;
@@ -331,7 +331,16 @@ class Cart
     public function dump() {
         var_dump($this->items);
     }
-}    
+}
+
+// -----------------------------------------------------------------------------
+// Global settings -------------------------------------------------------------
+// -----------------------------------------------------------------------------
+
+// TODO: Autoload classes
+spl_autoload_register(function($class) {    // spl = standard php library 
+    include "../include/$class.php";
+});
 
 date_default_timezone_set('Asia/Kuala_Lumpur');
 session_start();

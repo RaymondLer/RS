@@ -49,7 +49,7 @@ if ($page->is_post()) {
                         
             if ($ok) {
                 $page->temp('success', 'Password reset. Please check your email.');
-                $page->redirect();
+                $page->redirect('login.php');
             }
             else {
                 $err['email'] = 'Failed to send email.';    

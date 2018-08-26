@@ -54,7 +54,9 @@
                                 echo '<a href="/orderList.php">Order List</a>';
                                 if ($this->user->is_customer) {
                                      echo '<a href="/account/change_profile.php">Change Profile</a>';
-                                } else if ($this->user->is_admin) {
+                                     echo '<a href="/account/change_pwd.php">Change Password</a>';
+                                } 
+                                else if ($this->user->is_admin) {
                                     echo '<a href="/admin/admin_register.php">Register Admin</a>';
                                     echo '<a href="/admin/product_detail.php">Product Detail</a>';
                                     echo '<a href="/admin/product_list.php">Product List</a>';

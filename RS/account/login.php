@@ -54,7 +54,7 @@ $page->header();
             </div>
 
             <div>
-                <span class="pwd"><a href="reset_pwd.php">Forget Password?</a></span>
+                <span class="pwd"><a href="recovery_password.php">Forget Password?</a></span>
             </div>
         </fieldset>
     </div>
