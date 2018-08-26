@@ -39,7 +39,7 @@ $rows = $stm->fetchAll();
 
         <table class="table">
             <tr>
-                <th>Check</th>
+                <th></th>
                 <th>Product id</th>
                 <th>Name</th>
                 <th>Price</th>
@@ -51,7 +51,7 @@ $rows = $stm->fetchAll();
             </tr>
             <?php foreach ($products as $p): ?>
             <tr>
-                <!--<input type="checkbox" name="files[]" form="f" value="<?= $p->$product_id ?>">-->
+                <td><input type="checkbox" name="files[]" form="f" value="<?= $p->$product_id ?>"></td>
                 <td><?= $p->product_id  ?></td>
                 <td><?= $p->name        ?></td>
                 <td><?= $p->price       ?></td>
@@ -60,7 +60,7 @@ $rows = $stm->fetchAll();
                 <td><?= $p->category    ?></td>
                 <td><?= $p->brand       ?></td>
                 <td><?= $p->size        ?></td>
-            <button 
+                <td> <button > delete</button></td>
             </tr>
             <?php endforeach; ?>
         </table>

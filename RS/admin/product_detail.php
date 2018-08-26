@@ -17,22 +17,22 @@ $p = $stm->fetch();
     </aside>
     <section>
         <div>Product id:
-        <?php echo $html->hidden('id',$p->product_id);?>
+        <?php echo $p->product_id;?>
         </div>
         <div>Name
-        <?php echo $html->hidden('id',$p->product_id);?>
+        <?php echo $p->name;?>
         <div>Price
-        <?php echo $html->hidden('id',$p->product_id);?></div>
+        <?php echo $p->price;?></div>
         <div>Description
-        <?php echo $html->hidden('id',$p->product_id);?></div>
+        <?php echo $p->desc;?></div>
         <div>Gender
-        <?php echo $html->hidden('id',$p->product_id);?></div>
+        <?php echo $p->gender;?></div>
         <div>Category
-        <?php echo $html->hidden('id',$p->product_id);?></div>
+        <?php echo $p->category;?></div>
         <div>Brand
-        <?php echo $html->hidden('id',$p->product_id);?></div>
+        <?php echo $p->brand;?></div>
         <div>Size
-        <?php echo $html->hidden('id',$p->product_id);?></div>
+        <?php echo $p->size;?></div>
         
     </section>
 </body>

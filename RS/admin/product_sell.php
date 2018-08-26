@@ -18,6 +18,7 @@ $gender = "";
 $arr_gender = [
     'F' => 'Female',
     'M' => 'Male',
+    'B' => 'Both',
     'O' => 'Other',
 ];
 
@@ -135,7 +136,7 @@ if($page->is_post()){
             </div>
             <div class="input-group">
                 <label>Description:</label>
-                <?php $html->textArea('description',50,4)?>
+                <?php $html->textArea('description',$desc,50,4)?>
                 <?php $html->error($err, 'description') ?>
             </div>
                 <div class="input-group">
