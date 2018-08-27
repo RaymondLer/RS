@@ -190,10 +190,10 @@ class Page
 //HTML Class
 class Html
 {
-    public function text($name, $value = '', $maxlength = '', $attr = ''){
+    public function text($name, $value = '', $maxlength = '', $attr = '') {
         echo "<input type='text' name='$name' id='$name' value='$value' maxlength='$maxlength' $attr>";
     }
-   public function textArea($name,$value, $col, $row){
+   public function textArea($name, $value, $col, $row) {
        echo "<textarea name='$name' id='$name' cols='$col' rows='$row'>$value</textarea>";
    }
      public function password($name, $value = '', $maxlength = '', $attr = '') {
@@ -255,19 +255,19 @@ class Html
 //Date Class
 class Date
 {
-    public function month_select($name, $attr=''){
+    public function month_select($name, $attr='') {
          echo "<select name='$name' id='$name' $attr>";
         for ($i = 1; $i <= 12; $i++) {
                 echo  "<option value='$i'>$i</option>";
         }
         echo "</select>";
     }
-    public function year_select($name, $attr=''){
+    public function year_select($name, $attr='') {
         echo "<select name='$name' id='$name' $attr maxlength='4'>";
         $d = date(y);
         for ($i = 0; $i <= 50; $i++) {
             $a = $d + $i;
-            if ($a <= 99){
+            if ($a <= 99) {
                 echo  "<option value=20$a>20$a</option>";
             }
         }      
