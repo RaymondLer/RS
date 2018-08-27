@@ -5,6 +5,15 @@ $username = $card = $code = $phone = $address = '';
 $err = [];
 $pdo = $page->pdo();
 
+// TODO (2): Calculate total payment
+$stm = $pdo->query("SELECT id, price FROM product");
+$prices = $stm->fetchAll(PDO::FETCH_KEY_PAIR);
+
+$payment = 0.00;
+foreach($cart->items as $product_id => $quantity) {
+    $payment += $quantity * $prices[$product_id];
+}
+
 if ($page->is_post()) {
     $username = $page->post('username');
     $card = $page->post('card');
@@ -12,6 +21,13 @@ if ($page->is_post()) {
     $phone = $page->post('phone');
     $address = $page->post('address');
 
+    if ($username == '') {
+        $err['username'] = 'Username is required.';
+    }
+    else if (strlen($username) > 20) {
+        $err['username'] = 'Username must not more than 20 characters.';
+    }
+    
     if ($card == '') {
         $err['card'] = 'Credit Card Number is required.';
     } 
@@ -45,7 +61,7 @@ if ($page->is_post()) {
         // TODO (3): Add order
         $stm = $pdo->prepare("
             INSERT INTO `order` (username, date, payment, card, code, address)
-            VALUES (?, ?, ?, ?, ?, ?, ?) 
+            VALUES (?, ?, ?, ?, ?, ?) 
         ");
         $stm->execute([$page->user->name, $page->date->format("Y-m-d"), $payment, $card, $code, $address]);
     }
@@ -59,12 +75,13 @@ echo '<link rel="stylesheet" href="/css/check_out.css">';
 <form method="post">
     <div class="form">
         <aside>
-            <h2>Check Out</h2>
+            <h2>Checkout</h2>
         </aside>
         <section>
             <div>
-                <label for="name">Name:</label>
-                <?php $html->text('name', $name, 100, 'autofocus') ?>
+                <label for="username">Username:</label>
+                <?php $html->text('username', $username, 20, 'autofocus') ?>
+                <?php $html->error($err, 'username') ?>
             </div>
 
             <div>

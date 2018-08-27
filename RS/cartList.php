@@ -1,69 +1,115 @@
 <?php 
 include'_config.php';
+
+// POST request ----------------------------------------------------------------
+if ($page->is_post()) {
+    // TODO
+    $action = $page->post('action');
+    
+    if ($action == 'update') {
+        $id = $page->post('id');
+        $quantity = $page->post('quantity');
+        $cart->set($id, $quantity);
+        $page->redirect();
+    }
+    
+    if ($action == 'clear') {
+        $cart->clear();
+        $page->redirect();
+    }
+    
+    if ($action == 'checkout') {
+        $page->redirect('checkout.php');
+    }
+    
+}
+
+// GET request -----------------------------------------------------------------
+$ids = $cart->ids();
+$in = '(' . str_repeat('?,', count($ids)) . '1)';
+
+$pdo = $page->pdo();
+$stm = $pdo->prepare("SELECT product_id, name, price FROM product WHERE id IN $in");
+$stm->execute($ids);
+$products = $stm->fetchAll();
+
 $page->title='Cart List';
 $page->header();
 echo "<link rel='stylesheet' href='/css/footer.css'>";
 echo "<link rel='stylesheet' href='/css/cartList.css'>";
 ?>
 
-// Get the product list from the data base
-<?php 
-$quantity = 0;
-$item = 0;
-$price = 0;
-$totalPrice = 0;
-
-$pdo = $page->pdo();
-$stm = $pdo->prepare("SELECT * FROM cart WHERE username = ?");
-$stm -> execute($user->name);
-$cart = $stm->fetchAll();
-?>
+<!-- IF: Shopping cart NOT EMPTY ---------------------------------------------->
 <?php if ($cart->items): ?>
-<h1>Cart List</h1>
-<table class="cartList"> 
-<tr>
-    <th>Item</th>
-    <th>Price</th>
-    <th>Quantity</th>
-    <th>Total Price</th>
-</tr>
 
-<?php foreach($cart as $a){ 
-   $pdo = $page->pdo();
-    $stm = $pdo->query("SELECT * FROM cart WHERE username = $a->item");
-    $price = $stm->fetch();
-?>
-
+<table class="table">
     <tr>
-        <td><?php $html->hidden('item',$a->item)?></td>
-        <td><?php $html->hidden('price',$price)?></td>
-        <td><?php $html->select('quantity',range(0,9),$quantity,false)?></td>
-        <td><?php $html->hidden('totalPrice',$totalPrice)?></td>
-        <td><button id="delete">delete</button></td>
-        <td></td>
+        <th>Id</th>        
+        <th>Name</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Subtotal</th>
+        <th></th>
     </tr>
-    <?php  }?>
-    <tr>
-        <td><?php $html->hidden('item',$item)?></td>
-        <td><?php $html->hidden('price',$price)?></td>
-        <td><?php $html->select('quantity',$aQuantity,$quantity,false)?></td>
-        <td><?php $html->hidden('totalPrice',$totalPrice)?></td>
-        <td><button id="delete">delete</button></td>
-        <td></td>
-    </tr>
-    <?php else:?>
-    <p> The cart is empty</p>
-    <?php endif?>
 
+    <?php
+    // TODO
+    $total_quantity = 0;
+    $total = 0.00;
+    
+    foreach ($products as $a) {
+        $quantity = $cart->get($a->id);
+        $subtotal = $a->price * $quantity;
+        
+        $total_quantity += $quantity;
+        $total += $subtotal;
+    ?>
+    
+    <tr>
+            <td>
+                <a href="shoes.php?id=<?= $a->id ?>"><?= $a->id ?></a>
+            </td>
+            <td><?= $a->name ?></td>
+            <td><?= $a->price ?></td>
+            <td>
+                <!-- TODO -->
+                <form method="post" class="inline">
+                    <?php $html->select('quantity', range(0, 10), $quantity, false, 'onchange = "this.form.submit()"') ?>
+                    <?php $html->hidden('id', $a->id) ?>
+                    <?php $html->hidden('action', 'update') ?>
+                </form>
+            </td>
+            <td><?= number_format($subtotal, 2) ?></td>
+            <td>
+                <!--REMEMBER MODIFY-->
+                <img class="cover" src="/cover/<?= $a->cover ?>"> 
+            </td>
+        </tr>
+    <?php } // END FOREACH ?>
+        
+    <tr>
+        <th colspan="4"></th>
+        <th><?= $total_quantity ?></th>
+        <th><?= number_format($total, 2) ?></th>
+        <th></th>
+    </tr>
 </table>
 
+<p style="color: red">NOTE: Set quantity to 0 to remove item.</p>
 
+<form method="post">
+    <button name="action" value="clear">Clear</button>
+    <button name="action" value="checkout">Checkout</button>
+</form>
 
+<!-- ELSE: Shopping cart EMPTY ------------------------------------------------>
+<?php else: ?>
 
+<p class="warning">Your shopping cart is empty.</p>
 
-
-
-
+<?php endif; ?>
+<!-- END IF ------------------------------------------------------------------->
+    
 <?php 
 $page->footer();
 ?>
