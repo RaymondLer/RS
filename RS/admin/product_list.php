@@ -6,9 +6,8 @@ $page->header();
 
 $ids = [];
 $search = "";
-$s = $page->get('g');
-echo utf8_decode(urldecode("Ant%20B4nio+Carlos+Jobim"));
-echo utf8_decode(urldecode($s));
+
+$s = $page->get('g','',false);
 
 $pdo = $page->pdo();
 $stm = $pdo->prepare("SELECT * FROM product WHERE category = ? OR 1 = ?");
@@ -28,7 +27,7 @@ if($page->is_post()){
         $stm->execute($ids);
         $page->temp('output','Record deleted');
         }
-        $page->redirect("product_list.php");
+        $page->redirect("product_list.php?");
     }
 ?>
 <body>
@@ -37,7 +36,9 @@ if($page->is_post()){
             <a href="?">All</a>
             <?php
             foreach ($rows as $row) {
-                echo " | <a href='?g=$row->category'> $row->category</a> ";
+                $category = urlencode($row->category);
+//                $category = str_replace(' ', '+', $row->category);
+                echo " | <a href='?g=$category'> $row->category</a> ";
             }
             ?>
         </div>
@@ -65,8 +66,8 @@ if($page->is_post()){
             </tr>
             <?php foreach ($products as $p): ?>
             <tr>
-                <td><input type="checkbox" name="ids[]" value="<?= $p->$product_id ?>" form="f"></td>
-                <td><a href = "/admin/product_detail.php?id=<?= $p->product_id  ?>"><?=$p->product_id?></a></td>
+                <td><input type="checkbox" name="ids[]" value="<?= $p->product_id ?>" form="f"></td>
+                <td><a href = "/admin/product_detail.php?id=<?= $p->product_id  ?>" name="ids[]" value="<?= $p->product_id   ?>"><?=$p->product_id?></a></td>
                 <td><?= $p->name        ?></td>
                 <td><?= $p->price       ?></td>
                 <td><?= $p->desc        ?></td>
@@ -75,7 +76,7 @@ if($page->is_post()){
                 <td><?= $p->brand       ?></td>
                 <td><?= $p->size        ?></td>
                 <td>
-                    <button>Update</button>
+                    <a href="/admin/product_detail.php/?id=<?= $p->product_id?>">Update</a>
                 </td>
                 <td> 
                     <form method="post" style="display:inline" onsubmit="return confirm('Are you sure?')">

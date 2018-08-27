@@ -20,7 +20,8 @@ $arr_gender = [
     'O' => 'Other',
 ];
 //GET
-function validateFile($err, $file) {
+function validateFile($file) {
+    global $err;
         if ($file['error'] == UPLOAD_ERR_NO_FILE) {
          $err['file'] = 'Photo is required.';
      }
@@ -87,7 +88,7 @@ if($page->is_post()){
         $err['gender'] = 'Gender is required.';
     }
     $file = $_FILES['file'];
-    validateFile($err, $file);
+    validateFile($file);
     
     if (!$err) {
         $iName = $product_id. '.jpg';
@@ -98,10 +99,9 @@ if($page->is_post()){
             ->toFile("../post_product/$iName", "image/jpeg", 80);
             
         $stm = $pdo->prepare("
-        UPDATE product SET(product_id,name,price,`desc`,gender,category,brand,size)
-        VALUES (?,?, ?, ?, ?, ?, ?, ?)
+        UPDATE product SET name = ?, price = ?, `desc` = ?, gender = ?, category = ?, brand = ?, size = ? WHERE product_id = ?
     ");
-    $stm->execute([$product_id,$name,$price,$desc,$gender,$category,$brand,$size]);
+    $stm->execute([$name,$price,$desc,$gender,$category,$brand,$size,$product_id]);
     $page->temp('output', 'Product is inserted');
 
      }
@@ -117,9 +117,11 @@ $p = $stm->fetch();
 ?>
 <body>
     <section>
+        <form method="post" enctype="multipart/form-data">
         <div>
             <label>Product id:</label>
             <?= $p->product_id;?>
+            <?php $product_id= $p->product_id;?>
         </div>
         <div class="input-group">
             <label>Product name:</label>
@@ -178,7 +180,7 @@ $p = $stm->fetch();
                 <button type="reset" name="reset" class='btn'>Reset</button>
             </div>
         </div>
-        
+        </form>
     </section>
 </body>
    
