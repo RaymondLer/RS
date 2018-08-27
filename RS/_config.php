@@ -5,6 +5,7 @@ class Page
 {
     public $root;
     public $title;
+    public $date;
     // Secruity
     public $home_page;
     public $login_page;
@@ -14,6 +15,7 @@ class Page
     function __construct() {
         $this->root = $_SERVER['DOCUMENT_ROOT'];
         $this->title = 'Untitled';
+        $this->date = new DateTime();
         // Secruity
         $this->home_page  = '/';
         $this->login_page = '/account/login.php';
@@ -252,29 +254,6 @@ class Html
     }
 }
 
-//Date Class
-class Date
-{
-    public function month_select($name, $attr='') {
-         echo "<select name='$name' id='$name' $attr>";
-        for ($i = 1; $i <= 12; $i++) {
-                echo  "<option value='$i'>$i</option>";
-        }
-        echo "</select>";
-    }
-    public function year_select($name, $attr='') {
-        echo "<select name='$name' id='$name' $attr maxlength='4'>";
-        $d = date(y);
-        for ($i = 0; $i <= 50; $i++) {
-            $a = $d + $i;
-            if ($a <= 99) {
-                echo  "<option value=20$a>20$a</option>";
-            }
-        }      
-        echo "</select>";
-    }
-}
-
 //Cart Class
 class Cart
 {
@@ -348,6 +327,5 @@ ob_start();
 
 $html = new Html();
 $page = new Page();
-$date = new Date();
 $cart = new Cart();
 ?>

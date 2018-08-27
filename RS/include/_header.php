@@ -31,7 +31,6 @@
                 </div>
             </li>
 
-
         </ul>   
         <div id="wraph">
             <form class="search-container" action="/search.php">
