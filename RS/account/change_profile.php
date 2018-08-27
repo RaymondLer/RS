@@ -52,7 +52,7 @@ if ($page->is_post()) {
 
 // GET request (select) --------------------------------------------------------
 if ($page->is_get()) {
-    // TODO: Select member record
+    // TODO: Select customer record
     $stm = $pdo->prepare("SELECT * FROM customer WHERE username = ?");
     $stm->execute([$page->user->name]);
     $m = $stm->fetch();
@@ -75,16 +75,19 @@ $page->header();
             <!-- TODO: Username -->
             <b><?= $page->user->name ?></b>
         </div>
+        
         <div>
             <label for="name">Name</label>
             <?php $html->text('name', $name, 100) ?>
             <?php $html->error($err, 'name') ?>
         </div>
+        
         <div>
             <label for="email">Email</label>
             <?php $html->text('email', $email, 100) ?>
             <?php $html->error($err, 'email') ?>
         </div>
+        
         <div>
             <label for="phone">Phone</label>
             <?php $html->text('phone', $phone, 12) ?>

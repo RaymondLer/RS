@@ -5,7 +5,7 @@ class Page
 {
     public $root;
     public $title;
-    // For Secruity
+    // Secruity
     public $home_page;
     public $login_page;
     public $user;
@@ -14,7 +14,7 @@ class Page
     function __construct() {
         $this->root = $_SERVER['DOCUMENT_ROOT'];
         $this->title = 'Untitled';
-        // For Secruity
+        // Secruity
         $this->home_page  = '/';
         $this->login_page = '/account/login.php';
         $this->user = isset($_SESSION['auth_user']) ? $_SESSION['auth_user'] : null;

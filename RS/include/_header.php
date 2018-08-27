@@ -2,7 +2,8 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="/java/jquery-3.3.1.min.js"></script>
+        <script src="/js/jquery-3.3.1.min.js"></script>
+        <script src="/js/jq.js"></script>
         <link rel="shortcut icon" href="/pic/Mainlogo.png">
         <link rel='stylesheet' href="/css/header.css">
         <link rel='stylesheet' href='/css/footer.css'>
@@ -73,7 +74,6 @@
                     <a href="#" title="Favourite"><img src="/pic/like1.png" alt="favourite" width="50px" height="50px"></a>
                     <a href="/cartList.php" title="Cart"><img src="/pic/cart.png" alt="Cart" width="50px" height="50px"></a>
                 </ul>
-
             </div>
         </div>
     </header>  

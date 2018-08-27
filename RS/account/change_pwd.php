@@ -65,11 +65,13 @@ $page->header();
             <?php $html->password('password', $password) ?>
             <?php $html->error($err, 'password') ?>
         </div>
+        
         <div>
             <label for="new">New Password</label>
             <?php $html->password('new', $new) ?>
             <?php $html->error($err, 'new') ?>
         </div>
+        
         <div>
             <label for="confirm">Confirm Password</label>
             <?php $html->password('confirm', $confirm) ?>
