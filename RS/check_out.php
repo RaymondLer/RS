@@ -1,12 +1,16 @@
 <?php
 include'_config.php';
 
+//if ($page->user->is_customer) {
+//    
+//}
+
 $username = $card = $code = $phone = $address = '';
 $err = [];
 $pdo = $page->pdo();
 
 // TODO (2): Calculate total payment
-$stm = $pdo->query("SELECT id, price FROM product");
+$stm = $pdo->query("SELECT product_id, price FROM product");
 $prices = $stm->fetchAll(PDO::FETCH_KEY_PAIR);
 
 $payment = 0.00;
@@ -73,10 +77,8 @@ echo '<link rel="stylesheet" href="/css/check_out.css">';
 ?>
 
 <form method="post">
-    <div class="form">
-        <aside>
-            <h2>Checkout</h2>
-        </aside>
+    <div>
+        <h2>Checkout</h2>
         <section>
             <div>
                 <label for="username">Username:</label>
@@ -116,6 +118,6 @@ echo '<link rel="stylesheet" href="/css/check_out.css">';
 </form>    
 
 <?php
-$html->focus('card', $err);
+$html->focus('code', $err);
 $page->footer();
 ?>

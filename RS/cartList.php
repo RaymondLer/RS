@@ -1,7 +1,7 @@
 <?php 
 include'_config.php';
 
-// POST request ----------------------------------------------------------------
+// POST request
 if ($page->is_post()) {
     // TODO
     $action = $page->post('action');
@@ -19,17 +19,17 @@ if ($page->is_post()) {
     }
     
     if ($action == 'checkout') {
-        $page->redirect('checkout.php');
+        $page->redirect('check_out.php');
     }
     
 }
 
-// GET request -----------------------------------------------------------------
+// GET request
 $ids = $cart->ids();
 $in = '(' . str_repeat('?,', count($ids)) . '1)';
 
 $pdo = $page->pdo();
-$stm = $pdo->prepare("SELECT product_id, name, price FROM product WHERE id IN $in");
+$stm = $pdo->prepare("SELECT product_id, name, price FROM product WHERE product_id IN $in");
 $stm->execute($ids);
 $products = $stm->fetchAll();
 
@@ -39,7 +39,7 @@ echo "<link rel='stylesheet' href='/css/footer.css'>";
 echo "<link rel='stylesheet' href='/css/cartList.css'>";
 ?>
 
-<!-- IF: Shopping cart NOT EMPTY ---------------------------------------------->
+<!-- IF: Shopping cart NOT EMPTY -->
 <?php if ($cart->items): ?>
 
 <table class="table">
@@ -58,7 +58,7 @@ echo "<link rel='stylesheet' href='/css/cartList.css'>";
     $total = 0.00;
     
     foreach ($products as $a) {
-        $quantity = $cart->get($a->id);
+        $quantity = $cart->get($a->product_id);
         $subtotal = $a->price * $quantity;
         
         $total_quantity += $quantity;
@@ -67,7 +67,7 @@ echo "<link rel='stylesheet' href='/css/cartList.css'>";
     
     <tr>
             <td>
-                <a href="shoes.php?id=<?= $a->id ?>"><?= $a->id ?></a>
+                <a href="shoes.php?id=<?= $a->product_id ?>"><?= $a->product_id ?></a>
             </td>
             <td><?= $a->name ?></td>
             <td><?= $a->price ?></td>
@@ -75,7 +75,7 @@ echo "<link rel='stylesheet' href='/css/cartList.css'>";
                 <!-- TODO -->
                 <form method="post" class="inline">
                     <?php $html->select('quantity', range(0, 10), $quantity, false, 'onchange = "this.form.submit()"') ?>
-                    <?php $html->hidden('id', $a->id) ?>
+                    <?php $html->hidden('id', $a->product_id) ?>
                     <?php $html->hidden('action', 'update') ?>
                 </form>
             </td>
@@ -102,13 +102,13 @@ echo "<link rel='stylesheet' href='/css/cartList.css'>";
     <button name="action" value="checkout">Checkout</button>
 </form>
 
-<!-- ELSE: Shopping cart EMPTY ------------------------------------------------>
+<!-- ELSE: Shopping cart EMPTY -->
 <?php else: ?>
 
 <p class="warning">Your shopping cart is empty.</p>
 
 <?php endif; ?>
-<!-- END IF ------------------------------------------------------------------->
+<!-- END IF -->
     
 <?php 
 $page->footer();

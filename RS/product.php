@@ -1,7 +1,7 @@
 <?php 
 include'_config.php';
 
-// POST request ----------------------------------------------------------------
+// POST request
 if ($page->is_post()) {
     // TODO
     $id = $page->post('id');
@@ -12,7 +12,7 @@ if ($page->is_post()) {
     $page->redirect();
 }
 
-// GET request -----------------------------------------------------------------
+// GET request
 $id = $page->get('id');
 $pdo = $page->pdo();
 $stm = $pdo->prepare("SELECT * FROM product WHERE product_id = ?");
@@ -86,13 +86,13 @@ echo '<link rel="stylesheet" href="/css/product.css">';
             <div>
                 <label>Quantity</label>
             <!-- TODO -->
-                <?php $html->select('quantity', range(0, 10), $cart->get($a->id),
-                                    false, 'onchange="this.form.submit()"') ?>
-                <?php $html->hidden('id', $a->id) ?>
+                <?php $html->select('quantity', range(0, 10), $cart->get($a->product_id),
+                                    false) ?>
+                <?php $html->hidden('id', $a->product_id) ?>
             </div>
             
             <div>
-                <input type="button" href="#" id="add_cart" value="Add to Cart">    
+                <button href="/cartList.php" id="add_cart" onchange="this.form.submit()">Add to Cart</button>  
             </div>
         </form>
     </div>

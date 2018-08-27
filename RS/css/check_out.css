@@ -12,6 +12,7 @@
         float: left;
         background-color:red;
         height: 1000px;
+        display: inline-block
     }
     input{
         padding-top:5px;
@@ -34,4 +35,8 @@
     #button:hover{
         background-color:white;
         color:black;
+    }
+    
+    #checkout {
+        
     }

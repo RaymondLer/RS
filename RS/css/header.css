@@ -184,3 +184,10 @@ form.search-container::after {
 #wraph{
     margin-top:-15px;
 }
+
+#countCart{
+    font-size: 20px;
+    color: red;
+    padding: 0 5px;
+    vertical-align: center;    
+}
