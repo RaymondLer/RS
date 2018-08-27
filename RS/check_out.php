@@ -5,7 +5,7 @@ include'_config.php';
 //    
 //}
 
-$username = $card = $address = '';
+$order_id = $username = $card = $address = '';
 $err = [];
 $pdo = $page->pdo();
 
@@ -20,7 +20,7 @@ foreach($cart->items as $product_id => $quantity) {
 }
 
 if ($page->is_post()) {
-    //$order_id       = $page->post('order_id');
+    $order_id       = $page->post('order_id');
     $username       = $page->post('username');
     $card           = $page->post('card');
     $address        = $page->post('address');
@@ -50,10 +50,10 @@ if ($page->is_post()) {
         // Everything is OK --> Add order
         // TODO (3): Add order
         $stm = $pdo->prepare("
-            INSERT INTO `order` (username, card, address, total_payment, date)
-            VALUES (?, ?, ?, ?, ?) 
+            INSERT INTO `order` (order_id,username, card, address, total_payment, date)
+            VALUES (?,?, ?, ?, ?, ?) 
         ");
-        $stm->execute([$page->user->name, $card, $address, $total_payment, $page->date->format("Y-m-d")]);
+        $stm->execute([$order_id,$username, $card, $address, $total_payment, $page->date->format("Y-m-d")]);
     
     // TODO (4): Add order details
         $order_id = $pdo->lastInsertId();
@@ -72,6 +72,18 @@ if ($page->is_post()) {
             $page->redirect("/orderList.php?id=$order_id");
         }
     }
+$stm = $pdo->query("SELECT order_id FROM `order`");
+$s = $stm->fetchAll();
+$order_id = 1000;
+do{
+    $try = false;
+    $order_id++;
+    foreach($s as $s){
+        if($order_id == $s->order_id){
+            $try=true;
+        }
+    }
+}while($try);
 
 $page->title = 'Check out';
 $page->header();
@@ -82,6 +94,8 @@ echo '<link rel="stylesheet" href="/css/check_out.css">';
     <div>
         <h2>Checkout</h2>
         <section>
+            <?php $html->hidden('order_id',$order_id)?>
+            <?= $order_id?>
             <div>
                 <label for="username">Username:</label>
                 <?php $html->text('username', $username, 20, 'autofocus') ?>
