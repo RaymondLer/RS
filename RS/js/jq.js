@@ -19,4 +19,8 @@ $(function() {
         var name = $(this).data("uncheck");
         $(`[name="${name}"]`).prop("checked", false);
     });
+    $("[data-submit]").click(function(e){
+        e.preventDefault();
+        $(this).closest("form").submit();
+    });
 });

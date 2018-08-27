@@ -20,6 +20,7 @@ $stm = $pdo->query("SELECT DISTINCT category
 $rows = $stm->fetchAll();
 
 if($page->is_post()){
+    //Delete
         $ids = $page->post_array('ids');
         if(count($ids) > 0){
         $in = str_repeat('?,',count($ids)) . "0";
@@ -40,16 +41,14 @@ if($page->is_post()){
             }
             ?>
         </div>
+        <a href="/admin/product_sell.php">Add product</a>
+        <div>
         <button data-check="ids[]">Check All</button>
             <button data-uncheck="ids[]">Uncheck All</button>
             <form method="post" style="display: inline" id="f">
             <button>Delete Checked</button>
-        </form>
-        <!--Search the things from category, id,name,description,brand-->
-        <div>
-            <?php $html->text('search',$search)?>
+            </form>
         </div>
-        
         <p><?= count($products) ?> record(s)</p>
 
         <table class="table">
@@ -67,7 +66,7 @@ if($page->is_post()){
             <?php foreach ($products as $p): ?>
             <tr>
                 <td><input type="checkbox" name="ids[]" value="<?= $p->$product_id ?>" form="f"></td>
-                <td><?= $p->product_id  ?></td>
+                <td><a href = "/admin/product_detail.php?id=<?= $p->product_id  ?>"><?=$p->product_id?></a></td>
                 <td><?= $p->name        ?></td>
                 <td><?= $p->price       ?></td>
                 <td><?= $p->desc        ?></td>
@@ -86,30 +85,7 @@ if($page->is_post()){
         </table>
     </section>
 </body>
-<script>
-    $(function() {
-    
-    // Reload page
-    $("[type=reset]").click(function (e) {
-        e.preventDefault();
-        location = location;
-    });
-   
 
-    $("[data-check]").click(function (e) { 
-        e.preventDefault();
-        var name = $(this).data("check");
-        $(`[name="${name}"]`).prop("checked", true);
-    });
-   
-    // Uncheck all checkboxes
-    $("[data-uncheck]").click(function (e) { 
-        e.preventDefault();
-        var name = $(this).data("uncheck");
-        $(`[name="${name}"]`).prop("checked", false);
-    });
-});
-</script>
 
 <?php 
 $page->footer();

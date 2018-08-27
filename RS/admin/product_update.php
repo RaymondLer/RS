@@ -19,7 +19,7 @@ $arr_gender = [
     'B' => 'Both',
     'O' => 'Other',
 ];
-
+//GET
 function validateFile($err, $file) {
         if ($file['error'] == UPLOAD_ERR_NO_FILE) {
          $err['file'] = 'Photo is required.';

@@ -82,7 +82,7 @@ echo "<link rel='stylesheet' href='/css/cartList.css'>";
             <td><?= number_format($subtotal, 2) ?></td>
             <td>
                 <!--REMEMBER MODIFY-->
-                <img class="cover" src="/cover/<?= $a->cover ?>"> 
+                <img class="cover" src="/product/Shoes/<?= $a->product_id ?>"> 
             </td>
         </tr>
     <?php } // END FOREACH ?>
