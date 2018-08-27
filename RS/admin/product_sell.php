@@ -22,7 +22,8 @@ $arr_gender = [
     'O' => 'Other',
 ];
 
-function validateFile($err, $file) {
+function validateFile($file) {
+    global $err;
         if ($file['error'] == UPLOAD_ERR_NO_FILE) {
          $err['file'] = 'Photo is required.';
      }
@@ -34,7 +35,6 @@ function validateFile($err, $file) {
          $err['file'] = 'Photo failed to upload.';
      }
      else {
-         // NOTE: Remember to enable "fileinfo" extension in "php.ini"
          $mime = mime_content_type($file['tmp_name']);
          if ($mime != 'image/jpeg' && $mime != 'image/png') {
              $err['file'] = 'Only JPEG or PNG photo allowed.';
@@ -101,7 +101,7 @@ if($page->is_post()){
         $err['gender'] = 'Gender is required.';
     }
     $file = $_FILES['file'];
-    validateFile($err, $file);
+    validateFile($file);
     
     if (!$err) {
         $iName = $product_id. '.jpg';
@@ -165,6 +165,7 @@ if($page->is_post()){
             <div class="input-group">
                 <label>Image :</label>
                 <input type="file" id="file" name="file" accept="image/*">
+                <?php $html->error($err, 'file') ?></span>
             </div>
             <div class="input-group">
                 <label>Price:</label>

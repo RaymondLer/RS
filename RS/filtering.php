@@ -8,15 +8,15 @@ echo '<link rel="stylesheet" href="/css/main.css">';
 $b = $page->get('b');
 
 $pdo = $page->pdo();
-$stm = $pdo->prepare("SELECT * FROM brand
-                      WHERE `product_id` = ? OR 1 = ?");
+$stm = $pdo->prepare("SELECT * FROM product
+                      WHERE brand = ? OR 1 = ?");
 
 $stm->execute([$b, $b == '']);
 $students = $stm->fetchAll();
     
-$stm = $pdo->query("SELECT DISTINCT `brand`
-                    FROM product_id
-                    ORDER BY `brand`");
+$stm = $pdo->query("SELECT DISTINCT brand
+                    FROM product
+                    ORDER BY brand");
 $rows = $stm->fetchAll();
 
 ?>
@@ -25,7 +25,7 @@ $rows = $stm->fetchAll();
     <a href="?">Brands</a>
     <?php
     foreach ($rows as $row) {
-        echo " | <a href='?b=$row->brand'>Brands $row->brand</a> ";
+        echo " | <a href='?b=$row->brand'>$row->brand</a> ";
     }
     ?>
 </div>

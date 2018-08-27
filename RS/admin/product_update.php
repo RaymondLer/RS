@@ -98,7 +98,7 @@ if($page->is_post()){
             ->toFile("../post_product/$iName", "image/jpeg", 80);
             
         $stm = $pdo->prepare("
-        INSERT INTO product (product_id,name,price,`desc`,gender,category,brand,size)
+        UPDATE product SET(product_id,name,price,`desc`,gender,category,brand,size)
         VALUES (?,?, ?, ?, ?, ?, ?, ?)
     ");
     $stm->execute([$product_id,$name,$price,$desc,$gender,$category,$brand,$size]);

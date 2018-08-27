@@ -8,7 +8,7 @@ echo '<link rel="stylesheet" href="/css/product.css">';
 <div class="wrap_aside_section">
 <aside><div class="img_container">
         <img class="product_img" src="/product/1033.jpg"><div id="image_div"></div>
-       
+         
         </div>
 </aside>
 <section>

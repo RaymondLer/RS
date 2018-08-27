@@ -33,7 +33,10 @@ $p = $stm->fetch();
         <?php echo $p->brand;?></div>
         <div>Size
         <?php echo $p->size;?></div>
-        
+        <?php 
+        $arr = [];
+        $arr = explode(',',$p->size);
+        var_dump($arr)?>
     </section>
 </body>
    
