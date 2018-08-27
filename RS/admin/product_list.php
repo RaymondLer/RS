@@ -74,12 +74,16 @@ if($page->is_post()){
                 <td><?= $p->category    ?></td>
                 <td><?= $p->brand       ?></td>
                 <td><?= $p->size        ?></td>
+                <td>
+                    <button>Update</button>
+                </td>
                 <td> 
                     <form method="post" style="display:inline" onsubmit="return confirm('Are you sure?')">
                     <input type="hidden" name="ids[]" value="<?= $p->product_id   ?>">
-                    <button >Delete</button>
+                    <button >X</button>
                     </form>
                 </td>
+                
             </tr>
             <?php endforeach; ?>
         </table>

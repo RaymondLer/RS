@@ -159,7 +159,7 @@ if($page->is_post()){
             </div>
              <div class="gender">
                 <label>Gender:</label>
-                <span id="gender"><?php $html->radio_list('gender', $arr_gender,$gender) ?>
+                 <span id="gender"><?php $html->radio_list('gender', $arr_gender) ?>
                 <?php $html->error($err, 'gender') ?></span>
             </div>
             <div class="input-group">

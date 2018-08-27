@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2018-08-27 07:30:11
+-- Generation Time: 2018-08-27 10:29:13
 -- 服务器版本： 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -103,11 +103,10 @@ DROP TABLE IF EXISTS `order`;
 CREATE TABLE `order` (
   `order_id` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
   `username` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `product_id` int(5) NOT NULL,
-  `quantity` int(3) NOT NULL,
-  `price` decimal(6,2) NOT NULL,
-  `date` date NOT NULL,
-  `status` varchar(30) COLLATE utf8_unicode_ci NOT NULL
+  `card` varchar(16) COLLATE utf8_unicode_ci NOT NULL,
+  `address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `total_payment` decimal(7,2) NOT NULL,
+  `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -118,10 +117,10 @@ CREATE TABLE `order` (
 
 DROP TABLE IF EXISTS `order_detail`;
 CREATE TABLE `order_detail` (
-  `order_id` int(11) NOT NULL,
-  `address` int(11) NOT NULL,
-  `credit_card` int(11) NOT NULL,
-  `total_payment` int(11) NOT NULL
+  `order_id` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
+  `product_id` int(10) NOT NULL,
+  `quantity` int(5) NOT NULL,
+  `price` decimal(6,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------

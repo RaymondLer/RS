@@ -34,7 +34,7 @@
 
         </ul>   
         <div id="wraph">
-            <form class="search-container" action="/action_page.php">
+            <form class="search-container" action="/search.php">
                 <input type="text" placeholder="Search..." name="search">
                 <button type="submit"><i class="fa fa-search"></i></button>
             </form>

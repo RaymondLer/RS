@@ -144,19 +144,25 @@ $p = $stm->fetch();
         </div>
         <div class="input-group">
             <label>Category:</label>
-            <?php $html->select('sCategory',$dcategory,"",false)?>
+            <?php 
+            $key_cate = array_search($p->category, $dcategory);?>
+            <?php $html->select('sCategory',$dcategory,$key_cate,false)?>
             If got other:
-            <?php $html->text('category',$p->category);?>
+            <?php $html->text('category');?>
             <?php $html->error($err, 'category') ?>
         </div>
          <div class="gender">
             <label>Gender:</label>
-            <span id="gender"><?php $html->radio_list('gender', $arr_gender,$p->gender) ?>
+           <?php $key = array_search($p->gender, $arr_gender);?>
+            <span id="gender"><?php $html->radio_list('gender', $arr_gender,$key) ?>
+                
             <?php $html->error($err, 'gender') ?></span>
         </div>
         <div class="input-group">
-            <label>Image :</label>
-            <input type="file" id="file" name="file" accept="image/*">
+            <label>Image :</label><label>
+            <input type="file" id="file" name="file" accept="image/*" style="display: none">
+            <img id="prev" src="/../product/Shoes/<?= $p->product_id?>.jpg">
+            </label>
         </div>
         <div class="input-group">
             <label>Price:</label>
@@ -176,7 +182,18 @@ $p = $stm->fetch();
     </section>
 </body>
    
-
+<script>
+    var img = $("#prev")[0];
+    img.onerror = function (e) {
+        $("#file").val("");
+        img.src = "/../product/Shoes/<?= $p->product_id?>.jpg";
+    };
+    
+    $("#file").change(function (e) {
+        var f = this.files[0];
+        img.src = URL.createObjectURL(f);
+    });
+</script>
 
 
 <?php 
