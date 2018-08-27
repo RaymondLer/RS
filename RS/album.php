@@ -2,15 +2,7 @@
 
 include'_config.php';
 
-if ($page->is_post()) {
-    $product_id = $page->post('product_id');
-    $quantity = $page->post('quantity');
-    $cart->set($product_id, $quantity);
-    
-    $page->temp('success', 'Shopping cart updated.');
-    $page->redirect();
-}
-$product = "";
+
 $pdo = $page->pdo();
 $stm = $pdo->query("SELECT * FROM product");
 $a = $stm->fetchAll();
