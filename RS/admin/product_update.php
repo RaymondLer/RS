@@ -163,7 +163,7 @@ $p = $stm->fetch();
         <div class="input-group">
             <label>Image :</label><label>
             <input type="file" id="file" name="file" accept="image/*" style="display: none">
-            <img id="prev" src="/../product/Shoes/<?= $p->product_id?>.jpg">
+            <img id="prev" src="/../post_product/<?= $p->product_id?>.jpg">
             </label>
         </div>
         <div class="input-group">
@@ -188,7 +188,7 @@ $p = $stm->fetch();
     var img = $("#prev")[0];
     img.onerror = function (e) {
         $("#file").val("");
-        img.src = "/../product/Shoes/<?= $p->product_id?>.jpg";
+        img.src = "/../post_product/<?= $p->product_id?>.jpg";
     };
     
     $("#file").change(function (e) {

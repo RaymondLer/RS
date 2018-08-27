@@ -33,7 +33,7 @@ echo '<link rel="stylesheet" href="/css/product.css">';
 
 <div class="wrap_aside_section">
 <aside><div class="img_container">
-        <img class="product_img" src="/product/Shoes/<?= $a->product_id ?>.jpg"><div id="image_div"></div>
+        <img class="product_img" src="/post_product/<?= $a->product_id ?>.jpg"><div id="image_div"></div>
     </div>
 </aside>
 <section>          

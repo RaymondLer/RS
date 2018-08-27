@@ -18,7 +18,7 @@ $page->header();
 
 <?php foreach ($product as $p) {?>
 <div class="product_pic">
-<img src="/product/Shoes/<?=$p->product_id ?>.jpg">
+    <img src="/post_product/<?=$p->product_id ?>.jpg">
 </div>
 <div>
     <?= $p->product_id?>

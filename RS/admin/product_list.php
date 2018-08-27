@@ -37,7 +37,6 @@ if($page->is_post()){
             <?php
             foreach ($rows as $row) {
                 $category = urlencode($row->category);
-//                $category = str_replace(' ', '+', $row->category);
                 echo " | <a href='?g=$category'> $row->category</a> ";
             }
             ?>
@@ -58,8 +57,6 @@ if($page->is_post()){
                 <th>Product id</th>
                 <th>Name</th>
                 <th>Price</th>
-                <th>Description</th>
-                <th>Gender</th>
                 <th>Category</th>
                 <th>Brand</th>
                 <th>Size</th>
@@ -70,8 +67,6 @@ if($page->is_post()){
                 <td><a href = "/admin/product_detail.php?id=<?= $p->product_id  ?>" name="ids[]" value="<?= $p->product_id   ?>"><?=$p->product_id?></a></td>
                 <td><?= $p->name        ?></td>
                 <td><?= $p->price       ?></td>
-                <td><?= $p->desc        ?></td>
-                <td><?= $p->gender      ?></td>
                 <td><?= $p->category    ?></td>
                 <td><?= $p->brand       ?></td>
                 <td><?= $p->size        ?></td>
