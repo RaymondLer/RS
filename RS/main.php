@@ -137,7 +137,13 @@ echo '<link rel="stylesheet" href="/css/main.css">';
                     
                     </form>
                 </a>
-                
+                <div class="delivery">
+        DELIVERED IN<br>
+Klang Valley, Johor, Penang: 1-3 days; Rest of Peninsular Malaysia: 1-4 days; Sabah, Sarawak, Brunei: 3-5 days. All in working days
+    </div>
+    <div id="sold_by">
+        SOLD BY RS
+    </div>
                 
                     
             </div>
