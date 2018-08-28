@@ -5,26 +5,20 @@ $page->header();
 echo '<link rel="stylesheet" href="/css/main.css">';
 
 // b and c
-$array = [];
+$g=$c=$b="";
 $check = false;
 $home = false;
-$b = $c = $g = "";
 if ($page->get('b') != '') {
     $b = $page->get('b');
-} else if ($page->get('g') != "") {
-    $a = $page->get('g');
-    if (strpos($a, 'c=')) {
-        $check = true;
-        $array = explode('&amp;c=', $a);
-        $g = $array[0];
-        $c = str_replace('&amp;', '&', $array[1]);
-    } else {
-        $g = $a;
-        var_dump($g);
-    }
-} else if ($page->get('c') != '') {
-    $c = $page->get('c', '', false);
-} else {
+}else if ($page->get('g') != "") {
+    $check = true;
+    $g = $page->get('g');
+    $c_temp = $page->get('c');
+    $c = str_replace('&amp;', '&', $c_temp);
+}else if($page->get('c')!=""){
+    $c_temp = $page->get('c');
+    $c = str_replace('&amp;', '&', $c_temp);
+}else{
     $home = true;
 }
 $pdo = $page->pdo();
@@ -77,10 +71,13 @@ $category = $sy->fetchAll();
         </div>
         <div id="section"><h1 style="background:red">
                 <?php
-                if ($b == "" && $c != "")
+                if ($b == "" && $c != "" && $g == "")
                     echo $c;
-                else if ($b != "" && $c == "")
+                else if ($b != "" && $c == "" && $g == "")
                     echo $b;
+                else if($g !="" && $c != ""){
+                    echo $g."-".$c;
+                }
                 ?>
             </h1>
             <?php foreach ($product as $a) { ?>
