@@ -233,7 +233,11 @@ class Html
             echo '</ul>';
         }
     }
-    
+    public function warning($message) {
+        if ($message) {
+            echo "<p class='warning'>$message</p>";
+        }
+    }
     public function error($err, $key) {
         if (isset($err[$key])) { // The field has error?
             echo "<span class='error'>$err[$key]</span>";

@@ -13,29 +13,43 @@
 
     <header>
         <?php 
-//           $pdo = $page->pdo();
-//           $stm = $pdo->query("SELECT category FROM product WHERE gender LIKE 'male'");
-//           $male = $stm->fetchAll();
-//           $stm = $pdo->query("SELECT category FROM product WHERE gender LIKE 'female'");
-//           $female = $stm->fetchAll();
+        class tempPdo{
+            public function pdo() {
+            $options = [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
+                PDO::ATTR_EMULATE_PREPARES => false
+            ];
+            return new PDO('mysql:host=localhost;port=3306;dbname=product', 'root', '', $options);
+            }
+        }
+        $tempPdo = new tempPdo();
+           $pdo = $tempPdo->pdo();
+           $stm = $pdo->query("SELECT DISTINCT category FROM product WHERE gender LIKE 'male'");
+           $male = $stm->fetchAll();
+           $stm = $pdo->query("SELECT DISTINCT category FROM product WHERE gender LIKE 'female'");
+           $female = $stm->fetchAll();
         ?>
         <div id="navl"><a href='/main.php' title='Main Page'><img src="/pic/Mainlogo.png" alt="Web Logo" width=80px" height="80px"></a></div>
         <ul>
             <li class="drop1">
                 <a href="javascript:void(0)" class="men">Men</a>
                 <div class="dropdown-content">
-                    <?php // foreach ($male as $m):?>
-                    <!--<a href="?b=male&c=<?=$m->category?>"><?=$m->category?></a>-->
-                    <?php // endforeach;?>
+                    <?php $and = urlencode('&')?>
+                    <?php foreach ($male as $m):
+                        $category = urlencode($m->category);?>
+                    <a href="/main.php?g=male<?= $and?>c=<?=$category?>"><?=$m->category?></a>
+                    <?php endforeach;?>
                     
                 </div>
             </li>
             <li class="drop2">
                 <a href="javascript:void(0)" class="women">Women</a>
                 <div class="dropdown-content">
-                    <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
+                    <?php foreach ($female as $m):
+                     $category = urlencode($m->category);?>
+                    <a href="/main.php?g=female<?= $and?>c=<?=$category?>"><?=$m->category?></a>
+                    <?php endforeach;?>
                 </div>
             </li>
 
