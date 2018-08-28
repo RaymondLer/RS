@@ -1,14 +1,12 @@
 <?php 
 include'_config.php';
 
-$id = $page->get('id');
 $pdo = $page->pdo();
-//$username = $page->user->name;
+$username = $page->user->name;
 
-$stm = $pdo->prepare("SELECT * FROM `order` WHERE order_id = ? AND username = ?");
+$stm = $pdo->prepare("SELECT * FROM `order` WHERE username = ?");
 $stm->execute([$order_id, $page->user->name]);
-var_dump($id);
-$order = $stm->fetch();
+$order = $stm->fetchAll();
 
 if ($order) {
     $stm = $pdo->prepare("

@@ -68,7 +68,7 @@ if ($page->is_post()) {
             $cart->clear();
 
             $page->temp('success', 'Order added.');
-            $page->redirect("/orderList.php?id=$order_id");
+            $page->redirect("order_details.php?oi=$order_id");
         }
     }
 $stm = $pdo->query("SELECT order_id FROM `order`");

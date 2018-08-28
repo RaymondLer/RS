@@ -20,7 +20,7 @@ section form>*{
 }
 section form>label{
     display:inline;
-        line-height: 0;
+    line-height: 0;
 }
 section form label > *{
     vertical-align:text-top;
