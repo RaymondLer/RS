@@ -35,10 +35,10 @@
             <li class="drop1">
                 <a href="javascript:void(0)" class="men">Men</a>
                 <div class="dropdown-content">
-                    <?php $and = urlencode('&')?>
+                    <?php// $and = urlencode('&')?>
                     <?php foreach ($male as $m):
                         $category = urlencode($m->category);?>
-                    <a href="/main.php?g=male<?= $and?>c=<?=$category?>"><?=$m->category?></a>
+                    <a href="/main.php?g=male&c=<?=$category?>"><?=$m->category?></a>
                     <?php endforeach;?>
                     
                 </div>
@@ -46,9 +46,9 @@
             <li class="drop2">
                 <a href="javascript:void(0)" class="women">Women</a>
                 <div class="dropdown-content">
-                    <?php foreach ($female as $m):
-                     $category = urlencode($m->category);?>
-                    <a href="/main.php?g=female<?= $and?>c=<?=$category?>"><?=$m->category?></a>
+                    <?php foreach ($male as $m):
+                        $category = urlencode($m->category);?>
+                    <a href="/main.php?g=female&c=<?=$category?>"><?=$m->category?></a>
                     <?php endforeach;?>
                 </div>
             </li>
