@@ -6,15 +6,8 @@ $page->title='Product Submit';
 $page->header();
 
 $pdo = $page->pdo();
-$product_id ="";
-$name = "";
-$desc = "";
-$brand = "";
-$size = "";
-$price = "";
+$product_id =$name = $desc = $brand = $size = $price = $category = $gender = $quantity = "";
 $dcategory = ['Other'];
-$category = "";
-$gender = "";
 $arr_gender = [
     'F' => 'Female',
     'M' => 'Male',
@@ -64,6 +57,7 @@ if($page->is_post()){
     $desc = $page->post('description');
     $brand = $page->post('brand');
     $size = $page->post('size');
+    $quantity = $page->post('quantity');
     if($page->post('sCategory')==0){
         $category = $page->post('category');
     }
@@ -82,6 +76,9 @@ if($page->is_post()){
     }
     if($brand == ""){
         $err['brand'] = 'brand is required.';
+    }
+    if($quantity == ""){
+        $err['quantity'] = 'Quantity is required.';
     }
     $pattern = "/[^\d,]+$/";
     if($size == ""){
@@ -166,6 +163,11 @@ if($page->is_post()){
                 <label>Image :</label>
                 <input type="file" id="file" name="file" accept="image/*">
                 <?php $html->error($err, 'file') ?></span>
+            </div>
+            <div class="input-group">
+                <label>Quantity Available:</label>
+                <?php $html->text('quantity',$quantity)?>
+                <?php $html->error($err, 'quantity') ?>
             </div>
             <div class="input-group">
                 <label>Price:</label>

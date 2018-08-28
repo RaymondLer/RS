@@ -4,15 +4,8 @@ $page->title='Update Product';
 $page->header();
     
 $pdo = $page->pdo();
-$product_id ="";
-$name = "";
-$desc = "";
-$brand = "";
-$size = "";
-$price = "";
+$product_id =$name = $desc = $brand = $size = $price = $category = $gender = "";
 $dcategory = ['Other'];
-$category = "";
-$gender = "";
 $arr_gender = [
     'F' => 'Female',
     'M' => 'Male',
@@ -47,6 +40,7 @@ foreach($cate as $s){
 $err = [];
 // post the product 
 if($page->is_post()){
+    $product_id = $page->post('product_id');
     $name = $page->post('product_name');
     $desc = $page->post('description');
     $brand = $page->post('brand');
@@ -60,6 +54,7 @@ if($page->is_post()){
     }
     $price = $page->post('price');
     $gender = $page->post("gender");
+    $file = $_FILES['file'];
     //Validation
     if($name == ""){
         $err['name'] = 'Product name is required.';
@@ -87,17 +82,34 @@ if($page->is_post()){
     if($gender == ""){
         $err['gender'] = 'Gender is required.';
     }
-    $file = $_FILES['file'];
-    validateFile($file);
-    
-    if (!$err) {
-        $iName = $product_id. '.jpg';
+    if ($file['name']) {
+        if ($file['error'] == UPLOAD_ERR_FORM_SIZE ||
+            $file['error'] == UPLOAD_ERR_INI_SIZE) {
+            $err['file'] = 'Photo exceeds size allowed.';
+        }
+        else if ($file['error'] != UPLOAD_ERR_OK) {
+            $err['file'] = 'Photo failed to upload.';
+        }
+        else {
+            // NOTE: Remember to enable "fileinfo" extension in "php.ini"
+            $mime = mime_content_type($file['tmp_name']);
+            if ($mime != 'image/jpeg' && $mime != 'image/png') {
+                $err['file'] = 'Only JPEG or PNG photo allowed.';
+            }
+        }
+    }
 
-        include '../include/simpleImage.php';
-        $img = new SimpleImage();
-        $img->fromFile($file['tmp_name'])
-            ->toFile("../post_product/$iName", "image/jpeg", 80);
-            
+    validateFile($file);
+    var_dump($product_id);
+    if (!$err) {
+        if($file['name']){
+            $iName = $product_id. '.jpg';
+            unlink("../post_product/$iName");
+            include '../include/simpleImage.php';
+            $img = new SimpleImage();
+            $img->fromFile($file['tmp_name'])
+                ->toFile("../post_product/$iName", 'image/jpeg');
+        }
         $stm = $pdo->prepare("
         UPDATE product SET name = ?, price = ?, `desc` = ?, gender = ?, category = ?, brand = ?, size = ? WHERE product_id = ?
     ");
@@ -108,7 +120,6 @@ if($page->is_post()){
 }
     
 $d = $page->get('id');
-    
 $pdo = $page->pdo();
 $stm = $pdo->prepare("SELECT * FROM product WHERE product_id = ?");
 $stm->execute([$d]);
@@ -121,7 +132,8 @@ $p = $stm->fetch();
         <div>
             <label>Product id:</label>
             <?= $p->product_id;?>
-            <?php $product_id= $p->product_id;?>
+            <?php $product_id= $p->product_id;
+            $html->hidden('product_id',$product_id)?>
         </div>
         <div class="input-group">
             <label>Product name:</label>
@@ -161,9 +173,9 @@ $p = $stm->fetch();
             <?php $html->error($err, 'gender') ?></span>
         </div>
         <div class="input-group">
-            <label>Image :</label><label>
+            <label for='file'>Image :</label><label>
             <input type="file" id="file" name="file" accept="image/*" style="display: none">
-            <img id="prev" src="/../post_product/<?= $p->product_id?>.jpg">
+            <img id="prev" src="../post_product/<?= $p->product_id?>.jpg">
             </label>
         </div>
         <div class="input-group">
@@ -186,11 +198,12 @@ $p = $stm->fetch();
    
 <script>
     var img = $("#prev")[0];
-    img.onerror = function (e) {
-        $("#file").val("");
-        img.src = "/../post_product/<?= $p->product_id?>.jpg";
-    };
+    var src = img.src;
     
+    img.onerror = function (e) {
+        img.src = src;
+        $("#file").val("");
+    };    
     $("#file").change(function (e) {
         var f = this.files[0];
         img.src = URL.createObjectURL(f);
