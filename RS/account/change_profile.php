@@ -1,6 +1,6 @@
 <?php
 include '../_config.php';
-//$page->authorize('customer');
+$page->authorize('customer');
 
 $err = [];
 $pdo = $page->pdo();
@@ -70,6 +70,8 @@ $page->header();
 
 <form method="post" enctype="multipart/form-data">
     <div class="form">
+        <h2>Change Profile</h2>
+        <fieldset>
         <div>
             <label for="username">Username</label>
             <!-- TODO: Username -->
@@ -93,6 +95,7 @@ $page->header();
             <?php $html->text('phone', $phone, 12) ?>
             <?php $html->error($err, 'phone') ?>
         </div>
+        </fieldset>
     </div>
     
     <button>Change Profile</button>

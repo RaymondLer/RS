@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 28, 2018 at 05:03 AM
+-- Generation Time: Aug 28, 2018 at 11:00 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -80,7 +80,7 @@ CREATE TABLE `customer` (
 
 INSERT INTO `customer` (`username`, `hash`, `name`, `email`, `phone`, `gender`) VALUES
 ('johnwick', '$2y$10$c1dl29ssDnxbNnxAlvmwseq8QJqImYE.Yfz2T3X1G7ZC3Vq4DJT0e', 'John Wick', 'benlyr1212@gmail.com', '012-5478963', 'M'),
-('shawnlim', 'shawnlim', 'shawn', '', '', '');
+('zifeng', '$2y$10$1JO9rKHhfMX8Pcm93CjxyOhTKWX1rFuAx5tlQ1TaHkf311CcLVF22', 'Zifeng', 'wongzf@gmail.com', '019-6320145', 'M');
 
 -- --------------------------------------------------------
 
@@ -115,7 +115,14 @@ CREATE TABLE `order` (
 --
 
 INSERT INTO `order` (`order_id`, `username`, `card`, `address`, `total_payment`, `date`) VALUES
-(1001, 'johnwick', '1111111111111111', 'Kepong', '1650.00', '2018-08-27');
+(1001, 'Shawn Lim', '1010101010101010', 'PV 5', '5000.00', '2018-08-28'),
+(1002, 'johnwick', '6666666666666666', 'ddd', '500.00', '2018-08-28'),
+(1003, 'zifeng', '3030303030300303', 'PV 16', '2350.00', '2018-08-28'),
+(1004, 'Lim Jia Ying', '2929922929292929', 'Toilet', '390.00', '2018-08-28'),
+(1005, 'johnwick', '3664563546369286', 'Titiwangsa', '1875.00', '2018-08-28'),
+(1006, 'johnwick', '2094928734986219', 'Prima Setapak', '1125.00', '2018-08-28'),
+(1007, 'johnwick', '2123213341213123', 'sadw', '490.00', '2018-08-28'),
+(1008, 'johnwick', '5788934574986458', 'fhgrghriughdkgru', '598.00', '2018-08-28');
 
 -- --------------------------------------------------------
 
@@ -136,8 +143,13 @@ CREATE TABLE `order_detail` (
 --
 
 INSERT INTO `order_detail` (`order_id`, `product_id`, `quantity`, `price`) VALUES
-(0, 1001, 2, '375.00'),
-(0, 1006, 3, '300.00');
+(1002, 1022, 1, '500.00'),
+(1003, 2001, 5, '470.00'),
+(1004, 2005, 1, '390.00'),
+(1005, 1016, 3, '625.00'),
+(1006, 1001, 3, '375.00'),
+(1007, 1004, 1, '490.00'),
+(1008, 1003, 2, '299.00');
 
 -- --------------------------------------------------------
 

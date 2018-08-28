@@ -1,0 +1,15 @@
+section form {
+    width:50%;
+    margin: 50px auto;
+    text-align: left;
+    padding: 20px;
+    border-radius:5px;
+    display: table;
+    border-spacing: 5px;
+    box-shadow: 0 0 20px black;
+    background-color: seashell;
+    font-size: 19px;
+    height: 250px;
+}
+
+

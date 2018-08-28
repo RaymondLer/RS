@@ -1,6 +1,6 @@
 <?php
 include '../_config.php';
-//$page->authorize();
+$page->authorize('customer');
 
 $password = $new = $confirm = '';
 $err = [];
@@ -60,6 +60,8 @@ $page->header();
 
 <form method="post">
     <div class="form">
+        <h2>Change Password</h2>
+        <fieldset>
         <div>
             <label for="password">Password</label>
             <?php $html->password('password', $password) ?>
@@ -77,6 +79,7 @@ $page->header();
             <?php $html->password('confirm', $confirm) ?>
             <?php $html->error($err, 'confirm') ?>
         </div>
+        </fieldset>
     </div>
     
     <button>Change Password</button>
