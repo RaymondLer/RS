@@ -13,20 +13,20 @@
 
     <header>
         <?php 
-           $pdo = $page->pdo();
-           $stm = $pdo->query("SELECT category FROM product WHERE gender LIKE 'male'");
-           $male = $stm->fetchAll();
-           $stm = $pdo->query("SELECT category FROM product WHERE gender LIKE 'female'");
-           $female = $stm->fetchAll();
+//           $pdo = $page->pdo();
+//           $stm = $pdo->query("SELECT category FROM product WHERE gender LIKE 'male'");
+//           $male = $stm->fetchAll();
+//           $stm = $pdo->query("SELECT category FROM product WHERE gender LIKE 'female'");
+//           $female = $stm->fetchAll();
         ?>
         <div id="navl"><a href='/main.php' title='Main Page'><img src="/pic/Mainlogo.png" alt="Web Logo" width=80px" height="80px"></a></div>
         <ul>
             <li class="drop1">
                 <a href="javascript:void(0)" class="men">Men</a>
                 <div class="dropdown-content">
-                    <?php foreach ($male as $m):?>
-                    <a href="?b=male&c=<?=$m->category?>"><?=$m->category?></a>
-                    <?php endforeach;?>
+                    <?php // foreach ($male as $m):?>
+                    <!--<a href="?b=male&c=<?=$m->category?>"><?=$m->category?></a>-->
+                    <?php // endforeach;?>
                     
                 </div>
             </li>

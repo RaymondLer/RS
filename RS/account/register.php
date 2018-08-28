@@ -97,10 +97,10 @@ if ($page->is_post()) {
             VALUES (?, ?, ?, ?, ?, ?)
         ");
         $stm->execute([$username, $hash, $name, $email, $phone, $gender]);
-    }
-    
-    $page->temp('success', 'Account registered. Please login.');
-    $page->redirect('login.php');
+        
+        $page->temp('success', 'Account registered. Please login.');
+        $page->redirect('login.php');
+    } 
 }
 
 $page->title = 'Registration';
@@ -109,7 +109,7 @@ $page->header();
 
 <form action="register.php" method="post">
     <div class="form">
-        <h1>Register</h1>
+        <h2>Register</h2>
         <fieldset>
             <div>
                 <label for="username">Username :</label>

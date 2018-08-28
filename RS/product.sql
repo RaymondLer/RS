@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2018-08-27 10:29:13
--- 服务器版本： 10.1.32-MariaDB
+-- Generation Time: Aug 28, 2018 at 05:03 AM
+-- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -27,7 +27,7 @@ USE `product`;
 -- --------------------------------------------------------
 
 --
--- 表的结构 `admin`
+-- Table structure for table `admin`
 --
 
 DROP TABLE IF EXISTS `admin`;
@@ -39,7 +39,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 转存表中的数据 `admin`
+-- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`username`, `hash`, `name`, `email`) VALUES
@@ -48,7 +48,7 @@ INSERT INTO `admin` (`username`, `hash`, `name`, `email`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `cart`
+-- Table structure for table `cart`
 --
 
 DROP TABLE IF EXISTS `cart`;
@@ -61,7 +61,7 @@ CREATE TABLE `cart` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `customer`
+-- Table structure for table `customer`
 --
 
 DROP TABLE IF EXISTS `customer`;
@@ -75,16 +75,17 @@ CREATE TABLE `customer` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 转存表中的数据 `customer`
+-- Dumping data for table `customer`
 --
 
 INSERT INTO `customer` (`username`, `hash`, `name`, `email`, `phone`, `gender`) VALUES
+('johnwick', '$2y$10$c1dl29ssDnxbNnxAlvmwseq8QJqImYE.Yfz2T3X1G7ZC3Vq4DJT0e', 'John Wick', 'benlyr1212@gmail.com', '012-5478963', 'M'),
 ('shawnlim', 'shawnlim', 'shawn', '', '', '');
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `favourite`
+-- Table structure for table `favourite`
 --
 
 DROP TABLE IF EXISTS `favourite`;
@@ -96,12 +97,12 @@ CREATE TABLE `favourite` (
 -- --------------------------------------------------------
 
 --
--- 表的结构 `order`
+-- Table structure for table `order`
 --
 
 DROP TABLE IF EXISTS `order`;
 CREATE TABLE `order` (
-  `order_id` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
+  `order_id` int(5) NOT NULL,
   `username` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `card` varchar(16) COLLATE utf8_unicode_ci NOT NULL,
   `address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
@@ -109,24 +110,39 @@ CREATE TABLE `order` (
   `date` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `order`
+--
+
+INSERT INTO `order` (`order_id`, `username`, `card`, `address`, `total_payment`, `date`) VALUES
+(1001, 'johnwick', '1111111111111111', 'Kepong', '1650.00', '2018-08-27');
+
 -- --------------------------------------------------------
 
 --
--- 表的结构 `order_detail`
+-- Table structure for table `order_detail`
 --
 
 DROP TABLE IF EXISTS `order_detail`;
 CREATE TABLE `order_detail` (
-  `order_id` varchar(5) COLLATE utf8_unicode_ci NOT NULL,
+  `order_id` int(5) NOT NULL,
   `product_id` int(10) NOT NULL,
   `quantity` int(5) NOT NULL,
   `price` decimal(6,2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Dumping data for table `order_detail`
+--
+
+INSERT INTO `order_detail` (`order_id`, `product_id`, `quantity`, `price`) VALUES
+(0, 1001, 2, '375.00'),
+(0, 1006, 3, '300.00');
+
 -- --------------------------------------------------------
 
 --
--- 表的结构 `product`
+-- Table structure for table `product`
 --
 
 DROP TABLE IF EXISTS `product`;
@@ -143,7 +159,7 @@ CREATE TABLE `product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- 转存表中的数据 `product`
+-- Dumping data for table `product`
 --
 
 INSERT INTO `product` (`product_id`, `name`, `price`, `desc`, `gender`, `category`, `brand`, `size`, `quantity`) VALUES
@@ -221,7 +237,7 @@ INSERT INTO `product` (`product_id`, `name`, `price`, `desc`, `gender`, `categor
 -- --------------------------------------------------------
 
 --
--- 替换视图以便查看 `user`
+-- Stand-in structure for view `user`
 -- (See below for the actual view)
 --
 DROP VIEW IF EXISTS `user`;
@@ -236,7 +252,7 @@ CREATE TABLE `user` (
 -- --------------------------------------------------------
 
 --
--- 视图结构 `user`
+-- Structure for view `user`
 --
 DROP TABLE IF EXISTS `user`;
 

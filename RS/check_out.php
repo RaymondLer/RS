@@ -16,7 +16,6 @@ $prices = $stm->fetchAll(PDO::FETCH_KEY_PAIR);
 $total_payment = 0.00;
 foreach($cart->items as $product_id => $quantity) {
     $total_payment += $quantity * $prices[$product_id];
-    var_dump($cart->items);
 }
 
 if ($page->is_post()) {
@@ -50,15 +49,15 @@ if ($page->is_post()) {
         // Everything is OK --> Add order
         // TODO (3): Add order
         $stm = $pdo->prepare("
-            INSERT INTO `order` (order_id,username, card, address, total_payment, date)
-            VALUES (?,?, ?, ?, ?, ?) 
+            INSERT INTO `order`(order_id, username, card, address, total_payment, date)
+            VALUES (?, ?, ?, ?, ?, ?) 
         ");
-        $stm->execute([$order_id,$username, $card, $address, $total_payment, $page->date->format("Y-m-d")]);
+        $stm->execute([$order_id, $username, $card, $address, $total_payment, $page->date->format("Y-m-d")]);
     
     // TODO (4): Add order details
-        $order_id = $pdo->lastInsertId();
+        var_dump($order_id);
         $stm = $pdo->prepare("
-            INSERT INTO order_detail (order_id, product_id, quantity, price)
+            INSERT INTO order_detail(order_id, product_id, quantity, price)
             VALUES (?, ?, ?, ?)
         ");
         foreach($cart->items as $product_id => $quantity) {
@@ -73,17 +72,17 @@ if ($page->is_post()) {
         }
     }
 $stm = $pdo->query("SELECT order_id FROM `order`");
-$s = $stm->fetchAll();
+$sa = $stm->fetchAll();
 $order_id = 1000;
-do{
+do {
     $try = false;
     $order_id++;
-    foreach($s as $s){
-        if($order_id == $s->order_id){
-            $try=true;
+    foreach ($sa as $s) {
+        if ($order_id == $s->order_id) {
+            $try = true;
         }
     }
-}while($try);
+} while ($try);
 
 $page->title = 'Check out';
 $page->header();
@@ -94,12 +93,20 @@ echo '<link rel="stylesheet" href="/css/check_out.css">';
     <div>
         <h2>Checkout</h2>
         <section>
-            <?php $html->hidden('order_id',$order_id)?>
-            <?= $order_id?>
+            <?php $html->hidden('order_id', $order_id) ?>
+            <?= $order_id ?>
             <div>
-                <label for="username">Username:</label>
-                <?php $html->text('username', $username, 20, 'autofocus') ?>
-                <?php $html->error($err, 'username') ?>
+                <label for="username">Username: 
+                    <?php if ($page->user) {
+                    $username = $page->user->name;
+                    $html->hidden('username', $username);
+                    echo $username;
+                }
+                else if (!$page->user) {
+                    $html->text('username', $username, 20, 'autofocus');
+                    $html->error($err, 'username');              
+                } ?>
+                </label>          
             </div>
 
             <div>
@@ -123,6 +130,6 @@ echo '<link rel="stylesheet" href="/css/check_out.css">';
 </form>    
 
 <?php
-$html->focus('code', $err);
+$html->focus('username', $err);
 $page->footer();
 ?>

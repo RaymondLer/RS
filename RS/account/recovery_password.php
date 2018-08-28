@@ -69,6 +69,8 @@ $page->header();
 
 <form method="post">
     <div class="form">
+        <h2>Reset Password</h2>
+        <fieldset>
         <div>
             <label for="username">Username</label>
             <?php $html->text('username', $username) ?>
@@ -80,6 +82,7 @@ $page->header();
             <?php $html->text('email', $email) ?>
             <?php $html->error($err, 'email') ?>
         </div>
+        </fieldset>
     </div>
     
     <button>Reset Password</button>

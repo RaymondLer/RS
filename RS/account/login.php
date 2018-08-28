@@ -39,7 +39,7 @@ $page->header();
 
 <form method="post">
     <div class="form">
-        <h1>Login</h1>
+        <h2>Login</h2>
         <fieldset>
             <div>
                 <label for="username">Username</label>
