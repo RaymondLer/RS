@@ -83,16 +83,14 @@ $category = $sy->fetchAll();
                     echo $b;
                 ?>
             </h1>
-<?php foreach ($product as $a) { ?>
-                <a href="#"><form id="product">
-
+            <?php foreach ($product as $a) { ?>
+                <a href="/product.php?id=<?= $a->product_id ?>"><form id="product">
                         <div class="product_pic">
-
                             <img src="/post_product/<?= $a->product_id ?>.jpg">
                         </div>
                         <div id="container_name_price">
                             <div class="product_name">
-    <?= $a->name ?>
+                                <?= $a->name ?>
                             </div>
                             <div class="product_price">
                                 RM<?= $a->price ?>
@@ -102,12 +100,12 @@ $category = $sy->fetchAll();
                             <?= $a->category ?>
                         </div>
                         <div>
-    <?= $a->gender ?>
+                            <?= $a->gender ?>
                         </div>
 
                     </form>
                 </a>
-<?php } ?>
+            <?php } ?>
 
 
 
