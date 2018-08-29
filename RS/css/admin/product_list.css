@@ -1,0 +1,85 @@
+#wrap{
+    margin:30px 300px 30px 300px;
+}
+table{
+    text-align: center;
+    align-items: center;
+    cursor: default;
+}
+button{
+    cursor: pointer;
+}
+#category{
+    color:brown;
+}
+#btn{
+    color:white;
+    background: brown;
+    border:none;
+    margin:0 0 0 0;
+    width:150px;
+    height:50px;
+    transition: .5s;
+    margin-bottom: 10px;
+}
+#btn:hover{
+    color:brown;
+    background: white;
+    border: 1px solid brown;
+}
+#chk{
+    color:white;
+    background: blue;
+    border:none;
+    margin:0 0 0 0;
+    width:150px;
+    height:50px;
+    transition:.5s;
+}
+#chk:hover{
+    color:blue;
+    border:1px solid blue;
+    background: white;
+}
+#del{
+    color:white;
+    background: red;
+    border:none;
+    margin:0 0 0 0;
+    width:150px;
+    height:50px;
+    transition: .4s;
+}
+#del:hover{
+    color:red;
+    background: white;
+    border:1px solid red;
+}
+#addProduct{
+    text-align: left;
+    margin-right: 100px;
+    width:110px;
+    text-align: center; 
+    height: 50px;
+    border:1px solid green;
+    color: white;
+    background: green;
+    transition: 0.7s;
+}
+#addProduct:hover{
+    border:1px solid greenyellow;
+    color: black;
+    background: greenyellow;
+}
+table,th,td,tr{
+    border:none;
+    border-collapse: collapse;
+}
+th{
+    background: gold;
+    border-collapse: collapse;
+}
+tr{
+    background: goldenrod;
+   
+}

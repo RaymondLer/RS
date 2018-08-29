@@ -1,0 +1,43 @@
+section{
+    min-height: 500px;
+}
+.wrap{
+    margin:30px 10px 30px 30px;
+    display:block;
+    font-size: 20pt;
+}
+table{
+    border-collapse: collapse;
+    cursor: default;
+        font-size: 20pt;
+}
+th,td{
+    padding-left: 6px;
+    padding-right: 6px;
+}
+td{
+    text-align: right;
+}
+th{
+    background: black;
+    color:white;
+    padding:0;
+    border:none;
+}
+tr:nth-child(even){
+    background: lightgrey;
+}
+tr:hover{
+    background: grey;
+    box-shadow: 1px 1px 5px pink;  
+}
+.btn{
+    background:white;
+    border:1px blue solid;
+}
+.btn:hover{
+    background: blue;
+    color: white;
+    border:1px blue solid;
+    cursor:pointer;
+}

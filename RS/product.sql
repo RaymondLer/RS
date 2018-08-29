@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2018-08-29 04:25:38
+-- Generation Time: 2018-08-29 15:06:13
 -- 服务器版本： 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -157,7 +157,7 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `name`, `price`, `desc`, `gender`, `category`, `brand`, `size`, `quantity`) VALUES
-(1001, 'Nike Lebron Soldier XII SFG Shoes', '375.00', 'The LeBron Soldier XII SFG Basketball Shoe delivers lightweight, responsive cushioning for the court with Nike Zoom Air cushioning. Adjustable hook-and-loop straps offer adjustable, secure lockdown.', 'M', 'Basketball', 'Nike', '27,28,29,30,31', 100),
+(1001, 'Nike Lebron Soldier XII SFG Shoes', '375.00', 'The LeBron Soldier XII SFG Basketball Shoe delivers lightweight, responsive cushioning for the court with Nike Zoom Air cushioning. Adjustable hook-and-loop straps offer adjustable, secure lockdown.', 'Male', 'Basketball', 'Nike', '27,28,29,30,31', 100),
 (1002, 'Nike Kyrie 4 Shoes', '390.00', 'The Kyrie 4 Men\'s Basketball Shoe is ultra-flexible, responsive and supportive. It\'s designed for Kyrie Irving\'s sudden changes of direction and smooth yet rapid playing style.', 'Male', 'Basketball', 'Nike', '27,28,29,30,31', 100),
 (1003, 'Nike Jordan Ultra Fly 2 Low Shoes', '299.00', 'Designed for the versatile player who can play any position, the Jordan Ultra Fly 2 Low Men\'s Basketball Shoe offers responsive cushioning and lightweight lockdown.', 'Male', 'Basketball', 'Nike', '27,28,29,30,31', 100),
 (1004, 'Nike Kobe A.D. Black Mamba Shoes', '490.00', 'The Kobe A.D. Basketball Shoe delivers lightweight support, responsive cushioning and excellent traction during practice and on game day to help you push past your potential.', 'Male', 'Basketball', 'Nike', '27,28,29,30,31', 100),

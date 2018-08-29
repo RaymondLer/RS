@@ -81,7 +81,7 @@ img:hover{
 #size:active,#size:hover,size:default{
     box-shadow: 0 0 2px aqua;
 }
-#add_bag,#add_cart{
+#add_cart{
     background-color: black;
     color: white;
     border: none;
@@ -91,7 +91,7 @@ img:hover{
     margin-top: 20px;
     transition: .4s;
 }
-#add_bag:hover,#add_cart:hover,#add_bag:active,#add_cart:active{
+#add_cart:hover,#add_cart:active{
     background-color: white;
     border: 1px solid black;
     color:black;

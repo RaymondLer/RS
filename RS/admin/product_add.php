@@ -1,12 +1,12 @@
 <?php 
 //include('../database.php');
 include'../_config.php';
-echo "<link rel='stylesheet' href='/css/product_sell.css'>";
+echo "<link rel='stylesheet' href='/css/admin/product_add.css'>";
 $page->title='Product Submit';
 $page->header();
 
 $pdo = $page->pdo();
-$product_id =$name = $desc = $brand = $size = $price = $category = $gender = $quantity = "";
+$product_id =$name = $desc = $brand = $size = $price = $category = $gender = $g = $quantity = "";
 $dcategory = ['Other'];
 $arr_gender = [
     'F' => 'Female',
@@ -36,15 +36,17 @@ function validateFile($file) {
 }
 //Compare the id with the database
 $s = $pdo->query("SELECT product_id FROM product");
+$product_id = 1001;
+$try = false;
 do{
-    $try = false;
-    $product_id = rand(1, 99999);
     foreach($s as $s){
-        if($product_id == $s->product_id){
+        if($product_id != $s->product_id){
             $try=true;
+            break;
         }
+        $product_id ++;
     }
-}while($try);
+}while(!$try);
 //Display the category of the shoes
 $cate = $pdo->query("SELECT DISTINCT category FROM product ");
 foreach($cate as $s){
@@ -67,7 +69,8 @@ if($page->is_post()){
     }
     $price = $page->post('price');
     $g = $page->post("gender");
-    $gender = $arr_gender[$g];
+    if($g!="")
+        $gender = $arr_gender[$g];
     //Validation
     if($name == ""){
         $err['name'] = 'Product name is required.';
@@ -76,7 +79,7 @@ if($page->is_post()){
          $err['description'] = 'Description is required.';
     }
     if($brand == ""){
-        $err['brand'] = 'brand is required.';
+        $err['brand'] = 'Brand is required.';
     }
     if($quantity == ""){
         $err['quantity'] = 'Quantity is required.';
@@ -115,6 +118,7 @@ if($page->is_post()){
     ");
     $stm->execute([$product_id,$name,$price,$desc,$gender,$category,$brand,$size, $quantity]);
     $page->temp('output', 'Product is inserted');
+    $page->redirect("/admin/product_add.php");
 
      }
 }
@@ -122,11 +126,8 @@ if($page->is_post()){
 <body>
     <section>
         <form method="post" enctype="multipart/form-data">
-            <h1>Product detail</h1>
-            <div>
-                <label>Product id:</label>
-                <?= $product_id;?>
-            </div>
+            <h1>Add Product</h1>
+             <?php $html->hidden('product_id',$product_id)?>
             <div class="input-group">
                 <label>Product name:</label>
                 <?php $html->text('product_name',$name,50)?>
@@ -144,8 +145,8 @@ if($page->is_post()){
             </div>
             
             <div class="input-group">
-                <label>Size Available:[If got more put (23,24)]</label>
-                <?php $html->text('size',$size,50)?>
+                <label>Size Available:</label>
+                <?php $html->text('size',$size,50,'placeholder="21,22,23"')?>
                 <?php $html->error($err, 'size') ?>
             </div>
             <div class="input-group">
@@ -157,7 +158,7 @@ if($page->is_post()){
             </div>
              <div class="gender">
                 <label>Gender:</label>
-                 <span id="gender"><?php $html->radio_list('gender', $arr_gender) ?>
+                 <span id="gender"><?php $html->radio_list('gender', $arr_gender,$g) ?>
                 <?php $html->error($err, 'gender') ?></span>
             </div>
             <div class="input-group">
@@ -171,11 +172,12 @@ if($page->is_post()){
                 <?php $html->error($err, 'quantity') ?>
             </div>
             <div class="input-group">
-                <label>Price:</label>
+                <label>Price(RM):</label>
                 <?php $html->text('price',$price)?>
                 <?php $html->error($err, 'price') ?>
             </div>
             <div id='coverB'>
+                <label></label>
                 <div class="buttons">
                     <button tpe="submit" name="submit" class="btn">Submit</button>
                     <button type="reset" name="reset" class='btn'>Reset</button>

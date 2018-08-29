@@ -1,0 +1,39 @@
+#wrap{
+    display:flex;
+    flex-direction: row;
+    margin: 20px 20px 20px 50px;
+    min-height: 500px;
+}
+h1{
+    margin-left: 50px;
+}
+.image{
+    border: 1px solid black;
+}
+section{
+    width: 900px;
+    margin-left: 20px;
+}
+table,th,td,tr{
+    border:1px solid black;
+    border-collapse: collapse;
+}
+th{
+    text-align: right;
+    width:100px;
+    vertical-align: top;
+    color: black;
+    background: lightgoldenrodyellow;
+}
+
+tr:nth-child(even){
+    background: grey;
+    color: white;
+}
+section div>label{
+    text-weight: bold;
+    background: green;
+}
+#back{
+    margin-top: 30px;
+}
