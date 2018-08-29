@@ -1,12 +1,14 @@
 <?php 
 include'_config.php';
 
-if (!$page->user) {
-   
-}
 
+$username="";
 $order_id = $page->get('oi');
-$username = $page->user->name;
+if($page->user){
+    $username = $page->user->name;
+}else{
+    $username = "notcustomer";
+}
 var_dump($username);
 $pdo = $page->pdo();
 $stm = $pdo->prepare("SELECT * FROM `order` WHERE order_id = ? AND username = ?");

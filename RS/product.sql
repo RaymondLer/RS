@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 28, 2018 at 11:00 AM
--- Server version: 10.1.32-MariaDB
+-- Generation Time: 2018-08-29 02:48:44
+-- 服务器版本： 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -27,7 +27,7 @@ USE `product`;
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- 表的结构 `admin`
 --
 
 DROP TABLE IF EXISTS `admin`;
@@ -39,7 +39,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `admin`
+-- 转存表中的数据 `admin`
 --
 
 INSERT INTO `admin` (`username`, `hash`, `name`, `email`) VALUES
@@ -48,7 +48,7 @@ INSERT INTO `admin` (`username`, `hash`, `name`, `email`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cart`
+-- 表的结构 `cart`
 --
 
 DROP TABLE IF EXISTS `cart`;
@@ -61,21 +61,21 @@ CREATE TABLE `cart` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `customer`
+-- 表的结构 `customer`
 --
 
 DROP TABLE IF EXISTS `customer`;
 CREATE TABLE `customer` (
   `username` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `hash` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `name` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `email` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `phone` varchar(12) COLLATE utf8_unicode_ci NOT NULL,
   `gender` varchar(10) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `customer`
+-- 转存表中的数据 `customer`
 --
 
 INSERT INTO `customer` (`username`, `hash`, `name`, `email`, `phone`, `gender`) VALUES
@@ -85,7 +85,7 @@ INSERT INTO `customer` (`username`, `hash`, `name`, `email`, `phone`, `gender`) 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `favourite`
+-- 表的结构 `favourite`
 --
 
 DROP TABLE IF EXISTS `favourite`;
@@ -97,7 +97,7 @@ CREATE TABLE `favourite` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order`
+-- 表的结构 `order`
 --
 
 DROP TABLE IF EXISTS `order`;
@@ -107,27 +107,29 @@ CREATE TABLE `order` (
   `card` varchar(16) COLLATE utf8_unicode_ci NOT NULL,
   `address` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `total_payment` decimal(7,2) NOT NULL,
-  `date` date NOT NULL
+  `date` date NOT NULL,
+  `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(200) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `order`
+-- 转存表中的数据 `order`
 --
 
-INSERT INTO `order` (`order_id`, `username`, `card`, `address`, `total_payment`, `date`) VALUES
-(1001, 'Shawn Lim', '1010101010101010', 'PV 5', '5000.00', '2018-08-28'),
-(1002, 'johnwick', '6666666666666666', 'ddd', '500.00', '2018-08-28'),
-(1003, 'zifeng', '3030303030300303', 'PV 16', '2350.00', '2018-08-28'),
-(1004, 'Lim Jia Ying', '2929922929292929', 'Toilet', '390.00', '2018-08-28'),
-(1005, 'johnwick', '3664563546369286', 'Titiwangsa', '1875.00', '2018-08-28'),
-(1006, 'johnwick', '2094928734986219', 'Prima Setapak', '1125.00', '2018-08-28'),
-(1007, 'johnwick', '2123213341213123', 'sadw', '490.00', '2018-08-28'),
-(1008, 'johnwick', '5788934574986458', 'fhgrghriughdkgru', '598.00', '2018-08-28');
+INSERT INTO `order` (`order_id`, `username`, `card`, `address`, `total_payment`, `date`, `name`, `email`) VALUES
+(1001, 'Shawn Lim', '1010101010101010', 'PV 5', '5000.00', '2018-08-28', '', ''),
+(1002, 'johnwick', '6666666666666666', 'ddd', '500.00', '2018-08-28', '', ''),
+(1003, 'zifeng', '3030303030300303', 'PV 16', '2350.00', '2018-08-28', '', ''),
+(1004, 'Lim Jia Ying', '2929922929292929', 'Toilet', '390.00', '2018-08-28', '', ''),
+(1005, 'johnwick', '3664563546369286', 'Titiwangsa', '1875.00', '2018-08-28', '', ''),
+(1006, 'johnwick', '2094928734986219', 'Prima Setapak', '1125.00', '2018-08-28', '', ''),
+(1007, 'johnwick', '2123213341213123', 'sadw', '490.00', '2018-08-28', '', ''),
+(1008, 'johnwick', '5788934574986458', 'fhgrghriughdkgru', '598.00', '2018-08-28', '', '');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order_detail`
+-- 表的结构 `order_detail`
 --
 
 DROP TABLE IF EXISTS `order_detail`;
@@ -139,7 +141,7 @@ CREATE TABLE `order_detail` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `order_detail`
+-- 转存表中的数据 `order_detail`
 --
 
 INSERT INTO `order_detail` (`order_id`, `product_id`, `quantity`, `price`) VALUES
@@ -154,7 +156,7 @@ INSERT INTO `order_detail` (`order_id`, `product_id`, `quantity`, `price`) VALUE
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product`
+-- 表的结构 `product`
 --
 
 DROP TABLE IF EXISTS `product`;
@@ -171,7 +173,7 @@ CREATE TABLE `product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `product`
+-- 转存表中的数据 `product`
 --
 
 INSERT INTO `product` (`product_id`, `name`, `price`, `desc`, `gender`, `category`, `brand`, `size`, `quantity`) VALUES
@@ -249,22 +251,22 @@ INSERT INTO `product` (`product_id`, `name`, `price`, `desc`, `gender`, `categor
 -- --------------------------------------------------------
 
 --
--- Stand-in structure for view `user`
+-- 替换视图以便查看 `user`
 -- (See below for the actual view)
 --
 DROP VIEW IF EXISTS `user`;
 CREATE TABLE `user` (
 `username` varchar(50)
 ,`hash` varchar(255)
-,`name` varchar(50)
-,`email` varchar(50)
+,`name` varchar(100)
+,`email` varchar(200)
 ,`role` varchar(8)
 );
 
 -- --------------------------------------------------------
 
 --
--- Structure for view `user`
+-- 视图结构 `user`
 --
 DROP TABLE IF EXISTS `user`;
 

@@ -18,10 +18,13 @@ foreach($cart->items as $product_id => $quantity) {
     $total_payment += $quantity * $prices[$product_id];
 }
 // Take the information from customer account
-$cc = $pdo->prepare("SELECT * FROM customer WHERE username = ?");
-$cc->execute([$page->user->name]);
-$customer = $cc->fetch();
-var_dump($customer);
+if($page->user){
+    $cc = $pdo->prepare("SELECT * FROM customer WHERE username = ?");
+    $cc->execute([$page->user->name]);
+    $customer = $cc->fetch();
+    var_dump($customer);
+}
+
 if ($page->is_post()) {
     $order_id       = $page->post('order_id');
     $username       = $page->post('username');
@@ -50,7 +53,7 @@ if ($page->is_post()) {
     else if (strlen($address) > 255) {
         $err['address'] = 'Delivery Address must less than 255 characters.';
     }
-
+    var_dump($err);
     if (!$err) {
         // Everything is OK --> Add order
         // TODO (3): Add order
@@ -106,6 +109,9 @@ echo '<link rel="stylesheet" href="/css/check_out.css">';
                     $username = $page->user->name;
                     $html->hidden('username', $username);
                     echo "Username: {$username}";
+                }else{
+                    $username = "notcustomer";
+                    $html->hidden('username', $username);
                 }
 //                else if (!$page->user) {
 //                    echo "<label for='name'>Name :</label>"
@@ -117,15 +123,24 @@ echo '<link rel="stylesheet" href="/css/check_out.css">';
             <div>
                 <label for="name">Name :</label>
                 <?php if ($page->user) {
-                    $html->hidden('name', $customer->name, 20);
+                    $html->hidden('name', $customer->name);
                     $html->error($err, 'name');
                     echo $customer->name;
                 } else {
-                    $html->text('name', $customer->name, 20);
+                    $html->text('name', $name, 100);
                     $html->error($err, 'name');
                 } ?>
             </div>
-
+            <label for="email">Email : </label>
+            <?php if ($page->user) {
+                    $html->hidden('email',$customer->email);
+                    $html->error($err, 'email');
+                    echo $customer->email;
+                } else {
+                    $html->text('email', $email, 100);
+                    $html->error($err, 'email');
+                }
+            ?>
             <div>
                 <label for="card">Debit/Credit Card Number:</label>
                 <?php $html->text('card', $card, 16) ?>
