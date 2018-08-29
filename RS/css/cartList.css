@@ -1,11 +1,12 @@
 .cartList{
     margin: auto;
 
-    
+
 }
 tr,th,td{
     border: 1px solid white;
 }
+
 #quantity{
     width: 100px;
 }
@@ -17,4 +18,22 @@ tr:nth-child(even){
 }
 table{
     border-collapse: collapse;
+}
+
+.button {
+    padding: 10px;
+    margin: 10px;
+    font-size: 15px;
+    color: black;
+    background: blanchedalmond;
+    border: none;
+    border-radius: 5px;
+}
+
+.button:active {
+    background: lightgoldenrodyellow;
+}
+
+.button:hover {
+    cursor: pointer;
 }
