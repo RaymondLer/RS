@@ -53,7 +53,7 @@ if ($page->is_post()) {
     }
     $price = $page->post('price');
     $g = $page->post("gender");
-    if($g!="")
+    if ($g != "")
         $gender = $arr_gender[$g];
     $file = $_FILES['file'];
     //Validation
@@ -116,7 +116,7 @@ if ($page->is_post()) {
 }
 
 $d = $page->get('id');
-if($d == ""){
+if ($d == "") {
     $page->redirect("/admin/product_list.php");
 }
 $pdo = $page->pdo();
@@ -131,7 +131,8 @@ $p = $stm->fetch();
             <div>
                 <label>Product id:</label>
                 <?= $p->product_id; ?>
-                <?php $product_id = $p->product_id;
+                <?php
+                $product_id = $p->product_id;
                 $html->hidden('product_id', $product_id)
                 ?>
             </div>
@@ -153,7 +154,7 @@ $p = $stm->fetch();
 
             <div class="input-group">
                 <label>Size Available:</label>
-                <?php $html->text('size', $p->size, 50,'placeholder="21,22,23"') ?>
+                <?php $html->text('size', $p->size, 50, 'placeholder="21,22,23"') ?>
                 <?php $html->error($err, 'size') ?>
             </div>
             <div class="input-group">
@@ -169,14 +170,14 @@ $p = $stm->fetch();
                 <?php $key_gen = array_search($p->gender, $arr_gender); ?>
                 <span id="gender"><?php $html->radio_list('gender', $arr_gender, $key_gen) ?>
 
-                <?php $html->error($err, 'gender') ?></span>
+                    <?php $html->error($err, 'gender') ?></span>
             </div>
             <div class="input-group">
                 <label>Image :</label><div style="width:100px;height:100px;">
                     <label for="file">
-                    <input type="file" id="file" name="file" accept="image/*" style="display: none">
-                    <img id="prev" src="/post_product/<?= $p->product_id ?>.jpg" width="200px" height="200px">
-                    <?php $html->error($err, 'file') ?>
+                        <input type="file" id="file" name="file" accept="image/*" style="display: none">
+                        <img id="prev" src="/post_product/<?= $p->product_id ?>.jpg" width="200px" height="200px">
+                        <?php $html->error($err, 'file') ?>
                     </label>
                 </div>
             </div>
@@ -210,7 +211,6 @@ $p = $stm->fetch();
         img.src = URL.createObjectURL(f);
     });
 </script>
-
 
 <?php
 $page->footer();

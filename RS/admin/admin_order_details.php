@@ -6,7 +6,7 @@ $page->header();
 
 
 $order_id = $page->get('oi');
-if($order_id ==""){
+if ($order_id == "") {
     $page->redirect("/");
 }
 $pdo = $page->pdo();

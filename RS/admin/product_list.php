@@ -67,7 +67,7 @@ if ($page->is_post()) {
                     <th>Size</th>
                     <th></th>
                     <th></th>
-                    
+
                 </tr>
                 <?php foreach ($products as $p): ?>
                     <tr data-select="id">
@@ -95,7 +95,6 @@ if ($page->is_post()) {
         </div>
     </section>
 </body>
-
 
 <?php
 $page->footer();

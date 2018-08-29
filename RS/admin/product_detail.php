@@ -4,16 +4,16 @@ echo "<link rel='stylesheet' href='/css/admin/product_detail.css'>";
 $page->title = 'Product Details';
 $page->header();
 
-    $d = $page->get('id');
-    if ($d == "") {
-        $page->redirect("product_list.php");
-    }
-    $pdo = $page->pdo();
-    $stm = $pdo->prepare("SELECT * FROM product WHERE product_id = ?");
-    $stm->execute([$d]);
-    $p = $stm->fetch();
-
+$d = $page->get('id');
+if ($d == "") {
+    $page->redirect("product_list.php");
+}
+$pdo = $page->pdo();
+$stm = $pdo->prepare("SELECT * FROM product WHERE product_id = ?");
+$stm->execute([$d]);
+$p = $stm->fetch();
 ?>
+
 <body>
     <h1>Product Detail </h1>
     <div id='wrap'>
@@ -24,7 +24,7 @@ $page->header();
         </aside>
         <section>
             <table>
-                 <tr>
+                <tr>
                     <th>
                         Product id:
                     </th>
@@ -92,9 +92,6 @@ $page->header();
         </section>
     </div>
 </body>
-
-
-
 
 <?php
 $page->footer();

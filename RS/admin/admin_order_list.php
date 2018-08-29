@@ -14,30 +14,31 @@ $order = $stm->fetchAll();
             <h2>
                 All Customer Order List
             </h2>
-        <table>
-        <tr>
-            <th>Date</th>
-            <th>Order Id</th>
-            <th>Username</th>
-            <th>Card</th>
-            <th>Address</th>
-            <th>Total Payment</th>
-            <th></th>
-        </tr>
-        <?php foreach ($order as $p) { ?>
-            <tr>
-                    <td><?= $p->date ?></td>
-                    <td><?= $p->order_id ?></td>
-                    <td><?= $p->username ?></td>
-                    <td><?= $p->card ?></td>
-                    <td><?= $p->address ?></td>
-                    <td><?= $p->total_payment ?></td>
-                    <td><a href='/admin/admin_order_details.php?oi=<?= $p->order_id?>'><button class='btn'>Details</button></a></td>
-            </tr>
-        <?php } ?>
-        </table>
+            <table>
+                <tr>
+                    <th>Date</th>
+                    <th>Order Id</th>
+                    <th>Username</th>
+                    <th>Card</th>
+                    <th>Address</th>
+                    <th>Total Payment</th>
+                    <th></th>
+                </tr>
+                <?php foreach ($order as $p) { ?>
+                    <tr>
+                        <td><?= $p->date ?></td>
+                        <td><?= $p->order_id ?></td>
+                        <td><?= $p->username ?></td>
+                        <td><?= $p->card ?></td>
+                        <td><?= $p->address ?></td>
+                        <td><?= $p->total_payment ?></td>
+                        <td><a href='/admin/admin_order_details.php?oi=<?= $p->order_id ?>'><button class='btn'>Details</button></a></td>
+                    </tr>
+                <?php } ?>
+            </table>
         </div>
     </section>
-    <?php
-    $page->footer();
-    ?>
+</body>
+<?php
+$page->footer();
+?>
