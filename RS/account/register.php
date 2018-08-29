@@ -1,6 +1,6 @@
 <?php
 include'../_config.php';
-echo '<link rel="stylesheet" href="/css/register.css">';
+echo '<link rel="stylesheet" href="/css/account/register.css">';
 echo '<link rel="stylesheet" href="/css/site.css">';
 
 $username = $password = $confirm = $name = $email = $phone = $gender = '';

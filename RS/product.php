@@ -13,7 +13,7 @@ if ($page->is_post()) {
     } else {
         $page->temp('success', 'Shopping cart updated.');
     }
-    
+
     $page->redirect();
 }
 
@@ -80,6 +80,7 @@ echo '<link rel="stylesheet" href="/css/product.css">';
             SOLD BY RS
         </div>  
     </section>
+    
     <div class="right_bar">
         <form id="product_size" method="post">
             <h3>SELECT SIZE</h3><br>

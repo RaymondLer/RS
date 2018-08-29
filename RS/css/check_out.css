@@ -1,42 +1,57 @@
-    section,aside{
-       
-    }
-    section{
-        margin:100px 300px 100px 300px;
-        background-color: orange;
-        
-    }
-    aside{
-        margin:100px 0px 100px 210px;
-        width:90px;
-        float: left;
-        background-color:red;
-        height: 1000px;
-        display: inline-block
-    }
-    input{
-        padding-top:5px;
-    }
-    #address{
-        width:500px;
-        padding-top:0px;
-        padding-bottom: 0px;
-        
-        text-align: left;
-    }
-    #button{
-        color:white;
-        background-color: black;
-        height: 50px;
-        border: none;
-        margin: 10px 10px 10px 10px;
-        transition: .3s;
-    }
-    #button:hover{
-        background-color:white;
-        color:black;
-    }
-    
-    #checkout {
-        
-    }
+section form {
+    color:black;
+    width: 55%;
+    margin: 50px auto;
+    text-align: left;
+    padding: 20px;
+    border-radius:5px;
+    display: table;
+    border-spacing: 5px;
+    box-shadow: 0 0 20px blue;
+    background-color: khaki;
+    font-size: 19px;
+    height: 500px;
+}
+
+section form h2 {
+    text-align: left;
+}
+
+section form .checkout {
+    display:table-cell;
+    text-align: left;
+    vertical-align: top;
+}
+
+section form label {
+   display:table-cell;
+   vertical-align: top;
+   border-bottom: 2px;
+}
+
+.checkout1 input[type=text] {
+    width:300px;
+    display: inline-table;
+    padding: 5px 10px;
+    margin: 8px 0;
+    box-sizing: border-box
+}
+
+.address textarea {
+    width: 500px;
+    resize: none;
+}
+
+#button {
+    color:white;
+    background-color: black;
+    height: 50px;
+    border: none;
+    margin: 10px 10px 10px 10px;
+    transition: .3s;
+    text-align: center;
+}
+#button:hover {
+    background-color: white;
+    color: black;
+}

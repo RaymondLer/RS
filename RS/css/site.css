@@ -10,6 +10,7 @@
 .error {
     color: red;
     font-weight: bold;
+    display: table-cell;
 }
 
 /* Account Button CSS */
@@ -21,6 +22,7 @@
     background: blanchedalmond;
     border: none;
     border-radius: 5px;
+    transition: .3s;
 }
 
 .btn:active {
