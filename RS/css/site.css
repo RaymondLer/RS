@@ -1,0 +1,32 @@
+/* Display Message CSS */
+.errors {
+    list-style-position: inside;
+    padding: 10px 20px;
+    box-shadow: 0 0 5px #000;
+    background-color: #c33;
+    color: #fff;
+}
+
+.error {
+    color: red;
+    font-weight: bold;
+}
+
+/* Account Button CSS */
+.btn {
+    padding: 10px;
+    margin: 10px;
+    font-size: 15px;
+    color: black;
+    background: blanchedalmond;
+    border: none;
+    border-radius: 5px;
+}
+
+.btn:active {
+    background: lightgoldenrodyellow; 
+}
+
+.btn:hover {
+    cursor: pointer;
+}

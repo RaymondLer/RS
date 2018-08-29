@@ -22,7 +22,7 @@ header{
     position: -webkit-sticky;
     position: sticky;
     top: 0;
-    
+
 }
 #id{
     color:white;
@@ -34,13 +34,13 @@ header{
 header ul{
     list-style-type: none;
     margin:0 0 20px 0;
- 
+
 }
 li {
     float: left;
 }
 
- .men,.women{
+.men,.women{
     color: white;
     text-shadow: 2px 2px red;
     text-align: center;
@@ -70,7 +70,7 @@ li.drop1,li.drop2{
     margin-left:17px;
     font-size: 10pt;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-    
+
     z-index: 1;
 }
 
@@ -179,7 +179,7 @@ form.search-container::after {
 #navr{
     float:right;
     padding-top: 10px;
-    
+
 }
 #wraph{
     margin-top:-15px;
