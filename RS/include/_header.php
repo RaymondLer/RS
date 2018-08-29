@@ -42,7 +42,7 @@
                     <?php// $and = urlencode('&')?>
                     <?php foreach ($male as $m):
                         $category = urlencode($m->category);?>
-                    <a href="/?g=male&c=<?=$category?>"><?=$m->category?></a>
+                    <a href="/?g=Male&c=<?=$category?>"><?=$m->category?></a>
                     <?php endforeach;?>
                 </div>
             </li>
@@ -51,7 +51,7 @@
                 <div class="dropdown-content">
                     <?php foreach ($male as $m):
                         $category = urlencode($m->category);?>
-                    <a href="/?g=female&c=<?=$category?>"><?=$m->category?></a>
+                    <a href="/?g=Female&c=<?=$category?>"><?=$m->category?></a>
                     <?php endforeach;?>
 
                 </div>
@@ -95,15 +95,19 @@
                             ?>                                                                                                                                            
                         </div>
                     </li>
-                    <a href="/cartList.php" title="Cart" id="countCart"><img src="/pic/cart.png" alt="Cart" width="50px" height="50px">
-                        <label id="count"><?php
+                    <label for="cart" id="cart">
+                    <a href="/cartList.php" title="Cart" name="cart" id="countCart"><img src="/pic/cart.png" alt="Cart" width="50px" height="50px">
+                        <?php global $cart;
+                        if($cart->items){?><label id="count"><?php
                         global $cart; // Access to global variable
                         if ($cart->items) {
                             $n = $cart->count();
                             echo $n;
                         }
                         ?></label>
+                        <?php }?>
                     </a>
+                        </label>
                 </ul>
             </div>
         </div>

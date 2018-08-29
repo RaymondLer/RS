@@ -1,8 +1,8 @@
 <footer>
     <div id="footer-container" >
         <div id="left_footer">
-            <a href="#">Order List</a>
-            <a href='#'>About Us</a>
+            <a href="/orderList.php">Order List</a>
+            <a href='/aboutUs.php'>About Us</a>
         </div>
         <div id="right_footer">
             <a href="#">.....</a>

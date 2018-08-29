@@ -18,7 +18,7 @@ if($username ==""){
     <section>
         <div class='wrap'>
             <h2>
-                All Customer Order List
+                Order List
             </h2>
         <table>
         <tr>
@@ -38,7 +38,7 @@ if($username ==""){
                     <td><?= $p->card ?></td>
                     <td><?= $p->address ?></td>
                     <td><?= $p->total_payment ?></td>
-                    <td><a href='/admin/admin_order_details.php?oi=<?= $p->order_id?>'><button class='btn'>Details</button></a></td>
+                    <td><a href='/order_details.php?oi=<?= $p->order_id?>'><button class='btn'>Details</button></a></td>
             </tr>
         <?php } ?>
         </table>

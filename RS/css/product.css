@@ -17,11 +17,6 @@ section{
     outline: 1px solid lightgrey;
     display:block;
 }
-img:hover{
-    transform:scale(1.5);
-    overflow:hidden;
-    
-}
 /*img zoom*/
 /* img zoom*/
 .wrap_aside_section{
@@ -69,7 +64,7 @@ img:hover{
     border: 1px solid lightgrey;
     box-shadow: 0 0 2px activecaption;
 }
-#size{
+#size,#quantity{
     width:150px;
     margin-top: 10px;
     height: 50px;
@@ -78,7 +73,7 @@ img:hover{
     border-color: grey;
     
 }
-#size:active,#size:hover,size:default{
+#size:active,#size:hover,size:default,#quantity:active,#quantity:hover,#quantity:default{
     box-shadow: 0 0 2px aqua;
 }
 #add_cart{

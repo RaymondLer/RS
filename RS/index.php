@@ -2,7 +2,7 @@
 include'_config.php';
 $page->title = 'Main';
 $page->header();
-echo '<link rel="stylesheet" href="/css/main.css">';
+echo '<link rel="stylesheet" href="/css/index.css">';
 
 // b and c
 $g=$c=$b="";
@@ -46,7 +46,7 @@ $sy = $pdo->query("SELECT DISTINCT category
 $category = $sy->fetchAll();
 ?>
 <body>
-
+<p class="warning"><?= $page->temp('warning') ?></p>
     <div class="wrap">
         <div id="aside">
             <h2>Brands</h2>
@@ -69,7 +69,7 @@ $category = $sy->fetchAll();
                 <?php endforeach; ?>
             </ul>
         </div>
-        <div id="section"><h1 style="background:red">
+        <div id="section"><h1>
                 <?php
                 if ($b == "" && $c != "" && $g == "")
                     echo $c;
@@ -93,13 +93,12 @@ $category = $sy->fetchAll();
                                 RM<?= $a->price ?>
                             </div>
                         </div>
-                        <div class="product_description">
+                        <div class="category">
                             <?= $a->category ?>
                         </div>
-                        <div>
+                        <div class="gender">
                             <?= $a->gender ?>
                         </div>
-
                     </form>
                 </a>
             <?php } ?>

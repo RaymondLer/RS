@@ -13,8 +13,8 @@ if ($page->is_post()) {
     } else {
         $page->temp('success', 'Shopping cart updated.');
     }
-    
-    $page->redirect();
+
+    $page->redirect('/');
 }
 
 // GET request
@@ -28,7 +28,7 @@ $size_arr = explode(',', $a->size);
 if ($a == null) {
     $page->redirect('/'); // Redirect to "index.php"
 }
-
+$size = "";
 $page->title = 'Product detail';
 $page->header();
 echo '<link rel="stylesheet" href="/css/product.css">';
@@ -85,15 +85,17 @@ echo '<link rel="stylesheet" href="/css/product.css">';
             <h3>SELECT SIZE</h3><br>
             Not Sure?  See Size Details(US size)
             <div>          
-                <?php $html->select('size', $size_arr) ?>
+                <?php $html->select('size', $size_arr,$size,false) ?>
             </div>
 
-            <div>
+            <div><br>
                 <label>Quantity</label>
                 <!-- TODO -->
-                <?php $html->select('quantity', range(0, 10), $cart->get($a->product_id), false)
-                ?>
-                <?php $html->hidden('id', $a->product_id) ?>
+                <div>
+                    <?php $html->select('quantity', range(0, 10), $cart->get($a->product_id), false)
+                    ?>
+                    <?php $html->hidden('id', $a->product_id) ?>
+                </div>
             </div>
 
             <div>
