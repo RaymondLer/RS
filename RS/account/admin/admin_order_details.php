@@ -1,5 +1,6 @@
 <?php
-include'../_config.php';
+include'../../_config.php';
+$page->authorize('admin');
 echo "<link rel='stylesheet' href='/css/admin/admin_order_details.css'>";
 $page->title = 'Order Details';
 $page->header();
@@ -74,7 +75,7 @@ $order_d = $ss->fetchAll();
                 <?php } ?>
             </table>
             <div id='back'>
-                <a href='/admin/admin_order_list.php' ><button>Back</button></a>
+                <a href='/account/admin/admin_order_list.php' ><button>Back</button></a>
             </div>
     </section>
 

@@ -1,5 +1,6 @@
 <?php
-include'../_config.php';
+include'../../_config.php';
+$page->authorize('admin');
 echo "<link rel='stylesheet' href='/css/admin/product_add.css'>";
 $page->title = 'Update Product';
 $page->header();
@@ -190,7 +191,7 @@ $p = $stm->fetch();
                 <div class="buttons">
                     <button tpe="submit" name="submit" class="btn">Submit</button>
                     <button type="reset" name="reset" class='btn'>Reset</button>
-                    <button class="btn"><a href="/admin/product_list.php">Back</a></button>
+                    <button class="btn"><a href="/account/admin/product_list.php">Back</a></button>
                 </div>
             </div>
         </form>

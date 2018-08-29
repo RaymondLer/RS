@@ -1,5 +1,6 @@
 <?php
-include'../_config.php';
+include'../../_config.php';
+$page->authorize('admin');
 echo "<link rel='stylesheet' href='/css/admin/product_detail.css'>";
 $page->title = 'Product Details';
 $page->header();
@@ -88,7 +89,7 @@ $page->header();
                     </td>
                 </tr>
             </table>
-            <a href="/admin/product_list.php"><button id="back">back</button></a>
+            <a href="/account/admin/product_list.php"><button id="back">back</button></a>
         </section>
     </div>
 </body>

@@ -1,6 +1,6 @@
 <?php
-include'../_config.php';
-
+include'../../_config.php';
+$page->authorize('admin');
 $username = $password = $confirm = $name = $email = '';
 $err = [];
 $pdo = $page->pdo();

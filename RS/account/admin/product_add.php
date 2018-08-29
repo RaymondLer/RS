@@ -1,6 +1,7 @@
 <?php 
 //include('../database.php');
-include'../_config.php';
+include'../../_config.php';
+$page->authorize('admin');
 echo "<link rel='stylesheet' href='/css/admin/product_add.css'>";
 $page->title='Product Submit';
 $page->header();

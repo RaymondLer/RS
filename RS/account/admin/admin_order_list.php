@@ -1,5 +1,5 @@
 <?php
-include'../_config.php';
+include'../../_config.php';
 echo "<link rel='stylesheet' href='/css/admin/admin_order_list.css'>";
 $page->title = 'Order List';
 $page->header();
@@ -32,7 +32,7 @@ $order = $stm->fetchAll();
                     <td><?= $p->card ?></td>
                     <td><?= $p->address ?></td>
                     <td><?= $p->total_payment ?></td>
-                    <td><a href='/admin/admin_order_details.php?oi=<?= $p->order_id?>'><button class='btn'>Details</button></a></td>
+                    <td><a href='/account/admin/admin_order_details.php?oi=<?= $p->order_id?>'><button class='btn'>Details</button></a></td>
             </tr>
         <?php } ?>
         </table>

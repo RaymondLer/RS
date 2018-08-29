@@ -1,6 +1,7 @@
 <?php
 //include('../database.php');
-include'../_config.php';
+include'../../_config.php';
+$page->authorize('admin');
 echo "<link rel='stylesheet' href='/css/admin/product_list.css'>";
 $page->title = 'Product List';
 $page->header();
@@ -47,7 +48,7 @@ if ($page->is_post()) {
                 ?>
             </div>
             <div id='check'>
-                <a href="/admin/product_add.php"><button id='addProduct'>Add product</button></a>
+                <a href="/account/admin/product_add.php"><button id='addProduct'>Add product</button></a>
                 <button data-check="ids[]" id="chk">Check All</button>
                 <button data-uncheck="ids[]" id="chk">Uncheck All</button>
                 <form method="post" style="display: inline" id="f">
@@ -79,8 +80,8 @@ if ($page->is_post()) {
                         <td><?= $p->brand ?></td>
                         <td><?= $p->size ?></td>
                         <td>
-                            <a href="/admin/product_detail.php/?id=<?= $p->product_id ?>"><button>Detail</button></a>
-                            <a href="/admin/product_update.php/?id=<?= $p->product_id ?>"><button>Update</button></a>
+                            <a href="/account/admin/product_detail.php/?id=<?= $p->product_id ?>"><button>Detail</button></a>
+                            <a href="/account/admin/product_update.php/?id=<?= $p->product_id ?>"><button>Update</button></a>
                         </td>
                         <td> 
                             <form method="post" style="display:inline" onsubmit="return confirm('Are you sure?')">
