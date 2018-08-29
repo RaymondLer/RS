@@ -2,16 +2,11 @@
 include '../_config.php';
 //$page->authorize('customer');
 
-$username = $email = '';
+$email = '';
 $err = [];
 
 if ($page->is_post()) {
-    $username = $page->post('username');
     $email    = $page->post('email');
-    
-    if ($username == '') {
-        $err['username'] = 'Username is required.';
-    }
     
     if ($email == '') {
         $err['email'] = 'Email is required.';
@@ -25,10 +20,10 @@ if ($page->is_post()) {
         $pdo = $page->pdo();
         
         // (1) Verify if username and email matched
-        $stm = $pdo->prepare("SELECT * FROM user WHERE username = ? AND email = ?");
-        $stm->execute([$username, $email]);
+        $stm = $pdo->prepare("SELECT * FROM user WHERE email = ?");
+        $stm->execute([$email]);
         $user = $stm->fetch();
-        
+        $username = $user->username;
         if ($user) {
             // (2) Generate random password --> hash
             $password = $page->random_password();
@@ -72,11 +67,11 @@ $page->header();
     <div class="form">
         <h2>Reset Password</h2>
         <fieldset>
-        <div>
+<!--        <div>
             <label for="username">Username</label>
             <?php $html->text('username', $username) ?>
             <?php $html->error($err, 'username') ?>
-        </div>
+        </div>-->
         
         <div>
             <label for="email">Email</label>

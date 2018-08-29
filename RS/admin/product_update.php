@@ -98,9 +98,7 @@ if($page->is_post()){
             }
         }
     }
-
-    validateFile($file);
-    var_dump($product_id);
+    var_dump($err);
     if (!$err) {
         if($file['name']){
             $iName = $product_id. '.jpg';
@@ -115,7 +113,8 @@ if($page->is_post()){
     ");
     $stm->execute([$name,$price,$desc,$gender,$category,$brand,$size,$product_id]);
     $page->temp('output', 'Product is inserted');
-
+    $page->redirect();
+    
      }
 }
     
@@ -173,9 +172,10 @@ $p = $stm->fetch();
             <?php $html->error($err, 'gender') ?></span>
         </div>
         <div class="input-group">
-            <label for='file'>Image :</label><label>
+            <label for='file'>Image :</label><label style="width:50px;height:50px;">
             <input type="file" id="file" name="file" accept="image/*" style="display: none">
-            <img id="prev" src="../post_product/<?= $p->product_id?>.jpg">
+            <img id="prev" src="../post_product/<?= $p->product_id?>.jpg" width="50px" height="50px">
+             <?php $html->error($err, 'file') ?>
             </label>
         </div>
         <div class="input-group">
