@@ -1,6 +1,6 @@
 <?php
 include '../_config.php';
-echo '<link rel="stylesheet" href="/css/recovery_password.css">';
+echo '<link rel="stylesheet" href="/css/account/recovery_password.css">';
 echo '<link rel="stylesheet" href="/css/site.css">';
 
 $email = '';
