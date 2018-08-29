@@ -121,7 +121,7 @@ class Page
         }
         else {
             $return = $_SERVER['REQUEST_URI'];
-            $this->redirect($this->login_page . '?return=' . urlencode($return));
+            $this->redirect($this->home_page . '?return=' . urlencode($return));
         }
     }
     
@@ -194,8 +194,8 @@ class Html
     public function text($name, $value = '', $maxlength = '', $attr = '') {
         echo "<input type='text' name='$name' id='$name' value='$value' maxlength='$maxlength' $attr>";
     }
-   public function textArea($name, $value, $col, $row) {
-       echo "<textarea name='$name' id='$name' cols='$col' rows='$row'>$value</textarea>";
+   public function textArea($name, $value, $col, $row, $attr='') {
+       echo "<textarea name='$name' id='$name' cols='$col' rows='$row' $attr>$value</textarea>";
    }
      public function password($name, $value = '', $maxlength = '', $attr = '') {
         echo "<input type='password' name='$name' id='$name' value='$value' maxlength='$maxlength' $attr>";

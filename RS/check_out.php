@@ -4,7 +4,7 @@ include'_config.php';
 //if ($page->user->is_customer) {
 //    
 //}
-
+//$page->authorize('customer');
 $order_id = $username = $card = $address = $name = $email= "";
 $err = [];
 $pdo = $page->pdo();
@@ -32,7 +32,18 @@ if ($page->is_post()) {
     $email          = $page->post('email');
     $card           = $page->post('card');
     $address        = $page->post('address');
-    
+    if ($name == '') {
+        $err['name'] = 'Name is required.';
+    } else if (strlen($name) > 100) {
+        $err['name'] = 'Name must not more than 100 characters.';
+    }
+    if ($email == '') {
+        $err['email'] = 'Email is required.';
+    } else if (strlen($email) > 100) {
+        $err['email'] = 'Email no more than 100 characters.';
+    } else if (filter_var($email, FILTER_VALIDATE_EMAIL) === false) {
+        $err['email'] = 'Email format invalid.';
+    }
      if ($username == '') {
         $err['username'] = 'Username is required.';
     }
@@ -58,10 +69,10 @@ if ($page->is_post()) {
         // Everything is OK --> Add order
         // TODO (3): Add order
         $stm = $pdo->prepare("
-            INSERT INTO `order`(order_id, username, card, address, total_payment, date)
-            VALUES (?, ?, ?, ?, ?, ?) 
+            INSERT INTO `order`(order_id, username, card, address, total_payment, date,name,email)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?) 
         ");
-        $stm->execute([$order_id, $username, $card, $address, $total_payment, $page->date->format("Y-m-d")]);
+        $stm->execute([$order_id, $username, $card, $address, $total_payment, $page->date->format("Y-m-d"),$name,$email]);
     
     // TODO (4): Add order details
         var_dump($order_id);

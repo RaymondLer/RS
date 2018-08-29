@@ -66,7 +66,8 @@ if($page->is_post()){
         $category = $dcategory[$category];
     }
     $price = $page->post('price');
-    $gender = $page->post("gender");
+    $g = $page->post("gender");
+    $gender = $arr_gender[$g];
     //Validation
     if($name == ""){
         $err['name'] = 'Product name is required.';
@@ -109,10 +110,10 @@ if($page->is_post()){
             ->toFile("../post_product/$iName", "image/jpeg", 80);
             
         $stm = $pdo->prepare("
-        INSERT INTO product (product_id,name,price,`desc`,gender,category,brand,size)
-        VALUES (?,?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO product (product_id,name,price,`desc`,gender,category,brand,size,quantity)
+        VALUES (?,?, ?, ?, ?, ?, ?, ?,?)
     ");
-    $stm->execute([$product_id,$name,$price,$desc,$gender,$category,$brand,$size]);
+    $stm->execute([$product_id,$name,$price,$desc,$gender,$category,$brand,$size, $quantity]);
     $page->temp('output', 'Product is inserted');
 
      }
@@ -133,7 +134,7 @@ if($page->is_post()){
             </div>
             <div class="input-group">
                 <label>Description:</label>
-                <?php $html->textArea('description',$desc,50,4)?>
+                <?php $html->textArea('description',$desc,50,6,'style="resize:none;"')?>
                 <?php $html->error($err, 'description') ?>
             </div>
                 <div class="input-group">

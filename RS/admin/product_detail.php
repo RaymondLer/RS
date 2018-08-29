@@ -13,7 +13,9 @@ $p = $stm->fetch();
 ?>
 <body>
     <aside>
-        Picture
+        <div>
+            <img src="/post_product/<?= $p->product_id?>.jpg">
+        </div>
     </aside>
     <section>
         <div>Product id:
