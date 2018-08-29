@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: 2018-08-29 02:48:44
+-- Generation Time: 2018-08-29 04:25:38
 -- 服务器版本： 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -43,20 +43,9 @@ CREATE TABLE `admin` (
 --
 
 INSERT INTO `admin` (`username`, `hash`, `name`, `email`) VALUES
-('admin', 'password', 'Admin', 'admin@gmail.com');
-
--- --------------------------------------------------------
-
---
--- 表的结构 `cart`
---
-
-DROP TABLE IF EXISTS `cart`;
-CREATE TABLE `cart` (
-  `username` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `product_id` int(5) NOT NULL,
-  `quantity` int(3) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+('admin', 'password', 'Admin', 'admin@gmail.com'),
+('shawn', '$2y$10$Y2E8f4ET.GHfTEvr/J52EubiYDDIxJxCnguPTKg6mn01.zEWNI.9O', 'Shawn Lim', 'shawnlim0814@gmail.com'),
+('raymond', '$2y$10$0IyPWH5eGgQZpN12LQJFU.Tv/zB05gMPxHdSPV/l0/loiTkOgPtam', 'Raymond Lee', 'raymondlyr1212@outlook.my');
 
 -- --------------------------------------------------------
 
@@ -79,20 +68,9 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`username`, `hash`, `name`, `email`, `phone`, `gender`) VALUES
-('johnwick', '$2y$10$c1dl29ssDnxbNnxAlvmwseq8QJqImYE.Yfz2T3X1G7ZC3Vq4DJT0e', 'John Wick', 'benlyr1212@gmail.com', '012-5478963', 'M'),
+('johnwick', '$2y$10$Tt0LROdUGMM6h45RVAe9Gug/CCXFzzb6nf.OyD/AYtoK8DCZ2XMWq', 'John Wick', 'benlyr1212@gmail.com', '012-5478963', 'M'),
+('notcustomer', '$2y$10$a6/M5ztY3j0KGsYQG1EhJuelIraq9bTraBb7Ho6RAfjWJ6Hk8U9Ya', 'notcustomer', 'shawnlim0814@gmail.com', '012-1245632', 'M'),
 ('zifeng', '$2y$10$1JO9rKHhfMX8Pcm93CjxyOhTKWX1rFuAx5tlQ1TaHkf311CcLVF22', 'Zifeng', 'wongzf@gmail.com', '019-6320145', 'M');
-
--- --------------------------------------------------------
-
---
--- 表的结构 `favourite`
---
-
-DROP TABLE IF EXISTS `favourite`;
-CREATE TABLE `favourite` (
-  `username` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
-  `product_id` int(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -124,7 +102,8 @@ INSERT INTO `order` (`order_id`, `username`, `card`, `address`, `total_payment`,
 (1005, 'johnwick', '3664563546369286', 'Titiwangsa', '1875.00', '2018-08-28', '', ''),
 (1006, 'johnwick', '2094928734986219', 'Prima Setapak', '1125.00', '2018-08-28', '', ''),
 (1007, 'johnwick', '2123213341213123', 'sadw', '490.00', '2018-08-28', '', ''),
-(1008, 'johnwick', '5788934574986458', 'fhgrghriughdkgru', '598.00', '2018-08-28', '', '');
+(1008, 'johnwick', '5788934574986458', 'fhgrghriughdkgru', '598.00', '2018-08-28', '', ''),
+(1009, 'notcustomer', '9999999999999999', 'ppp', '1500.00', '2018-08-29', '', '');
 
 -- --------------------------------------------------------
 
@@ -151,7 +130,8 @@ INSERT INTO `order_detail` (`order_id`, `product_id`, `quantity`, `price`) VALUE
 (1005, 1016, 3, '625.00'),
 (1006, 1001, 3, '375.00'),
 (1007, 1004, 1, '490.00'),
-(1008, 1003, 2, '299.00');
+(1008, 1003, 2, '299.00'),
+(1009, 1001, 4, '375.00');
 
 -- --------------------------------------------------------
 
@@ -177,7 +157,7 @@ CREATE TABLE `product` (
 --
 
 INSERT INTO `product` (`product_id`, `name`, `price`, `desc`, `gender`, `category`, `brand`, `size`, `quantity`) VALUES
-(1001, 'Nike Lebron Soldier XII SFG Shoes', '375.00', 'The LeBron Soldier XII SFG Basketball Shoe delivers lightweight, responsive cushioning for the court with Nike Zoom Air cushioning. Adjustable hook-and-loop straps offer adjustable, secure lockdown.', 'Male', 'Basketball', 'Nike', '27,28,29,30,31', 100),
+(1001, 'Nike Lebron Soldier XII SFG Shoes', '375.00', 'The LeBron Soldier XII SFG Basketball Shoe delivers lightweight, responsive cushioning for the court with Nike Zoom Air cushioning. Adjustable hook-and-loop straps offer adjustable, secure lockdown.', 'M', 'Basketball', 'Nike', '27,28,29,30,31', 100),
 (1002, 'Nike Kyrie 4 Shoes', '390.00', 'The Kyrie 4 Men\'s Basketball Shoe is ultra-flexible, responsive and supportive. It\'s designed for Kyrie Irving\'s sudden changes of direction and smooth yet rapid playing style.', 'Male', 'Basketball', 'Nike', '27,28,29,30,31', 100),
 (1003, 'Nike Jordan Ultra Fly 2 Low Shoes', '299.00', 'Designed for the versatile player who can play any position, the Jordan Ultra Fly 2 Low Men\'s Basketball Shoe offers responsive cushioning and lightweight lockdown.', 'Male', 'Basketball', 'Nike', '27,28,29,30,31', 100),
 (1004, 'Nike Kobe A.D. Black Mamba Shoes', '490.00', 'The Kobe A.D. Basketball Shoe delivers lightweight support, responsive cushioning and excellent traction during practice and on game day to help you push past your potential.', 'Male', 'Basketball', 'Nike', '27,28,29,30,31', 100),

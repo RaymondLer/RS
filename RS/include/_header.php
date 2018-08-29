@@ -92,7 +92,6 @@
                             ?>                                                                                                                                            
                         </div>
                     </li>
-                    <a href="#" title="Favourite"><img src="/pic/like1.png" alt="favourite" width="50px" height="50px"></a>
                     <a href="/cartList.php" title="Cart" id="countCart"><img src="/pic/cart.png" alt="Cart" width="50px" height="50px">
                         <?php
                         global $cart; // Access to global variable
