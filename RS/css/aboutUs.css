@@ -1,0 +1,12 @@
+.p1 {
+    width: 65%;
+    margin: 40px auto;
+    text-align: justify;
+    padding: 20px;
+    border-radius: 5px;
+    display: table;
+    border-spacing: 10px;
+    box-shadow: 0 0 20px black;
+    background-color: snow;
+    font-size: 19px;
+}

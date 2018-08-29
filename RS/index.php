@@ -5,20 +5,20 @@ $page->header();
 echo '<link rel="stylesheet" href="/css/index.css">';
 
 // b and c
-$g=$c=$b="";
+$g = $c = $b = "";
 $check = false;
 $home = false;
 if ($page->get('b') != '') {
     $b = $page->get('b');
-}else if ($page->get('g') != "") {
+} else if ($page->get('g') != "") {
     $check = true;
     $g = $page->get('g');
     $c_temp = $page->get('c');
     $c = str_replace('&amp;', '&', $c_temp);
-}else if($page->get('c')!=""){
+} else if ($page->get('c') != "") {
     $c_temp = $page->get('c');
     $c = str_replace('&amp;', '&', $c_temp);
-}else{
+} else {
     $home = true;
 }
 $pdo = $page->pdo();
@@ -45,8 +45,9 @@ $sy = $pdo->query("SELECT DISTINCT category
                     ORDER BY category");
 $category = $sy->fetchAll();
 ?>
+
 <body>
-<p class="warning"><?= $page->temp('warning') ?></p>
+    <p class="warning"><?= $page->temp('warning') ?></p>
     <div class="wrap">
         <div id="aside">
             <h2>Brands</h2>
@@ -75,8 +76,8 @@ $category = $sy->fetchAll();
                     echo $c;
                 else if ($b != "" && $c == "" && $g == "")
                     echo $b;
-                else if($g !="" && $c != ""){
-                    echo $g."-".$c;
+                else if ($g != "" && $c != "") {
+                    echo $g . "-" . $c;
                 }
                 ?>
             </h1>
@@ -90,7 +91,7 @@ $category = $sy->fetchAll();
                                 <?= $a->name ?>
                             </div>
                             <div class="product_price">
-                                RM<?= $a->price ?>
+                                RM <?= $a->price ?>
                             </div>
                         </div>
                         <div class="category">
@@ -102,12 +103,10 @@ $category = $sy->fetchAll();
                     </form>
                 </a>
             <?php } ?>
-
-
-
-
         </div>
     </div>
-    <?php
-    $page->footer();
-    ?>
+</body>
+
+<?php
+$page->footer();
+?>

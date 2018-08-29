@@ -13,6 +13,20 @@
     display: table-cell;
 }
 
+.success:not(:empty) {
+    padding: 10px 20px;
+    box-shadow: 0 0 5px #000;
+    background-color: #393;
+    color: #fff;
+}
+
+.warning:not(:empty) {
+    padding: 10px 20px;
+    box-shadow: 0 0 5px #000;
+    background-color: #f90;
+    color: #fff;
+}
+
 /* Account Button CSS */
 .btn {
     padding: 10px;
