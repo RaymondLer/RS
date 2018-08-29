@@ -12,23 +12,27 @@
         <title><?= $this->title ?> </title>
 
     <header>
-        <?php 
-        class tempPdo{
+        <?php
+
+        class tempPdo {
+
             public function pdo() {
-            $options = [
-                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
-                PDO::ATTR_EMULATE_PREPARES => false
-            ];
-            return new PDO('mysql:host=localhost;port=3306;dbname=product', 'root', '', $options);
+                $options = [
+                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_OBJ,
+                    PDO::ATTR_EMULATE_PREPARES => false
+                ];
+                return new PDO('mysql:host=localhost;port=3306;dbname=product', 'root', '', $options);
             }
+
         }
+
         $tempPdo = new tempPdo();
-           $pdo = $tempPdo->pdo();
-           $stm = $pdo->query("SELECT DISTINCT category FROM product WHERE gender LIKE 'male'");
-           $male = $stm->fetchAll();
-           $stm = $pdo->query("SELECT DISTINCT category FROM product WHERE gender LIKE 'female'");
-           $female = $stm->fetchAll();
+        $pdo = $tempPdo->pdo();
+        $stm = $pdo->query("SELECT DISTINCT category FROM product WHERE gender LIKE 'male'");
+        $male = $stm->fetchAll();
+        $stm = $pdo->query("SELECT DISTINCT category FROM product WHERE gender LIKE 'female'");
+        $female = $stm->fetchAll();
         ?>
         <div id="navl"><a href='/' title='Main Page'><img src="/pic/Mainlogo.png" alt="Web Logo" width=80px" height="80px"></a></div>
         <ul>
@@ -40,7 +44,6 @@
                         $category = urlencode($m->category);?>
                     <a href="/?g=male&c=<?=$category?>"><?=$m->category?></a>
                     <?php endforeach;?>
-                    
                 </div>
             </li>
             <li class="drop2">
@@ -50,6 +53,7 @@
                         $category = urlencode($m->category);?>
                     <a href="/?g=female&c=<?=$category?>"><?=$m->category?></a>
                     <?php endforeach;?>
+
                 </div>
             </li>
 
@@ -65,20 +69,19 @@
                         <div class="dropdown-pic">
                             <div class="dropdown-pic_header">
                                 Welcome<?php
-                                if ($this->user) {
-                                    echo ", {$this->user->name}!";
-                                }
-                                ?>
+                            if ($this->user) {
+                                echo ", {$this->user->name}!";
+                            }
+                            ?>
                             </div>                      
                             <?php
                             if ($this->user) {
                                 echo '<a href="/account/logout.php">Logout</a>';
                                 echo '<a href="/orderList.php">Order List</a>';
                                 if ($this->user->is_customer) {
-                                     echo '<a href="/account/change_profile.php">Change Profile</a>';
-                                     echo '<a href="/account/change_pwd.php">Change Password</a>';
-                                } 
-                                else if ($this->user->is_admin) {
+                                    echo '<a href="/account/change_profile.php">Change Profile</a>';
+                                    echo '<a href="/account/change_pwd.php">Change Password</a>';
+                                } else if ($this->user->is_admin) {
                                     echo '<a href="/admin/admin_register.php">Register Admin</a>';
                                     echo '<a href="/admin/product_detail.php">Product Detail</a>';
                                     echo '<a href="/admin/product_list.php">Product List</a>';

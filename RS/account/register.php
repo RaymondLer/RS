@@ -1,6 +1,7 @@
 <?php
 include'../_config.php';
 echo '<link rel="stylesheet" href="/css/register.css">';
+echo '<link rel="stylesheet" href="/css/site.css">';
 
 $username = $password = $confirm = $name = $email = $phone = $gender = '';
 $err = [];
@@ -101,55 +102,57 @@ $page->header();
         <form action="register.php" method="post" id="input">
             <h2>Register</h2>
             <div class="form">
-                <div>
+                <div class="register">
                     <label for="username">Username :</label>
                     <?php $html->text('username', $username, 20) ?> 
                     <?php $html->error($err, 'username') ?>
                 </div>
 
-                <div>
+                <div class="register">
                     <label for="password">Password :</label>
                     <?php $html->password('password', $password, 20) ?>
                     <?php $html->error($err, 'password') ?>
                 </div>
 
-                <div>
+                <div class="register">
                     <label for="confirm">Confirm Password :</label>
                     <?php $html->password('confirm', $confirm, 20) ?>
                     <?php $html->error($err, 'confirm') ?>
                 </div>
 
-                <div>
+                <div class="register">
                     <label for="name">Name :</label>
                     <?php $html->text('name', $name, 100) ?>
                     <?php $html->error($err, 'name') ?>
                 </div>
 
-                <div>
+                <div class="register">
                     <label for="email">Email Address :</label>
                     <?php $html->text('email', $email, 100) ?>
                     <?php $html->error($err, 'email') ?>
                 </div>
 
-                <div>
+                <div class="register">
                     <label for="phone">Phone :</label>
                     <?php $html->text('phone', $phone, 12) ?>
                     <?php $html->error($err, 'phone') ?>
                 </div>
 
-                <div>
+                <div class="register">
                     <label for="gender">Gender :</label>
-                    <div>
-                        <?php $html->radio_list('gender', $arr_gender) ?>
-                    </div>
+                    <?php $html->radio_list('gender', $arr_gender) ?>
+                    <?php $html->error($err, 'gender') ?>
                 </div>
             </div>
-            
-            <button class="btn">Register</button>      
-            <button type="reset" class="btn">Reset</button>
+
+            <div style="text-align: center;">
+                <button class="btn">Register</button>      
+                <button type="reset" class="btn">Reset</button>
+            </div>
         </form>
     </section>
 </body>
+
 <?php
 $html->focus('username', $err);
 $page->footer();

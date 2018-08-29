@@ -1,6 +1,6 @@
 section form {
-    width: 42%;
-    margin: 50px auto;
+    width: 50%;
+    margin: 45px auto;
     text-align: left;
     padding: 20px;
     border-radius: 5px;
@@ -16,7 +16,7 @@ section form h2 {
 }
 
 section form label {
-    display: table-cell;
+    display: inline-block;
 }
 
 section form>* {
@@ -24,7 +24,7 @@ section form>* {
 }
 
 section form>label {
-    display: inline;
+    display: inline-table;
     line-height: 0;
 }
 
@@ -32,24 +32,9 @@ section form label > * {
     vertical-align: text-top;
 }
 
-.login input[type=text] {
+.profile input[type=text] {
     width: 100%;
     padding: 5px 10px;
     margin: 8px 0;
     box-sizing: border-box;
-}
-
-.login input[type=password] {
-    width: 100%;
-    padding: 5px 10px;
-    margin: 8px 0;
-    box-sizing: border-box;
-}
-
-.password:hover {
-    color: red;
-}
-
-.password:active {
-    color: royalblue;
 }
