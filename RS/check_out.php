@@ -5,7 +5,7 @@ include'_config.php';
 //    
 //}
 
-$order_id = $username = $card = $address = '';
+$order_id = $username = $card = $address = $name = $email= "";
 $err = [];
 $pdo = $page->pdo();
 
@@ -17,10 +17,16 @@ $total_payment = 0.00;
 foreach($cart->items as $product_id => $quantity) {
     $total_payment += $quantity * $prices[$product_id];
 }
-
+// Take the information from customer account
+$cc = $pdo->prepare("SELECT * FROM customer WHERE username = ?");
+$cc->execute([$page->user->name]);
+$customer = $cc->fetch();
+var_dump($customer);
 if ($page->is_post()) {
     $order_id       = $page->post('order_id');
     $username       = $page->post('username');
+    $name           = $page->post('name');
+    $email          = $page->post('email');
     $card           = $page->post('card');
     $address        = $page->post('address');
     
@@ -96,17 +102,28 @@ echo '<link rel="stylesheet" href="/css/check_out.css">';
             <?php $html->hidden('order_id', $order_id) ?>
             <?= $order_id ?>
             <div>
-                <label for="username">Username: 
-                    <?php if ($page->user) {
+                <?php if ($page->user) {
                     $username = $page->user->name;
                     $html->hidden('username', $username);
-                    echo $username;
+                    echo "Username: {$username}";
                 }
-                else if (!$page->user) {
-                    $html->text('username', $username, 20, 'autofocus');
-                    $html->error($err, 'username');              
+//                else if (!$page->user) {
+//                    echo "<label for='name'>Name :</label>"
+//                    $html->text('username', $username, 20, 'autofocus');
+//                    $html->error($err, 'username');
+//                } ?>         
+            </div>
+            
+            <div>
+                <label for="name">Name :</label>
+                <?php if ($page->user) {
+                    $html->hidden('name', $customer->name, 20);
+                    $html->error($err, 'name');
+                    echo $customer->name;
+                } else {
+                    $html->text('name', $customer->name, 20);
+                    $html->error($err, 'name');
                 } ?>
-                </label>          
             </div>
 
             <div>

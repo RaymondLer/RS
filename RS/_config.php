@@ -9,8 +9,7 @@ class Page
     // Secruity
     public $home_page;
     public $login_page;
-    public $user;
-            
+    public $user;    
 
     function __construct() {
         $this->root = $_SERVER['DOCUMENT_ROOT'];

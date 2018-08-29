@@ -144,9 +144,9 @@ $page->header();
                     </div>
                 </div>
             </div>
-
-            <button>Register</button>
-            <button type="reset">Reset</button>
+            
+            <button class="btn">Register</button>      
+            <button type="reset" class="btn">Reset</button>
         </form>
     </section>
 </body>

@@ -1,15 +1,16 @@
 <?php 
 include'_config.php';
-$page->title='Product Submit';
-$page->header();
 
+if (!$page->user) {
+   
+}
 
 $order_id = $page->get('oi');
 $username = $page->user->name;
 var_dump($username);
 $pdo = $page->pdo();
 $stm = $pdo->prepare("SELECT * FROM `order` WHERE order_id = ? AND username = ?");
-$stm->execute([$order_id,$username]);
+$stm->execute([$order_id, $username]);
 $order = $stm->fetch();
 
 
@@ -19,6 +20,9 @@ $product = $p->fetchAll();
 $ss = $pdo->prepare("SELECT * FROM order_detail WHERE order_id = ? ORDER BY product_id");
 $ss->execute([$order_id]);
 $order_d = $ss->fetchAll();
+
+$page->title='Product Submit';
+$page->header();
 ?>
 <body>
     <section>

@@ -1,18 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>css/product_sell.css</url>
+            <bookmark id="1">
+                <name/>
+                <line>22</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Raymond/Desktop/RS/RS/check_out.php</file>
-            <file>file:/C:/Users/Raymond/Desktop/RS/RS/account/register.php</file>
             <file>file:/C:/Users/Raymond/Desktop/RS/RS/admin/product_sell.php</file>
+            <file>file:/C:/Users/Raymond/Desktop/RS/RS/account/register.php</file>
             <file>file:/C:/Users/Raymond/Desktop/RS/RS/account/login.php</file>
             <file>file:/C:/Users/Raymond/Desktop/RS/RS/_config.php</file>
-            <file>file:/C:/Users/Raymond/Desktop/RS/RS/admin/order_list.php</file>
-            <file>file:/C:/Users/Raymond/Desktop/RS/RS/cartList.php</file>
-            <file>file:/C:/Users/Raymond/Desktop/RS/RS/orderList.php</file>
-            <file>file:/C:/Users/Raymond/Desktop/RS/RS/product.php</file>
+            <file>file:/C:/Users/Raymond/Desktop/RS/RS/css/login.css</file>
+            <file>file:/C:/Users/Raymond/Desktop/RS/RS/order_details.php</file>
+            <file>file:/C:/Users/Raymond/Desktop/RS/RS/css/product_sell.css</file>
+            <file>file:/C:/Users/Raymond/Desktop/RS/RS/css/register.css</file>
             <file>file:/C:/Users/Raymond/Desktop/RS/RS/include/_header.php</file>
+            <file>file:/C:/Users/Raymond/Desktop/RS/RS/account/recovery_password.php</file>
         </group>
     </open-files>
 </project-private>

@@ -1,5 +1,6 @@
 <?php
 include'../_config.php';
+echo '<link rel="stylesheet" href="/css/login.css">';
 
 $username = $password = '';
 $err = [];
@@ -37,31 +38,33 @@ $page->header();
 
 <p class="success"><?= $page->temp('success') ?></p>
 
+<body>
+<section>
 <form method="post">
     <div class="form">
         <h2>Login</h2>
-        <fieldset>
             <div>
-                <label for="username">Username</label>
+                <label for="username">Username :</label>
                 <?php $html->text('username', $username) ?>
                 <?php $html->error($err, 'username') ?>
             </div>
 
             <div>
-                <label for="password">Password</label>
+                <label for="password">Password :</label>
                 <?php $html->password('password', $password) ?>
                 <?php $html->error($err, 'password') ?>
             </div>
 
             <div>
-                <span class="pwd"><a href="recovery_password.php">Forget Password?</a></span>
+                <span class="pwd"><a class="password" href="recovery_password.php">Forget Password?</a></span>
             </div>
-        </fieldset>
     </div>
     
-    <button>Login</button>
-    <button type="reset">Reset</button>
+    <button class="btn">Login</button>
+    <button type="reset" class="btn">Reset</button>
 </form>
+</section>
+</body>
 
 <?php
 $html->focus('username', $err);

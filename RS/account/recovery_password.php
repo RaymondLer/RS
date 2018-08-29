@@ -1,6 +1,6 @@
 <?php
 include '../_config.php';
-$page->authorize('customer');
+//$page->authorize('customer');
 
 $username = $email = '';
 $err = [];
