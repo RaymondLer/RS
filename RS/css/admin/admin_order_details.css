@@ -1,0 +1,42 @@
+#wrap{
+    margin: 20px 20px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    min-height: 600px;  
+}
+h1{
+    margin-left: 20px;
+    text-decoration: underline;
+    font-weight: bolder;
+    font-size: 20pt;
+}
+
+table{
+    margin-left:20px;
+    background:lightseagreen;
+    color:white;
+    box-shadow: 0 0 20px blueviolet;
+    cursor: default;
+}
+table,td,th,tr{
+    border:1px solid black;
+    border-collapse: collapse;
+}
+#up{
+    margin-bottom: 30px;
+    width:300px;
+}
+td{
+    text-align: right;
+}
+#up th{
+    text-align: right;
+}
+#down tr td {
+    background: lightgreen;
+    color:black;
+}
+#back{
+    margin-top: 10px;
+    margin-left:20px;
+}

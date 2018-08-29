@@ -191,3 +191,7 @@ form.search-container::after {
     padding: 0 5px;
     vertical-align: center;    
 }
+#count{
+    border:1px solid green;
+    border-radius: 3%;
+}

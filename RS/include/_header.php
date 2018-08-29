@@ -39,23 +39,21 @@
             <li class="drop1">
                 <a href="javascript:void(0)" class="men">Men</a>
                 <div class="dropdown-content">
-                    <?php // $and = urlencode('&')?>
-<?php foreach ($male as $m):
-    $category = urlencode($m->category);
-    ?>
-                        <a href="/main.php?g=male&c=<?= $category ?>"><?= $m->category ?></a>
-<?php endforeach; ?>
-
+                    <?php// $and = urlencode('&')?>
+                    <?php foreach ($male as $m):
+                        $category = urlencode($m->category);?>
+                    <a href="/?g=male&c=<?=$category?>"><?=$m->category?></a>
+                    <?php endforeach;?>
                 </div>
             </li>
             <li class="drop2">
                 <a href="javascript:void(0)" class="women">Women</a>
                 <div class="dropdown-content">
-<?php foreach ($male as $m):
-    $category = urlencode($m->category);
-    ?>
-                        <a href="/main.php?g=female&c=<?= $category ?>"><?= $m->category ?></a>
-<?php endforeach; ?>
+                    <?php foreach ($male as $m):
+                        $category = urlencode($m->category);?>
+                    <a href="/?g=female&c=<?=$category?>"><?=$m->category?></a>
+                    <?php endforeach;?>
+
                 </div>
             </li>
 
@@ -98,13 +96,13 @@
                         </div>
                     </li>
                     <a href="/cartList.php" title="Cart" id="countCart"><img src="/pic/cart.png" alt="Cart" width="50px" height="50px">
-                        <?php
+                        <label id="count"><?php
                         global $cart; // Access to global variable
                         if ($cart->items) {
                             $n = $cart->count();
                             echo $n;
                         }
-                        ?>
+                        ?></label>
                     </a>
                 </ul>
             </div>

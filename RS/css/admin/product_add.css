@@ -1,6 +1,6 @@
  section form{
-    color:white;
-    width:80%;
+    color:black;
+    width:65%;
     margin: 50px auto;
     text-align: left;
     padding: 20px;
@@ -8,12 +8,17 @@
     display: table;
     border-spacing: 5px;
     box-shadow: 0 0 20px blue;
-    background-color: darkturquoise;
+    background-color: skyblue;
     font-size: 19px;
     height: 500px;
 }
+section input[type=text]{
+    width:300px;
+}
 section form label{
    display:table-cell;
+   text-align: right;
+   vertical-align: top;
 }
 section form>*{
     display:table-row;
@@ -38,6 +43,14 @@ section form label > *{
     background:#5F9EA0;
     border:none;
     border-radius: 5px;
+    cursor: pointer;
+}
+button a{
+    color:white;
+    text-decoration: none;
+}
+#prev{
+    cursor: pointer;
 }
 .btn:hover{
     background:blueviolet;
