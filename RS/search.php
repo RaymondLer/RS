@@ -7,7 +7,7 @@ $page->header();
 $count = 0;
 $name = $page->get('search');
 if ($page->get('search') == '') {
-    $page->temp('warning', 'The thing you search in not found');
+    $page->temp('warning', 'Result not found');
     $page->redirect('/');
 }
 $pdo = $page->pdo();
@@ -15,7 +15,7 @@ $stm = $pdo->prepare("SELECT * FROM product WHERE product_id LIKE ? OR name LIKE
 $stm->execute(["%$name%", "%$name%", "%$name%", "%$name%"]);
 $product = $stm->fetchAll();
 if ($product == null) {
-    $page->temp('warning', 'The thing searched not found.');
+    $page->temp('warning', 'Result not found.');
     $page->redirect('/');
 }
 foreach ($product as $p) {

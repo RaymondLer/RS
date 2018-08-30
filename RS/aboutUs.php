@@ -23,7 +23,9 @@ $page->header();
 
 <body>
     <section>
-        //image in the pic/company_building
+        <div id="img">
+            <img src="pic/Company_building.jpg" id="image_b" style="height:555px; width:1515px;">
+        </div>
         <h2 style="text-align: center;">About Us</h2>
         <div class="p1">
             <p>
