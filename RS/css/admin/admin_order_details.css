@@ -26,11 +26,11 @@ table,td,th,tr{
     margin-bottom: 30px;
     width:500px;
 }
-td{
-    text-align: right;
+#up td, #up th{
+    text-align: left;
 }
-#up th{
-    text-align: right;
+td{
+    text-align:center;
 }
 #down tr td {
     background: lightgreen;

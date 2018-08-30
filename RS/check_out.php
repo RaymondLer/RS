@@ -121,7 +121,7 @@ $page->header();
                 </div>
 
                 <div class="checkout1">
-                    <label for="name">Name :</label>
+                    <label for="name">Name :</label><b>
                     <?php
                     if ($page->user) {
                         $html->hidden('name', $customer->name);
@@ -131,11 +131,11 @@ $page->header();
                         $html->text('name', $name, 100);
                         $html->error($err, 'name');
                     }
-                    ?>
+                    ?></b>
                 </div>
 
                 <div class="checkout1">
-                    <label for="email">Email : </label>
+                    <label for="email">Email : </label><b>
                     <?php
                     if ($page->user) {
                         $html->hidden('email', $customer->email);
@@ -145,7 +145,7 @@ $page->header();
                         $html->text('email', $email, 100);
                         $html->error($err, 'email');
                     }
-                    ?>
+                    ?></b>
                 </div>
 
                 <div class="checkout1">
