@@ -1,4 +1,4 @@
-<?php 
+<?php
 include'_config.php';
 echo "<link rel='stylesheet' href='/css/footer.css'>";
 
@@ -6,10 +6,10 @@ if ($page->is_post()) {
     $sql = file_get_contents('product.sql');
     $pdo = new PDO('mysql:host=localhost;port=3306', 'root', '');
     $pdo->exec($sql);
-    
+
     $page->temp('success', 'Database restored.');
 }
-$page->title='Registration';
+$page->title = 'Registration';
 $page->header();
 ?>
 
@@ -21,8 +21,6 @@ $page->header();
     <button>Restore Database</button>
 </form>
 
-
-
-<?php 
+<?php
 $page->footer();
 ?>

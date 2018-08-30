@@ -4,6 +4,13 @@ $page->title = 'Main';
 $page->header();
 echo '<link rel="stylesheet" href="/css/index.css">';
 
+
+if ($page->user) {
+    if ($page->user->role == 'admin') {
+        $cart->clear();
+    }
+}
+
 // b and c
 $g = $c = $b = "";
 $check = false;
@@ -48,7 +55,7 @@ $category = $sy->fetchAll();
 
 <body>
     <p class="warning"><?= $page->temp('warning') ?></p>
-     <p class="success"><?= $page->temp('success') ?></p>
+    <p class="success"><?= $page->temp('success') ?></p>
     <div class="wrap">
         <div id="aside">
             <h2>Brands</h2>

@@ -1,8 +1,6 @@
 <?php
 include'_config.php';
 
-
-
 // POST request
 if ($page->is_post()) {
     // TODO
@@ -41,7 +39,7 @@ echo '<link rel="stylesheet" href="/css/product.css">';
 ?>
 
 <p class="success"><?= $page->temp('success') ?></p>
-wakawaka
+
 <div class="wrap_aside_section">
     <aside><div class="img_container">
             <img class="product_img" src="/post_product/<?= $a->product_id ?>.jpg"><div id="image_div"></div>

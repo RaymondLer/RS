@@ -43,7 +43,7 @@ $p = $stm->fetchAll();
                                 <?= $a->name ?>
                             </div>
                             <div class="product_price">
-                                RM<?= $a->price ?>
+                                RM <?= $a->price ?>
                             </div>
                         </div>
                         <div class="category">
@@ -55,7 +55,6 @@ $p = $stm->fetchAll();
                     </form>
                 </a>
             <?php } ?>
-
 
         </section>
     </div>

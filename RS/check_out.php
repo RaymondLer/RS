@@ -1,7 +1,7 @@
 <?php
 include'_config.php';
 echo "<link rel='stylesheet' href='/css/check_out.css'>";
-echo '<link rel="stylesheet" href="/css/site.css">';
+echo '<link rel="stylesheet" href="/css/header.css">';
 
 $order_id = $username = $card = $address = $name = $email = "";
 $err = [];

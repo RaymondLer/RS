@@ -233,7 +233,7 @@ form.search-container::after {
 .warning:not(:empty) {
     padding: 10px 20px;
     box-shadow: 0 0 5px #000;
-    background-color: #f90;
+    background-color: LightGoldenRodYellow;
     color: red;
 }
 

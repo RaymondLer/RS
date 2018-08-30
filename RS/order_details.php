@@ -29,6 +29,7 @@ if ($order == "" || $ss == "") {
 $page->title = 'Product Submit';
 $page->header();
 ?>
+
 <body>
     <section>
         <p class="success"><?= $page->temp('success') ?></p>
@@ -99,6 +100,7 @@ $page->header();
                 </div>
             <?php } ?>
     </section>
+    
     <?php
     $page->footer();
     ?>

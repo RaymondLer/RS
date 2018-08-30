@@ -39,20 +39,24 @@
             <li class="drop1">
                 <a href="javascript:void(0)" class="men">Men</a>
                 <div class="dropdown-content">
-                    <?php// $and = urlencode('&')?>
-                    <?php foreach ($male as $m):
-                        $category = urlencode($m->category);?>
-                    <a href="/?g=Male&c=<?=$category?>"><?=$m->category?></a>
-                    <?php endforeach;?>
+                    <?php // $and = urlencode('&') ?>
+                    <?php
+                    foreach ($male as $m):
+                        $category = urlencode($m->category);
+                        ?>
+                        <a href="/?g=Male&c=<?= $category ?>"><?= $m->category ?></a>
+                    <?php endforeach; ?>
                 </div>
             </li>
             <li class="drop2">
                 <a href="javascript:void(0)" class="women">Women</a>
                 <div class="dropdown-content">
-                    <?php foreach ($male as $m):
-                        $category = urlencode($m->category);?>
-                    <a href="/?g=Female&c=<?=$category?>"><?=$m->category?></a>
-                    <?php endforeach;?>
+                    <?php
+                    foreach ($male as $m):
+                        $category = urlencode($m->category);
+                        ?>
+                        <a href="/?g=Female&c=<?= $category ?>"><?= $m->category ?></a>
+                    <?php endforeach; ?>
 
                 </div>
             </li>
@@ -69,10 +73,10 @@
                         <div class="dropdown-pic">
                             <div class="dropdown-pic_header">
                                 Welcome<?php
-                            if ($this->user) {
-                                echo ", {$this->user->name}!";
-                            }
-                            ?>
+                                if ($this->user) {
+                                    echo ", {$this->user->name}!";
+                                }
+                                ?>
                             </div>                      
                             <?php
                             if ($this->user) {
@@ -95,19 +99,21 @@
                         </div>
                     </li>
                     <label for="cart" id="cart">
-                    <a href="/cartList.php" title="Cart" name="cart" id="countCart"><img src="/pic/cart.png" alt="Cart" width="50px" height="50px">
-                        <?php global $cart;
-                        if($cart->items){?><label id="count"><?php
-                        global $cart; // Access to global variable
-                        if ($cart->items) {
-                            $n = $cart->count();
-                            echo $n;
-                        }
-                        ?></label>
-                        <?php }?>
-                    </a>
-                        </label>
+                        <a href="/cartList.php" title="Cart" name="cart" id="countCart"><img src="/pic/cart.png" alt="Cart" width="50px" height="50px">
+                            <?php
+                            global $cart;
+                            if ($cart->items) {
+                                ?><label id="count"><?php
+                                    global $cart; // Access to global variable
+                                    if ($cart->items) {
+                                        $n = $cart->count();
+                                        echo $n;
+                                    }
+                                    ?></label>
+                            <?php } ?>
+                        </a>
+                    </label>
                 </ul>
             </div>
         </div>
-    </header>  
+    </header>
