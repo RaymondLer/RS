@@ -46,7 +46,7 @@ section form label > *{
     cursor: pointer;
 }
 button a{
-    color:white;
+    color:black;
     text-decoration: none;
 }
 #prev{
