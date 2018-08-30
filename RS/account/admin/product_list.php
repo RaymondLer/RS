@@ -23,7 +23,6 @@ $rows = $stm->fetchAll();
 if ($page->is_post()) {
     //Delete
     $ids = $page->post_array('ids');
-    var_dump($ids);
     if (count($ids) > 0) {
         foreach($ids as $id){
             $iName = $id . '.jpg';
