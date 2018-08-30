@@ -101,24 +101,24 @@ if ($page->is_post()) {
     if (!$err) {
         if ($file['name']) {
             $iName = $product_id . '.jpg';
-            unlink("../post_product/$iName");
-            include '../include/simpleImage.php';
+            unlink("../../post_product/$iName");
+            include '../../include/simpleImage.php';
             $img = new SimpleImage();
             $img->fromFile($file['tmp_name'])
-                    ->toFile("../post_product/$iName", 'image/jpeg');
+                    ->toFile("../../post_product/$iName", 'image/jpeg');
         }
         $stm = $pdo->prepare("
         UPDATE product SET name = ?, price = ?, `desc` = ?, gender = ?, category = ?, brand = ?, size = ? WHERE product_id = ?
     ");
         $stm->execute([$name, $price, $desc, $gender, $category, $brand, $size, $product_id]);
         $page->temp('success', 'Product is updated');
-        $page->redirect('/');
+        $page->redirect('/account/admin/product_list.php');
     }
 }
 
 $d = $page->get('id');
 if($d == ""){
-    $page->redirect("/admin/product_list.php");
+    $page->redirect("product_list.php");
 }
 $pdo = $page->pdo();
 $stm = $pdo->prepare("SELECT * FROM product WHERE product_id = ?");

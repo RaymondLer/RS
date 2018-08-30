@@ -10,7 +10,6 @@ if ($page->is_post()) {
     $page->temp('success', 'Database restored.');
 }
 $page->title = 'Registration';
-$page->header();
 ?>
 
 <p class="success"><?= $page->temp('success') ?></p>
@@ -21,6 +20,11 @@ $page->header();
     <button>Restore Database</button>
 </form>
 
-<?php
-$page->footer();
-?>
+<style>
+    .success:not(:empty) {
+    padding: 10px 20px;
+    box-shadow: 0 0 5px #000;
+    background-color: #393;
+    color: #fff;
+}
+</style>

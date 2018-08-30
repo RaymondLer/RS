@@ -29,6 +29,7 @@ if ($page->is_post()) {
         $stm->execute($ids);
         $page->temp('output', 'Record deleted');
     }
+    $page->temp('success', 'Product is deleted');
     $page->redirect("product_list.php?");
 }
 ?>

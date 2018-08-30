@@ -30,6 +30,8 @@ function validateFile($file) {
      }
      else {
          $mime = mime_content_type($file['tmp_name']);
+         var_dump($mime);
+         var_dump($file['tmpname']);
          if ($mime != 'image/jpeg' && $mime != 'image/png') {
              $err['file'] = 'Only JPEG or PNG photo allowed.';
          }
@@ -108,10 +110,10 @@ if($page->is_post()){
     if (!$err) {
         $iName = $product_id. '.jpg';
 
-        include '../include/simpleImage.php';
+        include '../../include/simpleImage.php';
         $img = new SimpleImage();
         $img->fromFile($file['tmp_name'])
-            ->toFile("../post_product/$iName", "image/jpeg", 80);
+            ->toFile("../../post_product/$iName", "image/jpeg", 80);
             
         $stm = $pdo->prepare("
         INSERT INTO product (product_id,name,price,`desc`,gender,category,brand,size,quantity)
@@ -119,14 +121,14 @@ if($page->is_post()){
     ");
     $stm->execute([$product_id,$name,$price,$desc,$gender,$category,$brand,$size, $quantity]);
     $page->temp('success', 'Product is inserted');
-    $page->redirect("/admin/product_add.php");
+//    $page->redirect("/account/admin/product_add.php");
 
     }
 }
 ?>
 <body>
     <section>
-        
+        <p class="success"><?= $page->temp('success') ?></p>
         <form method="post" enctype="multipart/form-data">
             <h1>Add Product</h1>
              <?php $html->hidden('product_id',$product_id)?>
