@@ -1,5 +1,6 @@
 <?php
 include'../../_config.php';
+$page->authorize('admin');
 echo "<link rel='stylesheet' href='/css/admin/admin_order_list.css'>";
 $page->title = 'Order List';
 $page->header();

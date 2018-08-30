@@ -3,7 +3,7 @@
 include'../../_config.php';
 $page->authorize('admin');
 echo "<link rel='stylesheet' href='/css/admin/product_add.css'>";
-$page->title='Product Submit';
+$page->title='Add Product';
 $page->header();
 
 $pdo = $page->pdo();
