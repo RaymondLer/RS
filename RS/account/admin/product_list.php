@@ -23,7 +23,12 @@ $rows = $stm->fetchAll();
 if ($page->is_post()) {
     //Delete
     $ids = $page->post_array('ids');
+    var_dump($ids);
     if (count($ids) > 0) {
+        foreach($ids as $id){
+            $iName = $id . '.jpg';
+            unlink("../../post_product/$iName");
+        }
         $in = str_repeat('?,', count($ids)) . "0";
         $stm = $pdo->prepare("DELETE FROM product WHERE product_id IN ($in)");
         $stm->execute($ids);

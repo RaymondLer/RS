@@ -31,7 +31,7 @@ function validateFile($file) {
      else {
          $mime = mime_content_type($file['tmp_name']);
          var_dump($mime);
-         var_dump($file['tmpname']);
+         var_dump($file['tmp_name']);
          if ($mime != 'image/jpeg' && $mime != 'image/png') {
              $err['file'] = 'Only JPEG or PNG photo allowed.';
          }
