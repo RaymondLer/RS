@@ -86,7 +86,7 @@
                                     echo '<a href="/account/change_profile.php">Change Profile</a>';
                                     echo '<a href="/account/change_pwd.php">Change Password</a>';
                                 } else if ($this->user->is_admin) {
-                                    echo '<a href="/account/admin/admin_order_list.php">Order List</a>';
+                                    echo '<a href="/account/admin/admin_order_list.php">Order History</a>';
                                     echo '<a href="/account/admin/product_add.php">Add Product</a>';
                                     echo '<a href="/account/admin/product_list.php">Product List</a>';
                                     echo '<a href="/account/admin/admin_register.php">Register Admin</a>';

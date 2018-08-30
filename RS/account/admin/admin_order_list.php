@@ -14,7 +14,7 @@ $order = $stm->fetchAll();
         <p class="success"><?= $page->temp('success') ?></p>
         <div class='wrap'>
             <h2>
-                All Customer Order List
+                All Customer Order History
             </h2>
         <table>
         <tr>

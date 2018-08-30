@@ -20,7 +20,7 @@ if ($username == "") {
     <section>
         <div class='wrap'>
             <h2>
-                Order List
+                Order History
             </h2>
             <table>
                 <tr>
