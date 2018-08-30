@@ -34,6 +34,7 @@ if ($page->is_post()) {
 ?>
 <body>
     <section>
+         <p class="success"><?= $page->temp('success') ?></p>
         <h1>
             Product List
         </h1>

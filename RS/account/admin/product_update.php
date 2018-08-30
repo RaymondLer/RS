@@ -111,8 +111,8 @@ if ($page->is_post()) {
         UPDATE product SET name = ?, price = ?, `desc` = ?, gender = ?, category = ?, brand = ?, size = ? WHERE product_id = ?
     ");
         $stm->execute([$name, $price, $desc, $gender, $category, $brand, $size, $product_id]);
-        $page->temp('output', 'Product is inserted');
-        $page->redirect();
+        $page->temp('success', 'Product is updated');
+        $page->redirect('/');
     }
 }
 

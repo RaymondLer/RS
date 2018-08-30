@@ -10,6 +10,7 @@ $order = $stm->fetchAll();
 ?>
 <body>
     <section>
+        <p class="success"><?= $page->temp('success') ?></p>
         <div class='wrap'>
             <h2>
                 All Customer Order List

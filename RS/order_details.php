@@ -31,6 +31,7 @@ $page->header();
 ?>
 <body>
     <section>
+        <p class="success"><?= $page->temp('success') ?></p>
         <h1>
             Order Details
         </h1>

@@ -118,14 +118,15 @@ if($page->is_post()){
         VALUES (?,?, ?, ?, ?, ?, ?, ?,?)
     ");
     $stm->execute([$product_id,$name,$price,$desc,$gender,$category,$brand,$size, $quantity]);
-    $page->temp('output', 'Product is inserted');
+    $page->temp('success', 'Product is inserted');
     $page->redirect("/admin/product_add.php");
 
-     }
+    }
 }
 ?>
 <body>
     <section>
+        
         <form method="post" enctype="multipart/form-data">
             <h1>Add Product</h1>
              <?php $html->hidden('product_id',$product_id)?>

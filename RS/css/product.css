@@ -13,7 +13,7 @@ section{
 .img_container img{
     width: 450px;
     height:550px;
-    margin-left:200px;
+    margin-left:150px;
     outline: 1px solid lightgrey;
     display:block;
 }
