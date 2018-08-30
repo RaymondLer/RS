@@ -41,7 +41,7 @@ echo "<link rel='stylesheet' href='/css/cartList.css'>";
 
 <!-- IF: Shopping cart NOT EMPTY -->
 <?php if ($cart->items): ?>
-
+<div id="wrap">
     <table class="table">
         <h2>Cart List</h2>
         <tr>
@@ -89,7 +89,7 @@ echo "<link rel='stylesheet' href='/css/cartList.css'>";
         <?php } // END FOREACH  ?>
 
         <tr>
-            <th colspan="4"></th>
+            <th colspan="3"></th>
             <th><?= $total_quantity ?></th>
             <th><?= number_format($total, 2) ?></th>
             <th></th>
@@ -102,7 +102,7 @@ echo "<link rel='stylesheet' href='/css/cartList.css'>";
         <button name="action" value="clear" class="button">Clear</button>
         <button name="action" value="checkout" class="button">Checkout</button>
     </form>
-
+</div>
     <!-- ELSE: Shopping cart EMPTY -->
 <?php else: ?>
 

@@ -77,16 +77,15 @@
                             <?php
                             if ($this->user) {
                                 echo '<a href="/account/logout.php">Logout</a>';
-                                echo '<a href="/orderList.php">Order List</a>';
                                 if ($this->user->is_customer) {
+                                    echo '<a href="/orderList.php">Order List</a>';
                                     echo '<a href="/account/change_profile.php">Change Profile</a>';
                                     echo '<a href="/account/change_pwd.php">Change Password</a>';
                                 } else if ($this->user->is_admin) {
-                                    echo '<a href="/admin/admin_register.php">Register Admin</a>';
-                                    echo '<a href="/admin/product_detail.php">Product Detail</a>';
-                                    echo '<a href="/admin/product_list.php">Product List</a>';
-                                    echo '<a href="/admin/product_sell.php">Product Sell</a>';
-                                    echo '<a href="/admin/product_update.php">Product Update</a>';
+                                    echo '<a href="/account/admin/admin_order_list.php">Order List</a>';
+                                    echo '<a href="/account/admin/product_add.php">Add Product</a>';
+                                    echo '<a href="/account/admin/product_list.php">Product List</a>';
+                                    echo '<a href="/account/admin/admin_register.php">Register Admin</a>';
                                 }
                             } else {
                                 echo '<a href="/account/login.php">Login</a>';

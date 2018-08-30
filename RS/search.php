@@ -4,10 +4,11 @@ echo "<link rel='stylesheet' href='/css/search.css'>";
 $page->title = 'Product Submit';
 $page->header();
 
+$count = 0;
 $name = $page->get('search');
 if ($page->get('search') == '') {
     $page->temp('warning', 'The thing you search in not found');
-    $page->redirect('main.php');
+    $page->redirect('/');
 }
 $pdo = $page->pdo();
 $stm = $pdo->prepare("SELECT * FROM product WHERE product_id LIKE ? OR name LIKE ? OR brand LIKE ? OR category LIKE ?");
@@ -17,6 +18,9 @@ if ($product == null) {
     $page->temp('warning', 'The thing searched not found.');
     $page->redirect('/');
 }
+foreach ($product as $p) {
+    $count++;
+}
 $a = '';
 $pdo = $page->pdo();
 $stm = $pdo->query("SELECT * FROM product");
@@ -24,37 +28,35 @@ $p = $stm->fetchAll();
 ?>
 <body>
     <div id="wrap">
-        <?php foreach ($product as $p) { ?>
-            <div id="row">
-                <a class="product" href="product.php?id=<?= $p->product_id ?>">
-                    <div class="product_pic">
-                        <img src="/post_product/<?= $p->product_id ?>.jpg">
-                    </div>
-
-                    <div>
-                        <?= $p->product_id ?>
-                    </div>
-                    <div>
-                        <?= $p->brand ?>
-                    </div>
-                    <div>
-                        <?= $p->price ?>
-                    </div>
-                    <div>
-                        <?= $p->name ?>
-                    </div>
-                    <div>
-                        <?= $p->category ?>
-                    </div>
-                    <div>
-                        <?= $p->desc ?>
-                    </div>
+        <section>
+            <h2>Searching for "<?= $name ?>"</h2>
+            <h3><?= $count ?> record(s) is found</h3>
+            <?php foreach ($product as $a) { ?>
+                <a href="/product.php?id=<?= $a->product_id ?>">
+                    <form id="product">
+                        <div class="product_pic">
+                            <img src="/post_product/<?= $a->product_id ?>.jpg">
+                        </div>
+                        <div id="container_name_price">
+                            <div class="product_name">
+                                <?= $a->name ?>
+                            </div>
+                            <div class="product_price">
+                                RM<?= $a->price ?>
+                            </div>
+                        </div>
+                        <div class="category">
+                            <?= $a->category ?>
+                        </div>
+                        <div class="gender">
+                            <?= $a->gender ?>
+                        </div>
+                    </form>
                 </a>
+            <?php } ?>
 
 
-            </div>
-        <?php } ?>
-
+        </section>
     </div>
     <?php
     $page->footer();

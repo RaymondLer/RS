@@ -1,13 +1,14 @@
-<?php 
+<?php
 include'_config.php';
 echo "<link rel='stylesheet' href='/css/admin/admin_order_details.css'>";
 
 
-$username="";
+$username = $check = "";
 $order_id = $page->get('oi');
-if($page->user){
+$check = $page->get('check');
+if ($page->user) {
     $username = $page->user->name;
-}else{
+} else {
     $username = "notcustomer";
 }
 $pdo = $page->pdo();
@@ -22,8 +23,10 @@ $product = $p->fetchAll();
 $ss = $pdo->prepare("SELECT * FROM order_detail WHERE order_id = ? ORDER BY product_id");
 $ss->execute([$order_id]);
 $order_d = $ss->fetchAll();
-
-$page->title='Product Submit';
+if ($order == "" || $ss == "") {
+    $page->redirect("/");
+}
+$page->title = 'Product Submit';
 $page->header();
 ?>
 <body>
@@ -50,6 +53,16 @@ $page->header();
                     ><th>Total Payment (RM)</th>
                     <td><?= $order->total_payment ?></td>
                 </tr>
+                <tr>
+                    <th>Name</th>
+                    <td><?= $order->name ?></td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td><?= $order->email ?></td>
+                </tr>
+
+
             </table>
             <h2>
                 Product in The Order
@@ -60,6 +73,7 @@ $page->header();
                     <th>Product Name</th>
                     <th>Quantity</th>
                     <th>Price (RM)</th>
+
                 </tr>
                 <?php foreach ($order_d as $a) { ?>
                     <tr>
@@ -74,13 +88,16 @@ $page->header();
                             ?></td>
                         <td><?= $a->quantity ?></td>
                         <td><?= $a->price ?></td>
+
                     </tr>
                 <?php } ?>
             </table>
-            <div id='back'>
-                <a href='/orderList.php' ><button>Back</button></a>
-            </div>
+            <?php if ($check == true) { ?>
+                <div id='back'>
+                    <a href='/orderList.php' ><button>Back</button></a>
+                </div>
+            <?php } ?>
     </section>
-<?php 
-$page->footer();
-?>
+    <?php
+    $page->footer();
+    ?>

@@ -48,6 +48,7 @@ $category = $sy->fetchAll();
 
 <body>
     <p class="warning"><?= $page->temp('warning') ?></p>
+     <p class="success"><?= $page->temp('success') ?></p>
     <div class="wrap">
         <div id="aside">
             <h2>Brands</h2>

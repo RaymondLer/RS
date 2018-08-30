@@ -3,6 +3,13 @@
 
 
 }
+#wrap{
+    margin: 10px 20px 20px 30px;
+}
+.cover{
+    width:200px;
+    height:200px;
+}
 tr,th,td{
     border: 1px solid white;
 }

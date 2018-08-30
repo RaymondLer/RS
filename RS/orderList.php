@@ -3,7 +3,7 @@ include'_config.php';
 echo "<link rel='stylesheet' href='/css/admin/admin_order_list.css'>";
 $page->title='Product Submit';
 $page->header();
-
+$page->authorize('customer');
 $username = $page->user->name;
 if($username ==""){
     echo "the username is not found";
@@ -38,7 +38,7 @@ if($username ==""){
                     <td><?= $p->card ?></td>
                     <td><?= $p->address ?></td>
                     <td><?= $p->total_payment ?></td>
-                    <td><a href='/order_details.php?oi=<?= $p->order_id?>'><button class='btn'>Details</button></a></td>
+                    <td><a href='/order_details.php?oi=<?= $p->order_id?>&check=true'><button class='btn'>Details</button></a></td>
             </tr>
         <?php } ?>
         </table>

@@ -1,9 +1,14 @@
 <?php
 include'_config.php';
 
+
+
 // POST request
 if ($page->is_post()) {
     // TODO
+    if($page->user->role=="admin"){
+        $page->redirect("/");
+    }
     $id = $page->post('id');
     $quantity = $page->post('quantity');
     $cart->set($id, $quantity);

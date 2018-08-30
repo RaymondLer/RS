@@ -158,7 +158,8 @@ form.search-container::after {
     background-color:purple;
     border: 1px solid purple;
     font-size: 16pt;
-    height: 45px;
+    min-height: 60px;
+    max-height: 100px;
     cursor:default;
 }
 .dropdown-pic a{

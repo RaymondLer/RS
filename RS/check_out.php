@@ -70,7 +70,6 @@ if ($page->is_post()) {
         $stm->execute([$order_id, $username, $card, $address, $total_payment, $page->date->format("Y-m-d"), $name, $email]);
 
         // TODO (4): Add order details
-        var_dump($order_id);
         $stm = $pdo->prepare("
             INSERT INTO order_detail(order_id, product_id, quantity, price)
             VALUES (?, ?, ?, ?)
@@ -109,14 +108,11 @@ $page->header();
             <div class="checkout">
                 <h2>Checkout</h2>
                 <?php $html->hidden('order_id', $order_id) ?>
-                <?= $order_id ?>
-
                 <div class="checkout1">
                     <?php
                     if ($page->user) {
                         $username = $page->user->name;
                         $html->hidden('username', $username);
-                        echo "Username: {$username}";
                     } else {
                         $username = "notcustomer";
                         $html->hidden('username', $username);
