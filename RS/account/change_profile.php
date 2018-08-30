@@ -1,7 +1,7 @@
 <?php
 include '../_config.php';
 echo '<link rel="stylesheet" href="/css/account/change_profile.css">';
-echo '<link rel="stylesheet" href="/css/site.css">';
+echo '<link rel="stylesheet" href="/css/header.css">';
 $page->authorize('customer');
 
 $err = [];

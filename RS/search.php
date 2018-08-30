@@ -26,6 +26,7 @@ $pdo = $page->pdo();
 $stm = $pdo->query("SELECT * FROM product");
 $p = $stm->fetchAll();
 ?>
+
 <body>
     <div id="wrap">
         <section>

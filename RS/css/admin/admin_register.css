@@ -1,0 +1,47 @@
+section form {
+    width: 50%;
+    margin: 40px auto;
+    text-align: left;
+    padding: 20px;
+    border-radius: 5px;
+    display: table;
+    border-spacing: 10px;
+    box-shadow: 0 0 20px black;
+    background-color: snow;
+    font-size: 19px;
+}
+
+section form h2 {
+    text-align: center;
+}
+
+section form label {
+    display: table-cell;
+}
+
+section form>* {
+    display: table-row;
+}
+
+section form>label {
+    display: inline;
+    line-height: 0;
+}
+
+section form label > * {
+    vertical-align: text-top;
+}
+
+.register input[type=text] {
+    width: 100%;
+    padding: 5px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
+
+.register input[type=password] {
+    width: 100%;
+    padding: 5px 10px;
+    margin: 8px 0;
+    box-sizing: border-box;
+}
