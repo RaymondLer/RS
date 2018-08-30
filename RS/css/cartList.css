@@ -6,6 +6,9 @@
 #wrap{
     margin: 10px 20px 20px 30px;
 }
+#noRecord{
+    min-height: 500px;
+}
 .cover{
     width:200px;
     height:200px;

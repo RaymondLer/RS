@@ -105,9 +105,9 @@ echo "<link rel='stylesheet' href='/css/cartList.css'>";
 </div>
     <!-- ELSE: Shopping cart EMPTY -->
 <?php else: ?>
-
+<div id="noRecord">
     <p class="warning">Your shopping cart is empty.</p>
-
+</div>
 <?php endif; ?>
 <!-- END IF -->
 
